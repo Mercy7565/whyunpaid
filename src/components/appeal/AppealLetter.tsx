@@ -83,14 +83,14 @@ export function AppealLetter({ appeal }: { appeal: Appeal }) {
           <button
             type="button"
             onClick={copy}
-            className="hair px-1 py-[6px] text-[13px] font-medium ink-body"
+            className="hair pressable px-1 py-[6px] text-[13px] font-medium ink-body"
           >
             {copied ? 'Copied' : 'Copy'}
           </button>
           <button
             type="button"
             onClick={() => window.print()}
-            className="hair px-1 py-[6px] text-[13px] font-medium ink-body"
+            className="hair pressable px-1 py-[6px] text-[13px] font-medium ink-body"
           >
             Print
           </button>
@@ -162,7 +162,7 @@ export function AppealLetter({ appeal }: { appeal: Appeal }) {
 
       {/* What backs the sentence under the cursor. */}
       <div
-        className="hair px-2 py-1"
+        className="hair pressable px-2 py-1"
         aria-live="polite"
         data-print="hide"
         style={{ minHeight: '92px' }}

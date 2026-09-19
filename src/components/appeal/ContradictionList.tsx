@@ -52,8 +52,9 @@ export function ContradictionList({ contradictions }: { contradictions: readonly
               <span
                 className="shrink-0 px-[5px] py-[1px] text-[11px] font-semibold uppercase leading-[1.4] tracking-[0.08em]"
                 style={{
-                  border: 'var(--hair) solid color-mix(in srgb, var(--line) 75%, transparent)',
-                  color: 'color-mix(in srgb, var(--ink) 82%, transparent)',
+                  border: 'var(--hair) solid var(--line)',
+                  borderRadius: '4px',
+                  color: 'var(--ink)',
                 }}
               >
                 {contradiction.strength === 'direct' ? 'Direct' : 'Supporting'}

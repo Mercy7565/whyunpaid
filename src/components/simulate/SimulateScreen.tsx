@@ -144,7 +144,7 @@ export function SimulateScreen() {
             <button
               type="button"
               onClick={() => setPaletteOpen(true)}
-              className="hair px-1 py-[6px] text-[13px] font-medium ink-body transition-colors hover:ink-strong"
+              className="hair pressable px-1 py-[6px] text-[13px] font-medium ink-body transition-colors hover:ink-strong"
             >
               Scenarios
               <kbd
@@ -157,7 +157,7 @@ export function SimulateScreen() {
             <button
               type="button"
               onClick={copyLink}
-              className="hair px-1 py-[6px] text-[13px] font-medium ink-body transition-colors hover:ink-strong"
+              className="hair pressable px-1 py-[6px] text-[13px] font-medium ink-body transition-colors hover:ink-strong"
             >
               {copied ? 'Link copied' : 'Copy link'}
             </button>

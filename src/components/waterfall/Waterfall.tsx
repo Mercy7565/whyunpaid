@@ -116,7 +116,14 @@ export function Waterfall({
             reserve={reserve}
           />
         </div>
-        <div className="h-[10px] w-full" style={{ background: 'var(--band)' }} />
+        <div
+          className="h-[12px] w-full"
+          style={{
+            background: 'var(--band)',
+            border: 'var(--hair) solid var(--line)',
+            borderRadius: '3px',
+          }}
+        />
       </div>
 
       {/* One row per clause that took something. */}
@@ -151,10 +158,11 @@ export function Waterfall({
                     <span className="flex w-full items-baseline justify-between gap-1">
                       <span className="flex min-w-0 items-baseline gap-1">
                         <span
-                          className="shrink-0 px-[5px] py-[1px] text-[11px] font-semibold leading-[1.4]"
+                          className="shrink-0 px-[6px] py-[1px] text-[11px] font-bold leading-[1.4]"
                           style={{
-                            border: 'var(--hair) solid color-mix(in srgb, var(--line) 75%, transparent)',
-                            color: 'color-mix(in srgb, var(--ink) 84%, transparent)',
+                            border: 'var(--hair) solid var(--line)',
+                            borderRadius: '4px',
+                            color: 'var(--ink)',
                           }}
                         >
                           {deduction.clauseRef}
@@ -175,7 +183,7 @@ export function Waterfall({
                         className="absolute inset-y-0 left-0"
                         style={{
                           width: `${Math.max(band.left, 0)}%`,
-                          borderBottom: 'var(--hair) solid color-mix(in srgb, var(--line) 50%, transparent)',
+                          borderBottom: 'var(--hair) solid color-mix(in srgb, var(--line) 45%, transparent)',
                         }}
                       />
                       <motion.span
@@ -184,9 +192,10 @@ export function Waterfall({
                         animate={{ left: `${Math.max(band.left, 0)}%`, width: `${band.width}%` }}
                         transition={barTransition}
                         style={{
-                          minWidth: '3px',
+                          minWidth: '4px',
                           background: 'var(--band)',
-                          borderLeft: 'var(--hair) solid color-mix(in srgb, var(--line) 70%, transparent)',
+                          border: 'var(--hair) solid var(--line)',
+                          borderRadius: '3px',
                         }}
                       />
                     </span>
@@ -228,65 +237,76 @@ export function Waterfall({
         ) : null}
       </ol>
 
-      {/* What survives. */}
-      <div className="hair-t mt-1 pt-2">
-        <div className="flex items-baseline justify-between gap-1">
-          <span className="eyebrow">{nothingPayable ? 'Payable' : 'Payable by the policy'}</span>
-          <span className="text-[12px] ink-muted">
-            {claimed > 0 ? `${Math.round(paidPercent)}% of the bill` : 'no bill entered'}
-          </span>
-        </div>
+      {/*
+        What survives, as a solid block.
 
-        {/*
-          Three-step money scale. A full or partial figure is amber, the colour
-          of everything that survives. A nil figure is paprika, with an outlined
-          rule where the bar would be. The colour is never the message: a nil
-          claim also names the clause that blocked it, immediately below.
-        */}
-        <div className="mt-1">
+        The figure is never rendered IN the money colour, because amber cannot
+        be read as text on either ground. It sits ON a solid amber block in
+        near-black ink, which measures 9.4:1 in both modes. A nil claim uses the
+        same block in paprika and says "not admissible" in words, so the verdict
+        never depends on telling two colours apart.
+      */}
+      <div className="mt-3">
+        <div
+          className="slab px-2 py-2"
+          style={{ background: nothingPayable ? 'var(--alert)' : 'var(--paid-full)' }}
+        >
+          <div className="flex flex-wrap items-baseline justify-between gap-1">
+            <span
+              className="text-[11px] font-bold uppercase leading-[1.2] tracking-[0.14em]"
+              style={{ color: 'var(--on-accent)' }}
+            >
+              {nothingPayable ? 'Not admissible' : 'Payable by the policy'}
+            </span>
+            <span
+              className="text-[12px] font-semibold"
+              style={{ color: 'var(--on-accent)', opacity: 0.78 }}
+            >
+              {claimed > 0 ? `${Math.round(paidPercent)}% of the bill` : 'no bill entered'}
+            </span>
+          </div>
+
           <Figure
             paise={verdict.paidPaise}
-            className="display block text-[clamp(44px,13vw,84px)] leading-[0.95]"
+            className="display mt-1 block text-[clamp(44px,13vw,84px)] leading-[0.95]"
             reserve={reserve}
             duration={0.55}
-            style={{ color: nothingPayable ? 'var(--alert)' : 'var(--paid-full)' }}
+            style={{ color: 'var(--on-accent)' }}
           />
-        </div>
 
-        <div className="mt-1 h-[16px] w-full" style={{ background: 'transparent' }}>
-          {nothingPayable ? (
-            <div
-              className="h-full w-full"
-              style={{
-                border: 'var(--hair) solid var(--alert)',
-                background: 'var(--ground)',
-              }}
-            />
-          ) : (
+          {/* The share of the bill, drawn inside the block in the same ink. */}
+          <div
+            className="mt-1 h-[10px] w-full"
+            style={{
+              border: '2px solid var(--on-accent)',
+              borderRadius: '3px',
+              background: 'transparent',
+            }}
+            aria-hidden="true"
+          >
             <motion.div
               className="h-full"
-              animate={{ width: `${Math.max(paidPercent, 0.5)}%` }}
+              animate={{ width: `${Math.max(paidPercent, 0)}%` }}
               transition={barTransition}
-              style={{ background: 'var(--paid-full)' }}
+              style={{ background: 'var(--on-accent)' }}
             />
-          )}
+          </div>
         </div>
 
         {verdict.block ? (
-          <div
-            className="mt-2 pl-2"
-            style={{ borderLeft: '2px solid var(--alert)' }}
-          >
+          <div className="mt-2 flex flex-col gap-1">
             <p className="flex flex-wrap items-baseline gap-1">
               <span
-                className="px-[5px] py-[1px] text-[11px] font-semibold uppercase leading-[1.4] tracking-[0.08em]"
-                style={{ background: 'var(--alert)', color: 'var(--on-accent)' }}
+                className="slab px-[6px] py-[2px] text-[11px] font-bold uppercase leading-[1.4] tracking-[0.1em]"
+                style={{ background: 'var(--alert)', boxShadow: 'var(--shadow-hard-sm)' }}
               >
-                Not admissible
+                Clause {verdict.block.clauseRef}
               </span>
-              <span className="text-[12px] ink-muted">clause {verdict.block.clauseRef}</span>
+              <span className="text-[12px] font-semibold ink-muted">
+                blocked this claim outright
+              </span>
             </p>
-            <p className="mt-1 text-[14px] leading-[1.65] ink-body measure">
+            <p className="text-[14px] leading-[1.65] ink-body measure">
               {verdict.block.humanReason}
             </p>
           </div>

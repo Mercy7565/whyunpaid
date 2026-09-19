@@ -39,10 +39,10 @@ export function ContestabilityPanel({ contestability }: { contestability: Contes
       </div>
 
       <div
-        className="mt-1 h-[6px] w-full"
+        className="mt-1 h-[10px] w-full"
         role="img"
         aria-label={`${monthsOfContinuousCover} of ${moratoriumMonths} months of continuous cover completed`}
-        style={{ border: 'var(--hair) solid color-mix(in srgb, var(--line) 55%, transparent)' }}
+        style={{ border: 'var(--hair) solid var(--line)', borderRadius: '3px' }}
       >
         <div
           className="h-full transition-[width] duration-300"

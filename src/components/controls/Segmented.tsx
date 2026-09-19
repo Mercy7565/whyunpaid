@@ -35,8 +35,11 @@ export function Segmented<T extends string>({
     <fieldset className="min-w-0">
       <legend className="eyebrow mb-1">{legend}</legend>
       <div
-        className="grid hair"
-        style={{ gridTemplateColumns: `repeat(${options.length}, minmax(0, 1fr))` }}
+        className="grid hair overflow-hidden"
+        style={{
+          gridTemplateColumns: `repeat(${options.length}, minmax(0, 1fr))`,
+          boxShadow: 'var(--shadow-hard-sm)',
+        }}
       >
         {options.map((option, index) => {
           const selected = option.value === value;
@@ -44,16 +47,11 @@ export function Segmented<T extends string>({
             <label
               key={option.value}
               title={option.description}
-              className="relative flex min-w-0 cursor-pointer items-center justify-center px-1 py-1 text-[13px] font-medium transition-colors"
+              className="relative flex min-w-0 cursor-pointer items-center justify-center px-1 py-1 text-[13px] font-semibold transition-colors"
               style={{
                 background: selected ? 'var(--accent)' : 'transparent',
-                color: selected
-                  ? 'var(--on-accent)'
-                  : 'color-mix(in srgb, var(--ink) 80%, transparent)',
-                borderLeft:
-                  index === 0
-                    ? 'none'
-                    : 'var(--hair) solid color-mix(in srgb, var(--line) 55%, transparent)',
+                color: selected ? 'var(--on-accent)' : 'var(--ink)',
+                borderLeft: index === 0 ? 'none' : 'var(--hair) solid var(--line)',
               }}
             >
               <input

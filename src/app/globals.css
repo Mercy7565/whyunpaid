@@ -3,36 +3,39 @@
 /* ---------------------------------------------------------------------------
    The palette, in two modes.
 
-   Five brand colours, shipped verbatim. Dark is built on --indigo taken down
-   to near-black; light is built on --steel tinted to a page. Every role has
-   ONE token whose value changes per mode, so nothing is ever asked to be
-   readable where it cannot be.
+   Five brand colours, shipped verbatim. Both modes put a SATURATED brand
+   colour on the page rather than a near-neutral: dark sits on --indigo, light
+   sits on --steel. Contrast then comes from three things working together,
+   not from the text colour alone:
 
-   DARK, measured against --ground #080B1A:
-     --ink      #F4F7EC  18.0:1   body copy
-     --paid-part brand   10.3:1   partially-paid figures
-     --paid-full brand    9.6:1   the amount that survives
-     --line     #8494C9   6.6:1   rules, borders, labels at any size
-     --accent   brand     6.5:1   interaction: focus, active, links
-     --alert    brand     5.3:1   refusal: a nil claim
-     --band     #4A5899   2.9:1   deduction bars; a fill, never text
-     --surface  #303C6E   1.9:1   cards and panels; a fill, never text
+     1. every boundary is a 2px rule at full strength, never a tinted hairline;
+     2. anything that matters is a SOLID BLOCK of brand colour, not a tint;
+     3. blocks carry a hard offset shadow in the rule colour, with no blur.
 
-   LIGHT, measured against --ground #D2E2EE:
-     --ink      #1E2748  11.0:1   body copy
-     --paid-part #3F5C24  5.7:1   partially-paid figures
-     --paid-full #7A4F04  5.4:1   the amount that survives
-     --accent   #1F5C87   5.4:1   interaction
-     --alert    #A32E0A   5.4:1   refusal
-     --line     #2F6285   4.9:1   rules, borders, labels at any size
-     --band     #4E86AC   3.0:1   deduction bars; a fill, never text
-     --surface  #FFFFFF   1.3:1   cards and panels; a fill, never text
+   That last one is why --amber finally works. Amber cannot be read as text on
+   either ground, 6.0:1 on indigo and 1.5:1 on steel, so the payable figure
+   never IS amber. It sits ON a solid amber block in near-black ink at 9.4:1,
+   identically in both modes. A nil claim does the same on paprika at 5.2:1.
 
-   Two consequences worth stating. --line now clears 4.5:1 in both modes, so a
-   figure in the rule colour is readable at any size rather than only at 18px.
-   And nothing that carries text is ever filled with --paid-full: the amber bar
-   has no label on it, which is what lets the bar stay brand gold in dark and go
-   bronze in light without a readability problem.
+   DARK, measured against --ground #29335C:
+     --ink      #F4F7EC  11.2:1   body copy
+     --line     #C7D0EE   8.0:1   2px rules, borders, hard shadows
+     --paid-part brand    6.4:1   secondary numerals
+     --accent   #8FC0DC   6.2:1   interaction
+     --alert    brand     3.3:1   block fills only
+     --band     #5A69AE   2.4:1   deduction bars; a fill, never text
+     --surface  #1A2140   1.3:1   cards; the 2px rule does the separating
+
+   LIGHT, measured against --ground #669BBC:
+     --ink      #0B0F1F   6.3:1   body copy
+     --line     #0B0F1F   6.3:1   2px rules, borders, hard shadows
+     --accent   #16224A   5.1:1   interaction
+     --paid-part #1B2C0B  4.9:1   secondary numerals
+     --band     brand     4.1:1   deduction bars
+     --surface  #F7FAF2   2.9:1   cards
+
+   --on-accent is near-black in BOTH modes, because every block colour is a
+   light one: amber 9.4:1, olive 10.1:1, paprika 5.2:1.
 
    No hex literal appears anywhere else in the application.
    --------------------------------------------------------------------------- */
@@ -46,49 +49,53 @@
   --steel:   #669BBC;
 
   --measure: 68ch;
-  --radius:  2px;
-  --hair:    1px;
+  --radius:  6px;
+  --hair:    2px;
 
   --ink-strong: 1;
   --ink-body:   0.94;
   --ink-muted:  0.80;
+
+  /* Hard, unblurred, in the rule colour. The only shadow in the product. */
+  --shadow-hard: 4px 4px 0 var(--line);
+  --shadow-hard-sm: 3px 3px 0 var(--line);
 }
 
-/* Dark is the default, and the mode the product was designed in. */
+/* Dark sits on the brand indigo. */
 :root {
   color-scheme: dark;
 
-  --ground:  #080B1A;
-  --surface: #303C6E;
-  --band:    #4A5899;
-  --line:    #8494C9;
+  --ground:  var(--indigo);
+  --surface: #1A2140;
+  --band:    #5A69AE;
+  --line:    #C7D0EE;
   --ink:     #F4F7EC;
 
   --paid-full: var(--amber);
   --paid-part: var(--olive);
-  --accent:      var(--steel);
-  --accent-deep: var(--indigo);
+  --accent:      #8FC0DC;
+  --accent-deep: #5E93B4;
   --alert:       var(--paprika);
-  --on-accent:   var(--ground);
+  --on-accent:   #0B0F1F;
 }
 
-/* Light, built on --steel. Applied by system preference... */
+/* Light sits on the brand steel. Applied by system preference... */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
     color-scheme: light;
 
-    --ground:  #D2E2EE;
-    --surface: #FFFFFF;
-    --band:    #4E86AC;
-    --line:    #2F6285;
-    --ink:     #1E2748;
+    --ground:  var(--steel);
+    --surface: #F7FAF2;
+    --band:    var(--indigo);
+    --line:    #0B0F1F;
+    --ink:     #0B0F1F;
 
-    --paid-full: #7A4F04;
-    --paid-part: #3F5C24;
-    --accent:      #1F5C87;
-    --accent-deep: #14405F;
-    --alert:       #A32E0A;
-    --on-accent:   #FFFFFF;
+    --paid-full: var(--amber);
+    --paid-part: #1B2C0B;
+    --accent:      #16224A;
+    --accent-deep: #0B142E;
+    --alert:       var(--paprika);
+    --on-accent:   #0B0F1F;
   }
 }
 
@@ -96,18 +103,18 @@
 :root[data-theme="light"] {
   color-scheme: light;
 
-  --ground:  #D2E2EE;
-  --surface: #FFFFFF;
-  --band:    #4E86AC;
-  --line:    #2F6285;
-  --ink:     #1E2748;
+  --ground:  var(--steel);
+  --surface: #F7FAF2;
+  --band:    var(--indigo);
+  --line:    #0B0F1F;
+  --ink:     #0B0F1F;
 
-  --paid-full: #7A4F04;
-  --paid-part: #3F5C24;
-  --accent:      #1F5C87;
-  --accent-deep: #14405F;
-  --alert:       #A32E0A;
-  --on-accent:   #FFFFFF;
+  --paid-full: var(--amber);
+  --paid-part: #1B2C0B;
+  --accent:      #16224A;
+  --accent-deep: #0B142E;
+  --alert:       var(--paprika);
+  --on-accent:   #0B0F1F;
 }
 
 /* Tailwind reads the palette; it never redeclares it. */
@@ -177,7 +184,7 @@
 
   a { color: inherit; text-decoration-color: color-mix(in srgb, var(--line) 80%, transparent); }
 
-  hr { border: 0; border-top: var(--hair) solid var(--line); opacity: 0.55; margin: 0; }
+  hr { border: 0; border-top: var(--hair) solid var(--line); margin: 0; }
 
   /* One focus treatment, everywhere, always visible. */
   :focus-visible {
@@ -196,7 +203,7 @@
   ::-webkit-scrollbar { width: 10px; height: 10px; }
   ::-webkit-scrollbar-track { background: var(--ground); }
   ::-webkit-scrollbar-thumb {
-    background: color-mix(in srgb, var(--line) 65%, transparent);
+    background: var(--line);
     border-radius: 999px;
   }
   ::-webkit-scrollbar-thumb:hover { background: var(--line); }
@@ -229,9 +236,9 @@
     color: color-mix(in srgb, var(--ink) calc(var(--ink-muted) * 100%), transparent);
   }
 
-  .hair-t { border-top: var(--hair) solid color-mix(in srgb, var(--line) 85%, transparent); }
-  .hair-b { border-bottom: var(--hair) solid color-mix(in srgb, var(--line) 85%, transparent); }
-  .hair   { border: var(--hair) solid color-mix(in srgb, var(--line) 85%, transparent); }
+  .hair-t { border-top: var(--hair) solid var(--line); }
+  .hair-b { border-bottom: var(--hair) solid var(--line); }
+  .hair   { border: var(--hair) solid var(--line); border-radius: var(--radius); }
   .hair-strong { border: var(--hair) solid var(--line); }
 
   .display {
@@ -249,13 +256,41 @@
   /* Elevation is a fill and a hairline. There are no shadows in this product. */
   .panel {
     background: var(--surface);
-    border: var(--hair) solid color-mix(in srgb, var(--line) 75%, transparent);
-    border-radius: var(--radius);
-  }
-  .panel-raised {
-    background: color-mix(in srgb, var(--band) 70%, var(--surface));
     border: var(--hair) solid var(--line);
     border-radius: var(--radius);
+    box-shadow: var(--shadow-hard);
+  }
+  .panel-raised {
+    background: var(--surface);
+    border: var(--hair) solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-hard);
+  }
+
+  /*
+   * A solid block of brand colour with a hard edge. This is how anything that
+   * matters is emphasised: the payable figure, a refused claim, an active
+   * control. Text on a slab is always --on-accent, which is near-black in
+   * both modes because every slab colour is a light one.
+   *
+   * It is called `slab` and not `block` because `block` is a Tailwind display
+   * utility, and naming it that put a 2px border and a hard shadow on every
+   * element in the product that happened to be display:block.
+   */
+  .slab {
+    color: var(--on-accent);
+    border: var(--hair) solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-hard);
+  }
+
+  /* Controls press into their own shadow. */
+  .pressable {
+    transition: transform 0.06s ease, box-shadow 0.06s ease;
+  }
+  .pressable:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 var(--line);
   }
 }
 
@@ -289,9 +324,12 @@
     --ink-body: 1;
     --ink-strong: 1;
     --ink-muted: 1;
-    --ground: #1E2748;
-    --ink: #1E2748;
-    --line: #1E2748;
+    --ground: #14203F;
+    --ink: #14203F;
+    --line: #14203F;
+    --hair: 1px;
+    --shadow-hard: none;
+    --shadow-hard-sm: none;
   }
 
   html, body {
@@ -304,9 +342,11 @@
   [data-print="hide"] { display: none !important; }
   [data-print="only"] { display: block !important; }
 
-  .panel, .panel-raised {
+  .panel, .panel-raised, .slab {
     background: none !important;
     border-color: var(--ground) !important;
+    box-shadow: none !important;
+    color: var(--ground) !important;
   }
 
   .ink-strong, .ink-body, .ink-muted, .label-line, .eyebrow, h1, h2, h3, h4, p, li, td, th {
@@ -401,11 +441,11 @@
 .range::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 14px;
-  height: 14px;
-  margin-top: -6px;
-  border: none;
-  border-radius: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: -7px;
+  border: 2px solid var(--line);
+  border-radius: 3px;
   background: var(--accent);
 }
 
@@ -425,10 +465,10 @@
 }
 
 .range::-moz-range-thumb {
-  width: 14px;
-  height: 14px;
-  border: none;
-  border-radius: 0;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--line);
+  border-radius: 3px;
   background: var(--accent);
 }
 

@@ -259,7 +259,7 @@ export function CompileScreen() {
             <button
               type="button"
               onClick={useSpecimen}
-              className="hair px-2 py-1 text-[14px] font-medium ink-body"
+              className="hair pressable px-2 py-1 text-[14px] font-medium ink-body"
             >
               Or re-read Specimen Floater B
             </button>
@@ -324,7 +324,7 @@ export function CompileScreen() {
                     key={kind}
                     type="button"
                     onClick={() => addByHand(kind)}
-                    className="hair px-1 py-[5px] text-[12px] ink-body"
+                    className="hair pressable px-1 py-[5px] text-[12px] ink-body"
                   >
                     Add {kind} by hand
                   </button>
@@ -436,7 +436,7 @@ export function CompileScreen() {
                 anchor.click();
                 URL.revokeObjectURL(url);
               }}
-              className="hair px-1 py-[6px] text-[13px] font-medium ink-body"
+              className="hair pressable px-1 py-[6px] text-[13px] font-medium ink-body"
             >
               Download the compiled JSON
             </button>

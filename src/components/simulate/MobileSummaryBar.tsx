@@ -58,7 +58,7 @@ export function MobileSummaryBar({
         <button
           type="button"
           onClick={onJump}
-          className="hair shrink-0 px-1 py-[6px] text-[13px] font-medium ink-body"
+          className="hair pressable shrink-0 px-1 py-[6px] text-[13px] font-medium ink-body"
         >
           {verdict.deductions.length === 0
             ? 'Nothing deducted'

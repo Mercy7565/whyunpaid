@@ -50,7 +50,7 @@ export default function ErrorBoundary({
         >
           Try again
         </button>
-        <a href="/" className="hair px-2 py-1 text-[14px] font-medium ink-body">
+        <a href="/" className="hair pressable px-2 py-1 text-[14px] font-medium ink-body">
           Back to the opening scenario
         </a>
       </div>

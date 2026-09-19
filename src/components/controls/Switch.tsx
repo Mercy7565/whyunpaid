@@ -29,15 +29,18 @@ export function Switch({ label, checked, onChange, hint }: SwitchProps) {
           aria-hidden="true"
           className="relative inline-flex h-[20px] w-[36px] shrink-0 items-center transition-colors peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2"
           style={{
-            border: 'var(--hair) solid color-mix(in srgb, var(--line) 70%, transparent)',
+            border: 'var(--hair) solid var(--line)',
+            borderRadius: '4px',
             background: checked ? 'var(--accent)' : 'transparent',
             outlineColor: 'var(--accent)',
+            boxShadow: 'var(--shadow-hard-sm)',
           }}
         >
           <span
             className="absolute h-[12px] w-[12px] transition-transform"
             style={{
-              left: '3px',
+              left: '2px',
+              borderRadius: '2px',
               transform: checked ? 'translateX(16px)' : 'translateX(0)',
               background: checked ? 'var(--on-accent)' : 'var(--line)',
             }}

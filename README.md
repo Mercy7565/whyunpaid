@@ -206,52 +206,55 @@ time. The numbers on the inspector come from a real run.
 
 ## Design
 
-Five brand colours, shipped verbatim, in **two modes with a switcher**. Dark is
-built on the indigo taken down to near-black; light is built on the steel blue
-tinted to a page.
+Five brand colours, shipped verbatim, in **two modes with a switcher**. Both
+modes put a **saturated brand colour on the page** rather than a near-neutral:
+dark sits on the indigo, light sits on the steel blue.
 
 ```css
---paprika: #E4572E;   /* refusal: a nil claim, a clause that blocks   */
---indigo:  #29335C;   /* the basis of the dark mode                   */
---amber:   #F3A712;   /* the amount that survives                     */
+--paprika: #E4572E;   /* refusal: a nil claim                         */
+--indigo:  #29335C;   /* the dark-mode page; the light-mode bars      */
+--amber:   #F3A712;   /* the block the payable figure sits on         */
 --olive:   #A8C686;   /* partially-paid figures, secondary numerals   */
---steel:   #669BBC;   /* the basis of the light mode, and interaction */
+--steel:   #669BBC;   /* the light-mode page                          */
 ```
 
-One token per role, whose value changes per mode, so nothing is ever asked to
-be readable where it cannot be. Every value is measured:
+Contrast comes from three things working together, not from the text colour
+alone:
 
-| Token | Dark on `#080B1A` | Light on `#D2E2EE` | Used for |
+1. **every boundary is a 2px rule at full strength**, never a tinted hairline;
+2. **anything that matters is a solid block** of brand colour, not a tint;
+3. **blocks carry a hard offset shadow** in the rule colour, with no blur.
+
+That third one is what finally makes amber usable. Amber cannot be read as text
+on either ground — 6.0:1 on indigo, 1.5:1 on steel — so the payable figure
+**never is amber**. It sits *on* a solid amber block in near-black ink at
+**9.4:1**, identically in both modes. A nil claim does the same on paprika at
+**5.2:1**, and says "not admissible" in words as well.
+
+| Token | Dark on `#29335C` | Light on `#669BBC` | Used for |
 |---|---|---|---|
-| `--ink` | `#F4F7EC` **18.0:1** | `#1E2748` **11.0:1** | body copy |
-| `--paid-part` | `#A8C686` **10.3:1** | `#3F5C24` **5.7:1** | secondary numerals |
-| `--paid-full` | `#F3A712` **9.6:1** | `#7A4F04` **5.4:1** | the payable figure and its bar |
-| `--line` | `#8494C9` **6.6:1** | `#2F6285` **4.9:1** | rules, borders, labels |
-| `--accent` | `#669BBC` **6.5:1** | `#1F5C87` **5.4:1** | focus, active, links |
-| `--alert` | `#E4572E` **5.3:1** | `#A32E0A` **5.4:1** | a nil claim |
-| `--band` | `#4A5899` **2.9:1** | `#4E86AC` **3.0:1** | deduction bars, fills only |
-| `--surface` | `#303C6E` **1.9:1** | `#FFFFFF` **1.3:1** | cards and panels, fills only |
+| `--ink` | `#F4F7EC` **11.2:1** | `#0B0F1F` **6.3:1** | body copy |
+| `--line` | `#C7D0EE` **8.0:1** | `#0B0F1F` **6.3:1** | 2px rules, borders, shadows |
+| `--paid-part` | `#A8C686` **6.4:1** | `#1B2C0B` **4.9:1** | secondary numerals |
+| `--accent` | `#8FC0DC` **6.2:1** | `#16224A` **5.1:1** | interaction |
+| `--band` | `#5A69AE` **2.4:1** | `#29335C` **4.1:1** | deduction bars, fills only |
+| `--surface` | `#1A2140` **1.3:1** | `#F7FAF2` **2.9:1** | cards; the 2px rule separates them |
+| `--on-accent` | `#0B0F1F` | `#0B0F1F` | text on any block |
 
-Two consequences worth stating. `--line` clears 4.5:1 in **both** modes, so a
-figure in the rule colour is readable at any size — the 18px floor earlier
-palettes needed is now a design choice, not an accessibility one. And nothing
-that carries text is ever filled with `--paid-full`: the payable bar has no
-label on it, which is what lets it stay brand gold in dark and go bronze in
-light without a readability problem.
+`--on-accent` is near-black in **both** modes, because every block colour is a
+light one: amber 9.4:1, olive 10.1:1, paprika 5.2:1.
 
 The switcher has **two states, light and dark**. The system preference still
 decides what a first-time visitor sees, because the stylesheet handles that in
-a media query, but the button only ever flips between the two and always writes
-an explicit choice that survives a reload. An inline script applies a stored
+a media query, but the button only flips between the two and always writes an
+explicit choice that survives a reload. An inline script applies a stored
 choice before first paint, so choosing light never means seeing a dark page
 flash first.
 
-Deductions recede into the band fill, with hairline edges, a minus sign and a
-clause reference on every one. A claim that pays nothing says so in words — a
-"not admissible" chip, the clause reference, and the reason — as well as in
-colour, so nothing depends on telling two colours apart. Severity is otherwise
-expressed through weight, scale and desaturation, never through hue. No
-shadows, no gradients, no blur.
+Deductions recede into the band fill, with a minus sign and a clause reference
+on every one, so nothing depends on telling two colours apart. Controls press
+into their own shadow when activated. Severity is otherwise expressed through
+weight, scale and desaturation, never through hue.
 
 One typeface family in two cuts: Archivo at normal width for the interface,
 Archivo at 112% width for figures, with `tabular-nums` on every number so
@@ -263,9 +266,9 @@ Framer Motion animates the waterfall and the number transitions, and nothing
 else. `prefers-reduced-motion` makes every animation instant; it never disables
 functionality.
 
-Print never follows the theme: in light mode `--ground` is a pale steel, and
-printing it as ink would put almost nothing on the page, so both modes print
-the same dark indigo on unpainted paper.
+Print never follows the theme, and drops every shadow: in light mode
+`--ground` is a saturated steel, and printing it as ink would be unreadable, so
+both modes print dark indigo on unpainted paper at 1px.
 
 Four files carry literal hex values, all of them places a CSS custom property
 cannot reach: `global-error.tsx` (renders when the stylesheet may not have
