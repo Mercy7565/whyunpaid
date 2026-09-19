@@ -71,3 +71,45 @@ export function listPhrase(items: readonly string[]): string {
 export function categoryPhrase(categories: readonly LineCategory[]): string {
   return listPhrase(categories.map((c) => (CATEGORY_LABELS[c] ?? c).toLowerCase()));
 }
+
+export const CATEGORY_LABELS_HI: Readonly<Record<LineCategory, string>> = {
+  room: 'कक्ष किराया',
+  nursing: 'नर्सिंग शुल्क',
+  surgeon: 'शल्य चिकित्सक शुल्क',
+  anaesthetist: 'निश्चेतक शुल्क',
+  operationTheatre: 'ऑपरेशन थिएटर',
+  pharmacy: 'औषधि',
+  consumables: 'उपभोग्य सामग्री',
+  implants: 'प्रत्यारोपण',
+  diagnostics: 'जाँच',
+  ambulance: 'एम्बुलेंस',
+  nonMedical: 'गैर-चिकित्सीय मदें',
+};
+
+export const STAGE_LABELS_HI: Readonly<Record<Stage, string>> = {
+  exclusion: 'स्थायी अपवर्जन',
+  waitingPeriod: 'प्रतीक्षा अवधि',
+  lineItemIneligible: 'अदेय मदें',
+  roomRentProportionate: 'कक्ष किराया आनुपातिक कटौती',
+  subLimit: 'उप-सीमा',
+  deductible: 'कटौती योग्य राशि',
+  coPay: 'सह-भुगतान',
+  sumInsured: 'बीमा राशि की सीमा',
+};
+
+/** Joins a Hindi list: "a, b तथा c". */
+export function listPhraseHi(items: readonly string[]): string {
+  if (items.length === 0) return '';
+  if (items.length === 1) return items[0] ?? '';
+  const head = items.slice(0, -1).join(', ');
+  return `${head} तथा ${items[items.length - 1] ?? ''}`;
+}
+
+export function categoryPhraseHi(categories: readonly LineCategory[]): string {
+  return listPhraseHi(categories.map((c) => CATEGORY_LABELS_HI[c] ?? c));
+}
+
+/** "18 माह" - the digits are the same, the unit is not. */
+export function formatMonthsHi(months: number): string {
+  return `${months} माह`;
+}
