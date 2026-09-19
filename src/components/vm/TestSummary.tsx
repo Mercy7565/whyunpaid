@@ -99,7 +99,7 @@ export function TestSummary() {
                       className="inline-block h-[6px] w-[6px] shrink-0"
                       style={{
                         background:
-                          test.state === 'passed' ? 'var(--paid-fill)' : 'var(--line)',
+                          test.state === 'passed' ? 'var(--paid-full)' : 'var(--line)',
                       }}
                     />
                     <span className="sr-only">{test.state}:</span>

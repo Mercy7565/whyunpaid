@@ -40,7 +40,7 @@ export function MobileSummaryBar({
           className="h-full transition-[width] duration-300"
           style={{
             width: `${Math.max(paidPercent, nothingPayable ? 0 : 0.5)}%`,
-            background: 'var(--paid-fill)',
+            background: 'var(--paid-full)',
           }}
         />
       </div>

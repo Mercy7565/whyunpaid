@@ -207,42 +207,48 @@ time. The numbers on the inspector come from a real run.
 ## Design
 
 Five brand colours, shipped verbatim, in **two modes with a switcher**. Dark is
-built on the indigo; light is built on the steel blue.
+built on the indigo taken down to near-black; light is built on the steel blue
+tinted to a page.
 
 ```css
 --paprika: #E4572E;   /* refusal: a nil claim, a clause that blocks   */
---indigo:  #29335C;   /* dark-mode cards; light-mode body copy        */
+--indigo:  #29335C;   /* the basis of the dark mode                   */
 --amber:   #F3A712;   /* the amount that survives                     */
 --olive:   #A8C686;   /* partially-paid figures, secondary numerals   */
---steel:   #669BBC;   /* light-mode page; dark-mode interaction       */
+--steel:   #669BBC;   /* the basis of the light mode, and interaction */
 ```
 
-The five cannot carry text on their own in either mode, so each mode derives
-what it needs and every value is measured:
+One token per role, whose value changes per mode, so nothing is ever asked to
+be readable where it cannot be. Every value is measured:
 
-| Token | Dark on `#0F1429` | Light on `#E3EDF4` | Used for |
+| Token | Dark on `#080B1A` | Light on `#D2E2EE` | Used for |
 |---|---|---|---|
-| `--ink` | `#E9EEE0` 15.4:1 | `#29335C` 10.3:1 | body copy |
-| `--paid-full` | `#F3A712` 9.0:1 | `#8A5A06` 5.0:1 | the payable figure |
-| `--paid-part` | `#A8C686` 9.6:1 | `#4C6B2F` 5.1:1 | secondary numerals |
-| `--accent` | `#669BBC` 6.1:1 | `#2C6690` 5.2:1 | focus, active, links |
-| `--alert` | `#E4572E` 5.0:1 | `#B83A12` 4.8:1 | a nil claim |
-| `--line` | `#6273A8` 3.9:1 | `#4E7E9F` 3.7:1 | rules, 18px+ labels |
-| `--band` | `#3A4680` 2.1:1 | `#669BBC` 2.5:1 | deduction bars, fills only |
+| `--ink` | `#F4F7EC` **18.0:1** | `#1E2748` **11.0:1** | body copy |
+| `--paid-part` | `#A8C686` **10.3:1** | `#3F5C24` **5.7:1** | secondary numerals |
+| `--paid-full` | `#F3A712` **9.6:1** | `#7A4F04` **5.4:1** | the payable figure and its bar |
+| `--line` | `#8494C9` **6.6:1** | `#2F6285` **4.9:1** | rules, borders, labels |
+| `--accent` | `#669BBC` **6.5:1** | `#1F5C87` **5.4:1** | focus, active, links |
+| `--alert` | `#E4572E` **5.3:1** | `#A32E0A` **5.4:1** | a nil claim |
+| `--band` | `#4A5899` **2.9:1** | `#4E86AC` **3.0:1** | deduction bars, fills only |
+| `--surface` | `#303C6E` **1.9:1** | `#FFFFFF` **1.3:1** | cards and panels, fills only |
 
-**Amber cannot be read on a light page** — it measures 1.7:1 — so the figure
-takes a deepened amber and only the *bar* keeps the brand value. That is why
-there is a `--paid-full` for text and a `--paid-fill` for graphics.
+Two consequences worth stating. `--line` clears 4.5:1 in **both** modes, so a
+figure in the rule colour is readable at any size — the 18px floor earlier
+palettes needed is now a design choice, not an accessibility one. And nothing
+that carries text is ever filled with `--paid-full`: the payable bar has no
+label on it, which is what lets it stay brand gold in dark and go bronze in
+light without a readability problem.
 
-The switcher offers **system, light and dark**. System is the default, so
-someone who never touches it keeps following their OS when it changes at dusk;
-an explicit choice persists and wins. An inline script applies a stored choice
-before first paint, so choosing light never means seeing a dark page flash
-first.
+The switcher has **two states, light and dark**. The system preference still
+decides what a first-time visitor sees, because the stylesheet handles that in
+a media query, but the button only ever flips between the two and always writes
+an explicit choice that survives a reload. An inline script applies a stored
+choice before first paint, so choosing light never means seeing a dark page
+flash first.
 
 Deductions recede into the band fill, with hairline edges, a minus sign and a
-clause reference on every one. A claim that pays nothing says so in words —
-a "not admissible" chip, the clause reference, and the reason — as well as in
+clause reference on every one. A claim that pays nothing says so in words — a
+"not admissible" chip, the clause reference, and the reason — as well as in
 colour, so nothing depends on telling two colours apart. Severity is otherwise
 expressed through weight, scale and desaturation, never through hue. No
 shadows, no gradients, no blur.
@@ -257,7 +263,7 @@ Framer Motion animates the waterfall and the number transitions, and nothing
 else. `prefers-reduced-motion` makes every animation instant; it never disables
 functionality.
 
-Print never follows the theme: in light mode `--ground` is a pale steel and
+Print never follows the theme: in light mode `--ground` is a pale steel, and
 printing it as ink would put almost nothing on the page, so both modes print
 the same dark indigo on unpainted paper.
 

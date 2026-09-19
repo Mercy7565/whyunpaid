@@ -21,11 +21,11 @@ export const alt = 'WhyUnpaid? — run your health policy like the program it is
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
-const GROUND = '#0F1429';
-const BAND = '#3A4680';
-const INK = '#E9EEE0';
+const GROUND = '#080B1A';
+const BAND = '#4A5899';
+const INK = '#F4F7EC';
 const STEEL = '#669BBC';
-const LINE = '#6273A8';
+const LINE = '#8494C9';
 const AMBER = '#F3A712';
 
 const BANDS = [

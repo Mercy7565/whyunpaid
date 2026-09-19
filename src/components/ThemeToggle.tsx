@@ -3,19 +3,19 @@
 import { useCallback, useEffect, useState } from 'react';
 
 /**
- * The theme switcher.
+ * The theme switcher. Two states: light and dark.
  *
- * Three states, not two. "System" is the default and is what most people
- * actually want; light and dark are explicit overrides that survive a reload.
- * Storing only an explicit choice means someone who never touches this control
- * keeps following their operating system when it changes at dusk.
+ * There is no "system" option in the control. The system preference still
+ * decides what a first-time visitor sees, because the stylesheet handles that
+ * in a media query, but the button itself only ever flips between the two
+ * modes and always writes an explicit choice that survives a reload.
  *
  * The attribute is written to <html> by an inline script before first paint
- * (see layout.tsx), so a reader who chose light never sees a dark page flash
+ * (see layout.tsx), so someone who chose light never sees a dark page flash
  * first. This component only has to keep the button in step with it.
  */
 
-export type ThemeChoice = 'system' | 'light' | 'dark';
+export type Theme = 'light' | 'dark';
 
 export const THEME_STORAGE_KEY = 'whyunpaid-theme';
 
@@ -24,114 +24,89 @@ export const THEME_BOOTSTRAP = `(function(){try{var t=localStorage.getItem(${JSO
   THEME_STORAGE_KEY,
 )});if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();`;
 
-function readChoice(): ThemeChoice {
-  if (typeof document === 'undefined') return 'system';
+/**
+ * What the reader is actually looking at: an explicit choice if one was made,
+ * and otherwise whatever the operating system asked for.
+ */
+function effectiveTheme(): Theme {
+  if (typeof document === 'undefined') return 'dark';
   const attribute = document.documentElement.getAttribute('data-theme');
-  return attribute === 'light' || attribute === 'dark' ? attribute : 'system';
+  if (attribute === 'light' || attribute === 'dark') return attribute;
+  return typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-color-scheme: light)').matches
+    ? 'light'
+    : 'dark';
 }
 
-function apply(choice: ThemeChoice): void {
-  const root = document.documentElement;
-  if (choice === 'system') {
-    root.removeAttribute('data-theme');
-    try {
-      localStorage.removeItem(THEME_STORAGE_KEY);
-    } catch {
-      /* Private mode. The choice simply will not persist. */
-    }
-    return;
-  }
-  root.setAttribute('data-theme', choice);
+function apply(theme: Theme): void {
+  document.documentElement.setAttribute('data-theme', theme);
   try {
-    localStorage.setItem(THEME_STORAGE_KEY, choice);
+    localStorage.setItem(THEME_STORAGE_KEY, theme);
   } catch {
-    /* Same. */
+    /* Private mode. The choice simply will not persist. */
   }
 }
 
-const ORDER: ThemeChoice[] = ['system', 'light', 'dark'];
+const LABEL: Record<Theme, string> = { light: 'Light', dark: 'Dark' };
 
-const LABEL: Record<ThemeChoice, string> = {
-  system: 'Match the system',
-  light: 'Light',
-  dark: 'Dark',
-};
-
-function Glyph({ choice }: { choice: ThemeChoice }) {
+function Glyph({ theme }: { theme: Theme }) {
   const common = {
     width: 15,
     height: 15,
     viewBox: '0 0 16 16',
     fill: 'none',
     stroke: 'currentColor',
-    strokeWidth: 1.4,
+    strokeWidth: 1.6,
     'aria-hidden': true as const,
   };
 
-  if (choice === 'light') {
-    return (
-      <svg {...common}>
-        <circle cx="8" cy="8" r="3.1" />
-        <path d="M8 1v1.7M8 13.3V15M15 8h-1.7M2.7 8H1M12.9 3.1l-1.2 1.2M4.3 11.7l-1.2 1.2M12.9 12.9l-1.2-1.2M4.3 4.3L3.1 3.1" />
-      </svg>
-    );
-  }
-
-  if (choice === 'dark') {
-    return (
-      <svg {...common}>
-        <path d="M13.4 9.6A5.8 5.8 0 0 1 6.4 2.6a5.9 5.9 0 1 0 7 7Z" />
-      </svg>
-    );
-  }
-
-  return (
+  return theme === 'light' ? (
     <svg {...common}>
-      <rect x="1.4" y="2.6" width="13.2" height="9" rx="0.6" />
-      <path d="M5.6 14h4.8" />
+      <circle cx="8" cy="8" r="3.1" />
+      <path d="M8 1v1.7M8 13.3V15M15 8h-1.7M2.7 8H1M12.9 3.1l-1.2 1.2M4.3 11.7l-1.2 1.2M12.9 12.9l-1.2-1.2M4.3 4.3L3.1 3.1" />
+    </svg>
+  ) : (
+    <svg {...common}>
+      <path d="M13.4 9.6A5.8 5.8 0 0 1 6.4 2.6a5.9 5.9 0 1 0 7 7Z" />
     </svg>
   );
 }
 
 export function ThemeToggle() {
-  const [choice, setChoice] = useState<ThemeChoice>('system');
+  const [theme, setTheme] = useState<Theme>('dark');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setChoice(readChoice());
+    setTheme(effectiveTheme());
     setMounted(true);
   }, []);
 
-  const cycle = useCallback(() => {
-    setChoice((current) => {
-      const next = ORDER[(ORDER.indexOf(current) + 1) % ORDER.length] ?? 'system';
+  const toggle = useCallback(() => {
+    setTheme((current) => {
+      const next: Theme = current === 'dark' ? 'light' : 'dark';
       apply(next);
       return next;
     });
   }, []);
 
-  /*
-   * Until the effect has run, the server and the client disagree about which
-   * choice is active, so the button renders its neutral state and announces
-   * nothing it cannot yet know.
-   */
-  const shown = mounted ? choice : 'system';
+  const other: Theme = theme === 'dark' ? 'light' : 'dark';
 
   return (
     <button
       type="button"
-      onClick={cycle}
-      title={`Theme: ${LABEL[shown].toLowerCase()}. Click to change.`}
-      aria-label={`Theme: ${LABEL[shown]}. Activate to switch theme.`}
-      className="flex shrink-0 items-center gap-[5px] px-1 py-[5px] text-[12px] font-medium transition-colors"
+      onClick={toggle}
+      title={`Switch to the ${LABEL[other].toLowerCase()} theme`}
+      aria-label={`Theme: ${LABEL[theme]}. Activate to switch to ${LABEL[other].toLowerCase()}.`}
+      className="flex shrink-0 items-center gap-[5px] px-1 py-[5px] text-[12px] font-semibold transition-colors"
       style={{
-        border: 'var(--hair) solid color-mix(in srgb, var(--line) 55%, transparent)',
-        color: 'color-mix(in srgb, var(--ink) 82%, transparent)',
+        border: 'var(--hair) solid var(--line)',
+        color: 'var(--line)',
       }}
     >
-      <Glyph choice={shown} />
-      <span className="hidden sm:inline" suppressHydrationWarning>
-        {LABEL[shown]}
+      {/* Until the effect runs, the server and client disagree about the mode. */}
+      <span suppressHydrationWarning className="flex items-center gap-[5px]">
+        <Glyph theme={mounted ? theme : 'dark'} />
+        <span className="hidden sm:inline">{LABEL[mounted ? theme : 'dark']}</span>
       </span>
     </button>
   );

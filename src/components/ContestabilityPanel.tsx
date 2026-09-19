@@ -48,7 +48,7 @@ export function ContestabilityPanel({ contestability }: { contestability: Contes
           className="h-full transition-[width] duration-300"
           style={{
             width: `${progress}%`,
-            background: moratoriumComplete ? 'var(--paid-fill)' : 'var(--part-fill)',
+            background: moratoriumComplete ? 'var(--paid-full)' : 'var(--paid-part)',
           }}
         />
       </div>

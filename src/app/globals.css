@@ -3,35 +3,36 @@
 /* ---------------------------------------------------------------------------
    The palette, in two modes.
 
-   Five brand colours, shipped verbatim. Dark mode is built on --indigo; light
-   mode is built on --steel. Neither mode uses a brand colour where it cannot
-   be read: on a light page --amber measures 1.7:1, so the figure takes a
-   deepened amber and only the BAR keeps the brand value. That is why there is
-   a `--paid-full` for text and a `--paid-fill` for graphics.
+   Five brand colours, shipped verbatim. Dark is built on --indigo taken down
+   to near-black; light is built on --steel tinted to a page. Every role has
+   ONE token whose value changes per mode, so nothing is ever asked to be
+   readable where it cannot be.
 
-   DARK, measured against --ground #0F1429:
-     --ink      #E9EEE0  15.4:1   body copy
-     --olive    brand     9.6:1   partially-paid figures
-     --amber    brand     9.0:1   the amount that survives
-     --steel    brand     6.1:1   interaction: focus, active, links
-     --paprika  brand     5.0:1   refusal: a nil claim
-     --line     #6273A8   3.9:1   rules, borders, 18px+ labels
-     --band     #3A4680   2.1:1   deduction bars; a fill, never text
-     --surface  brand     1.5:1   cards and panels; a fill, never text
+   DARK, measured against --ground #080B1A:
+     --ink      #F4F7EC  18.0:1   body copy
+     --paid-part brand   10.3:1   partially-paid figures
+     --paid-full brand    9.6:1   the amount that survives
+     --line     #8494C9   6.6:1   rules, borders, labels at any size
+     --accent   brand     6.5:1   interaction: focus, active, links
+     --alert    brand     5.3:1   refusal: a nil claim
+     --band     #4A5899   2.9:1   deduction bars; a fill, never text
+     --surface  #303C6E   1.9:1   cards and panels; a fill, never text
 
-   LIGHT, measured against --ground #E3EDF4:
-     --ink      #29335C  10.3:1   body copy, and the brand indigo itself
-     --accent   #2C6690   5.2:1   interaction
-     --paid-part #4C6B2F  5.1:1   partially-paid figures
-     --paid-full #8A5A06  5.0:1   the amount that survives
-     --alert    #B83A12   4.8:1   refusal
-     --line     #4E7E9F   3.7:1   rules, borders, 18px+ labels
-     --band     brand     2.5:1   deduction bars; a fill, never text
+   LIGHT, measured against --ground #D2E2EE:
+     --ink      #1E2748  11.0:1   body copy
+     --paid-part #3F5C24  5.7:1   partially-paid figures
+     --paid-full #7A4F04  5.4:1   the amount that survives
+     --accent   #1F5C87   5.4:1   interaction
+     --alert    #A32E0A   5.4:1   refusal
+     --line     #2F6285   4.9:1   rules, borders, labels at any size
+     --band     #4E86AC   3.0:1   deduction bars; a fill, never text
+     --surface  #FFFFFF   1.3:1   cards and panels; a fill, never text
 
-   The idea is the same in both: everything structural recedes, the thing that
-   survives the waterfall is amber, and the one colour meaning "nothing
-   survived" is paprika. Both are paired with a sign, a clause reference and a
-   named state, so meaning never rests on hue alone.
+   Two consequences worth stating. --line now clears 4.5:1 in both modes, so a
+   figure in the rule colour is readable at any size rather than only at 18px.
+   And nothing that carries text is ever filled with --paid-full: the amber bar
+   has no label on it, which is what lets the bar stay brand gold in dark and go
+   bronze in light without a readability problem.
 
    No hex literal appears anywhere else in the application.
    --------------------------------------------------------------------------- */
@@ -48,52 +49,46 @@
   --radius:  2px;
   --hair:    1px;
 
-  --ink-strong: 0.96;
-  --ink-body:   0.88;
-  --ink-muted:  0.72;
+  --ink-strong: 1;
+  --ink-body:   0.94;
+  --ink-muted:  0.80;
 }
 
 /* Dark is the default, and the mode the product was designed in. */
 :root {
   color-scheme: dark;
 
-  --ground:  #0F1429; /* indigo taken down to a page      */
-  --surface: #29335C; /* the brand indigo: cards, panels  */
-  --band:    #3A4680; /* indigo lifted: deduction bars    */
-  --line:    #6273A8; /* indigo lifted: rules and borders */
-  --ink:     #E9EEE0; /* olive tinted: body copy          */
+  --ground:  #080B1A;
+  --surface: #303C6E;
+  --band:    #4A5899;
+  --line:    #8494C9;
+  --ink:     #F4F7EC;
 
   --paid-full: var(--amber);
-  --paid-fill: var(--amber);
   --paid-part: var(--olive);
-  --part-fill: var(--olive);
   --accent:      var(--steel);
   --accent-deep: var(--indigo);
   --alert:       var(--paprika);
-  --alert-fill:  var(--paprika);
   --on-accent:   var(--ground);
 }
 
-/* Light mode, built on --steel. Applied by system preference... */
+/* Light, built on --steel. Applied by system preference... */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
     color-scheme: light;
 
-    --ground:  #E3EDF4;
-    --surface: #F3F8FB;
-    --band:    var(--steel);
-    --line:    #4E7E9F;
-    --ink:     var(--indigo);
+    --ground:  #D2E2EE;
+    --surface: #FFFFFF;
+    --band:    #4E86AC;
+    --line:    #2F6285;
+    --ink:     #1E2748;
 
-    --paid-full: #8A5A06;
-    --paid-fill: var(--amber);
-    --paid-part: #4C6B2F;
-    --part-fill: var(--olive);
-    --accent:      #2C6690;
-    --accent-deep: #1C4A6B;
-    --alert:       #B83A12;
-    --alert-fill:  var(--paprika);
-    --on-accent:   var(--ground);
+    --paid-full: #7A4F04;
+    --paid-part: #3F5C24;
+    --accent:      #1F5C87;
+    --accent-deep: #14405F;
+    --alert:       #A32E0A;
+    --on-accent:   #FFFFFF;
   }
 }
 
@@ -101,21 +96,18 @@
 :root[data-theme="light"] {
   color-scheme: light;
 
-  --ground:  #E3EDF4;
-  --surface: #F3F8FB;
-  --band:    var(--steel);
-  --line:    #4E7E9F;
-  --ink:     var(--indigo);
+  --ground:  #D2E2EE;
+  --surface: #FFFFFF;
+  --band:    #4E86AC;
+  --line:    #2F6285;
+  --ink:     #1E2748;
 
-  --paid-full: #8A5A06;
-  --paid-fill: var(--amber);
-  --paid-part: #4C6B2F;
-  --part-fill: var(--olive);
-  --accent:      #2C6690;
-  --accent-deep: #1C4A6B;
-  --alert:       #B83A12;
-  --alert-fill:  var(--paprika);
-  --on-accent:   var(--ground);
+  --paid-full: #7A4F04;
+  --paid-part: #3F5C24;
+  --accent:      #1F5C87;
+  --accent-deep: #14405F;
+  --alert:       #A32E0A;
+  --on-accent:   #FFFFFF;
 }
 
 /* Tailwind reads the palette; it never redeclares it. */
@@ -131,8 +123,6 @@
   --color-alert:       var(--alert);
   --color-ink:         var(--ink);
   --color-band:        var(--band);
-  --color-paid-fill:   var(--paid-fill);
-  --color-part-fill:   var(--part-fill);
 
   /* An 8px spacing scale, enforced by the engine: every p-*, m-*, gap-* is 8px * n. */
   --spacing: 8px;
@@ -206,10 +196,10 @@
   ::-webkit-scrollbar { width: 10px; height: 10px; }
   ::-webkit-scrollbar-track { background: var(--ground); }
   ::-webkit-scrollbar-thumb {
-    background: color-mix(in srgb, var(--line) 45%, transparent);
+    background: color-mix(in srgb, var(--line) 65%, transparent);
     border-radius: 999px;
   }
-  ::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--line) 70%, transparent); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--line); }
 }
 
 @layer utilities {
@@ -218,12 +208,16 @@
   .ink-body   { color: color-mix(in srgb, var(--ink) calc(var(--ink-body) * 100%), transparent); }
   .ink-muted  { color: color-mix(in srgb, var(--ink) calc(var(--ink-muted) * 100%), transparent); }
 
-  /* --line as text is permitted at 18px and above only (it measures 3.9:1 on --ground). */
+  /*
+   * The rule colour, used as text. It clears 4.5:1 against --ground in both
+   * modes, so unlike every previous palette this one may carry a figure at any
+   * size. 18px is a design choice here, not an accessibility floor.
+   */
   .label-line {
     color: var(--line);
     font-size: 18px;
     line-height: 1.2;
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .eyebrow {
@@ -235,10 +229,10 @@
     color: color-mix(in srgb, var(--ink) calc(var(--ink-muted) * 100%), transparent);
   }
 
-  .hair-t { border-top: var(--hair) solid color-mix(in srgb, var(--line) 55%, transparent); }
-  .hair-b { border-bottom: var(--hair) solid color-mix(in srgb, var(--line) 55%, transparent); }
-  .hair   { border: var(--hair) solid color-mix(in srgb, var(--line) 55%, transparent); }
-  .hair-strong { border: var(--hair) solid color-mix(in srgb, var(--line) 90%, transparent); }
+  .hair-t { border-top: var(--hair) solid color-mix(in srgb, var(--line) 85%, transparent); }
+  .hair-b { border-bottom: var(--hair) solid color-mix(in srgb, var(--line) 85%, transparent); }
+  .hair   { border: var(--hair) solid color-mix(in srgb, var(--line) 85%, transparent); }
+  .hair-strong { border: var(--hair) solid var(--line); }
 
   .display {
     font-family: var(--font-display);
@@ -255,12 +249,12 @@
   /* Elevation is a fill and a hairline. There are no shadows in this product. */
   .panel {
     background: var(--surface);
-    border: var(--hair) solid color-mix(in srgb, var(--line) 46%, transparent);
+    border: var(--hair) solid color-mix(in srgb, var(--line) 75%, transparent);
     border-radius: var(--radius);
   }
   .panel-raised {
-    background: color-mix(in srgb, var(--band) 60%, var(--surface));
-    border: var(--hair) solid color-mix(in srgb, var(--line) 62%, transparent);
+    background: color-mix(in srgb, var(--band) 70%, var(--surface));
+    border: var(--hair) solid var(--line);
     border-radius: var(--radius);
   }
 }
@@ -295,9 +289,9 @@
     --ink-body: 1;
     --ink-strong: 1;
     --ink-muted: 1;
-    --ground: #1B2445;
-    --ink: #1B2445;
-    --line: #1B2445;
+    --ground: #1E2748;
+    --ink: #1E2748;
+    --line: #1E2748;
   }
 
   html, body {
@@ -400,7 +394,7 @@
   background: linear-gradient(
     to right,
     var(--accent) var(--range-progress, 0%),
-    color-mix(in srgb, var(--line) 55%, transparent) var(--range-progress, 0%)
+    color-mix(in srgb, var(--line) 75%, transparent) var(--range-progress, 0%)
   );
 }
 
@@ -422,7 +416,7 @@
 
 .range::-moz-range-track {
   height: 2px;
-  background: color-mix(in srgb, var(--line) 60%, transparent);
+  background: color-mix(in srgb, var(--line) 75%, transparent);
 }
 
 .range::-moz-range-progress {

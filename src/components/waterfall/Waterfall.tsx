@@ -258,7 +258,7 @@ export function Waterfall({
             <div
               className="h-full w-full"
               style={{
-                border: 'var(--hair) solid var(--alert-fill)',
+                border: 'var(--hair) solid var(--alert)',
                 background: 'var(--ground)',
               }}
             />
@@ -267,7 +267,7 @@ export function Waterfall({
               className="h-full"
               animate={{ width: `${Math.max(paidPercent, 0.5)}%` }}
               transition={barTransition}
-              style={{ background: 'var(--paid-fill)' }}
+              style={{ background: 'var(--paid-full)' }}
             />
           )}
         </div>
@@ -280,7 +280,7 @@ export function Waterfall({
             <p className="flex flex-wrap items-baseline gap-1">
               <span
                 className="px-[5px] py-[1px] text-[11px] font-semibold uppercase leading-[1.4] tracking-[0.08em]"
-                style={{ background: 'var(--alert-fill)', color: 'var(--ground)' }}
+                style={{ background: 'var(--alert)', color: 'var(--on-accent)' }}
               >
                 Not admissible
               </span>

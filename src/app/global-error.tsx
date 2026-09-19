@@ -12,8 +12,8 @@ export default function GlobalError({ reset }: { error: Error; reset: () => void
         style={{
           margin: 0,
           minHeight: '100vh',
-          background: '#0F1429',
-          color: '#E9EEE0',
+          background: '#080B1A',
+          color: '#F4F7EC',
           fontFamily: 'ui-sans-serif, system-ui, sans-serif',
           display: 'flex',
           alignItems: 'center',
@@ -42,7 +42,7 @@ export default function GlobalError({ reset }: { error: Error; reset: () => void
               border: 0,
               cursor: 'pointer',
               background: '#669BBC',
-              color: '#0F1429',
+              color: '#080B1A',
             }}
           >
             Reload
