@@ -47,10 +47,11 @@ function exemptionQuoteFor(policy: CompiledPolicy, clauseId: string): string | u
  *
  * Read top to bottom: the bill arrives whole, each clause takes a slice off the
  * right-hand end, and what is left at the bottom is what the policy pays. The
- * only bright element on the screen is that last bar, because it is the only
- * number anyone actually came for. Deductions recede: surface fills, hairline
- * edges, a minus sign and a clause reference on every one, so nothing here
- * depends on being able to tell two colours apart.
+ * The only emphasised element on the screen is that last bar, because it is
+ * the only number anyone actually came for. Deductions recede into the band
+ * fill, with hairline edges, a minus sign and a clause reference on every one,
+ * so nothing here depends on being able to tell two colours apart. A claim
+ * that pays nothing says so in words as well as in colour.
  */
 export function Waterfall({
   verdict,
@@ -115,7 +116,7 @@ export function Waterfall({
             reserve={reserve}
           />
         </div>
-        <div className="h-[10px] w-full" style={{ background: 'var(--slate)' }} />
+        <div className="h-[10px] w-full" style={{ background: 'var(--band)' }} />
       </div>
 
       {/* One row per clause that took something. */}
@@ -153,7 +154,7 @@ export function Waterfall({
                           className="shrink-0 px-[5px] py-[1px] text-[11px] font-semibold leading-[1.4]"
                           style={{
                             border: 'var(--hair) solid color-mix(in srgb, var(--line) 75%, transparent)',
-                            color: 'color-mix(in srgb, var(--sand) 84%, transparent)',
+                            color: 'color-mix(in srgb, var(--ink) 84%, transparent)',
                           }}
                         >
                           {deduction.clauseRef}
@@ -184,7 +185,7 @@ export function Waterfall({
                         transition={barTransition}
                         style={{
                           minWidth: '3px',
-                          background: 'var(--slate)',
+                          background: 'var(--band)',
                           borderLeft: 'var(--hair) solid color-mix(in srgb, var(--line) 70%, transparent)',
                         }}
                       />
@@ -236,12 +237,19 @@ export function Waterfall({
           </span>
         </div>
 
+        {/*
+          Three-step money scale. A full or partial figure is amber, the colour
+          of everything that survives. A nil figure is paprika, with an outlined
+          rule where the bar would be. The colour is never the message: a nil
+          claim also names the clause that blocked it, immediately below.
+        */}
         <div className="mt-1">
           <Figure
             paise={verdict.paidPaise}
             className="display block text-[clamp(44px,13vw,84px)] leading-[0.95]"
             reserve={reserve}
             duration={0.55}
+            style={{ color: nothingPayable ? 'var(--alert)' : 'var(--paid-full)' }}
           />
         </div>
 
@@ -250,7 +258,7 @@ export function Waterfall({
             <div
               className="h-full w-full"
               style={{
-                border: 'var(--hair) solid color-mix(in srgb, var(--line) 80%, transparent)',
+                border: 'var(--hair) solid var(--alert-fill)',
                 background: 'var(--ground)',
               }}
             />
@@ -259,15 +267,29 @@ export function Waterfall({
               className="h-full"
               animate={{ width: `${Math.max(paidPercent, 0.5)}%` }}
               transition={barTransition}
-              style={{ background: 'var(--paid-full)' }}
+              style={{ background: 'var(--paid-fill)' }}
             />
           )}
         </div>
 
         {verdict.block ? (
-          <p className="mt-2 text-[14px] leading-[1.65] ink-body measure">
-            {verdict.block.humanReason}
-          </p>
+          <div
+            className="mt-2 pl-2"
+            style={{ borderLeft: '2px solid var(--alert)' }}
+          >
+            <p className="flex flex-wrap items-baseline gap-1">
+              <span
+                className="px-[5px] py-[1px] text-[11px] font-semibold uppercase leading-[1.4] tracking-[0.08em]"
+                style={{ background: 'var(--alert-fill)', color: 'var(--ground)' }}
+              >
+                Not admissible
+              </span>
+              <span className="text-[12px] ink-muted">clause {verdict.block.clauseRef}</span>
+            </p>
+            <p className="mt-1 text-[14px] leading-[1.65] ink-body measure">
+              {verdict.block.humanReason}
+            </p>
+          </div>
         ) : null}
 
         <p className="mt-2 text-[12px] leading-[1.6] ink-muted measure">{DISCLAIMER_ESTIMATE}</p>

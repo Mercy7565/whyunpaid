@@ -26,7 +26,11 @@ export function ContestabilityPanel({ contestability }: { contestability: Contes
       </div>
 
       <div className="mt-2 flex items-baseline gap-1">
-        <span className="display text-[30px] leading-none ink-strong" data-figure>
+        <span
+          className="display text-[30px] leading-none"
+          style={{ color: moratoriumComplete ? 'var(--paid-full)' : 'var(--paid-part)' }}
+          data-figure
+        >
           {monthsOfContinuousCover}
         </span>
         <span className="text-[13px] ink-muted">
@@ -44,7 +48,7 @@ export function ContestabilityPanel({ contestability }: { contestability: Contes
           className="h-full transition-[width] duration-300"
           style={{
             width: `${progress}%`,
-            background: moratoriumComplete ? 'var(--paid-full)' : 'var(--paid-part)',
+            background: moratoriumComplete ? 'var(--paid-fill)' : 'var(--part-fill)',
           }}
         />
       </div>

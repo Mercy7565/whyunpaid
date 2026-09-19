@@ -36,8 +36,8 @@ const PAGE_HEIGHT = 841.89;
 const MARGIN_X = 62;
 const MARGIN_TOP = 68;
 const MARGIN_BOTTOM = 62;
-const INK = rgb(13 / 255, 31 / 255, 34 / 255);
-const RULE = rgb(74 / 255, 124 / 255, 126 / 255);
+const INK = rgb(15 / 255, 20 / 255, 41 / 255);
+const RULE = rgb(98 / 255, 115 / 255, 168 / 255);
 
 const MAX_QUOTE_WORDS = 25;
 

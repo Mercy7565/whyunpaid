@@ -63,7 +63,7 @@ export function LetterInput({
                     background: active ? 'var(--accent)' : 'transparent',
                     color: active
                       ? 'var(--on-accent)'
-                      : 'color-mix(in srgb, var(--sand) 88%, transparent)',
+                      : 'color-mix(in srgb, var(--ink) 88%, transparent)',
                   }}
                 >
                   <span className="block text-[13px] font-medium">{sample.title}</span>

@@ -206,54 +206,65 @@ time. The numbers on the inspector come from a real run.
 
 ## Design
 
-Five brand colours, shipped as CSS custom properties on `:root` and consumed by
-Tailwind through `@theme inline`, so no hex literal appears anywhere else in the
-application.
+Five brand colours, shipped verbatim, in **two modes with a switcher**. Dark is
+built on the indigo; light is built on the steel blue.
 
 ```css
---blue:  #2589BD;   /* primary interaction: focus, active, fills  */
---teal:  #187795;   /* secondary interaction, chart series two    */
---slate: #38686A;   /* elevated surfaces, deduction bands         */
---sage:  #A3B4A2;   /* partially-paid figures, secondary numerals */
---sand:  #CDC6AE;   /* body copy, and the amount that survives    */
+--paprika: #E4572E;   /* refusal: a nil claim, a clause that blocks   */
+--indigo:  #29335C;   /* dark-mode cards; light-mode body copy        */
+--amber:   #F3A712;   /* the amount that survives                     */
+--olive:   #A8C686;   /* partially-paid figures, secondary numerals   */
+--steel:   #669BBC;   /* light-mode page; dark-mode interaction       */
 ```
 
-The five on their own cannot carry readable text — sand on slate measures
-3.66:1, under the 4.5:1 AA needs for body copy — so the darkest brand colour is
-extended into four derived tones, and every one is measured:
+The five cannot carry text on their own in either mode, so each mode derives
+what it needs and every value is measured:
 
-| Token | Value | On `--ground` | Used for |
+| Token | Dark on `#0F1429` | Light on `#E3EDF4` | Used for |
 |---|---|---|---|
-| `--ground` | `#0D1F22` | — | page background: `--slate` at 8% lightness |
-| `--surface` | `#17383B` | — | cards and panels: `--slate` at 16% |
-| `--line` | `#4A7C7E` | 3.5:1 | borders, rules, 18px+ labels |
-| `--accent-ink` | `#59A9D8` | 6.4:1 | blue **text**, where `--blue` is 4.2:1 |
-| `--sand` | brand | 9.6:1 | body copy, the paid figure |
-| `--sage` | brand | 7.5:1 | secondary numerals |
-| `--blue` | brand | 4.2:1 | fills, focus rings, active backgrounds |
+| `--ink` | `#E9EEE0` 15.4:1 | `#29335C` 10.3:1 | body copy |
+| `--paid-full` | `#F3A712` 9.0:1 | `#8A5A06` 5.0:1 | the payable figure |
+| `--paid-part` | `#A8C686` 9.6:1 | `#4C6B2F` 5.1:1 | secondary numerals |
+| `--accent` | `#669BBC` 6.1:1 | `#2C6690` 5.2:1 | focus, active, links |
+| `--alert` | `#E4572E` 5.0:1 | `#B83A12` 4.8:1 | a nil claim |
+| `--line` | `#6273A8` 3.9:1 | `#4E7E9F` 3.7:1 | rules, 18px+ labels |
+| `--band` | `#3A4680` 2.1:1 | `#669BBC` 2.5:1 | deduction bars, fills only |
 
-**The warm/cool split is the whole visual idea.** Everything structural is cool
-teal; the one thing that survives the waterfall is warm sand. Deductions recede:
-`--slate` fills, hairline edges, a minus sign and a clause reference on every
-one, so nothing depends on telling two colours apart. Severity is expressed
-through weight, scale and desaturation, never through hue. No shadows, no
-gradients, no blur. Dark is the only theme.
+**Amber cannot be read on a light page** — it measures 1.7:1 — so the figure
+takes a deepened amber and only the *bar* keeps the brand value. That is why
+there is a `--paid-full` for text and a `--paid-fill` for graphics.
 
-Four files carry literal hex values, all of them places a CSS custom property
-cannot reach: `global-error.tsx` (renders when the stylesheet may not have
-loaded), `layout.tsx` and `manifest.ts` (browser chrome metadata), and
-`opengraph-image.tsx` (rendered by Satori, which has no cascade).
+The switcher offers **system, light and dark**. System is the default, so
+someone who never touches it keeps following their OS when it changes at dusk;
+an explicit choice persists and wins. An inline script applies a stored choice
+before first paint, so choosing light never means seeing a dark page flash
+first.
+
+Deductions recede into the band fill, with hairline edges, a minus sign and a
+clause reference on every one. A claim that pays nothing says so in words —
+a "not admissible" chip, the clause reference, and the reason — as well as in
+colour, so nothing depends on telling two colours apart. Severity is otherwise
+expressed through weight, scale and desaturation, never through hue. No
+shadows, no gradients, no blur.
 
 One typeface family in two cuts: Archivo at normal width for the interface,
-Archivo at 112% width for figures, with `tabular-nums` on every number so digits
-do not jitter during animation. Tailwind's `--spacing` is set to `8px`, so every
-spacing utility in the codebase is a multiple of eight by construction.
+Archivo at 112% width for figures, with `tabular-nums` on every number so
+digits do not jitter during animation. Tailwind's `--spacing` is set to `8px`,
+so every spacing utility in the codebase is a multiple of eight by
+construction.
 
 Framer Motion animates the waterfall and the number transitions, and nothing
 else. `prefers-reduced-motion` makes every animation instant; it never disables
 functionality.
 
----
+Print never follows the theme: in light mode `--ground` is a pale steel and
+printing it as ink would put almost nothing on the page, so both modes print
+the same dark indigo on unpainted paper.
+
+Four files carry literal hex values, all of them places a CSS custom property
+cannot reach: `global-error.tsx` (renders when the stylesheet may not have
+loaded), `layout.tsx` and `manifest.ts` (browser chrome metadata), and
+`opengraph-image.tsx` (rendered by Satori, which has no cascade).
 
 ## Limitations
 

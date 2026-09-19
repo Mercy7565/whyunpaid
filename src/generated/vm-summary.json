@@ -9,7 +9,7 @@
     "passed": 159,
     "failed": 0,
     "skipped": 0,
-    "durationMs": 4096
+    "durationMs": 5626
   },
   "files": [
     {
@@ -19,17 +19,17 @@
       "passed": 53,
       "failed": 0,
       "skipped": 0,
-      "durationMs": 27,
+      "durationMs": 24,
       "cases": [
         {
           "name": "reads counts in words and in digits",
           "state": "passed",
-          "durationMs": 2
+          "durationMs": 5
         },
         {
           "name": "reads Indian grouping",
           "state": "passed",
-          "durationMs": 0
+          "durationMs": 1
         },
         {
           "name": "reads amounts written out in words",
@@ -44,12 +44,12 @@
         {
           "name": "does not split a sentence at \"Rs.\"",
           "state": "passed",
-          "durationMs": 1
+          "durationMs": 2
         },
         {
           "name": "finds the sum insured and reads the figure correctly",
           "state": "passed",
-          "durationMs": 0
+          "durationMs": 1
         },
         {
           "name": "finds the moratorium",
@@ -59,7 +59,7 @@
         {
           "name": "finds all three waiting periods and reads their lengths",
           "state": "passed",
-          "durationMs": 0
+          "durationMs": 1
         },
         {
           "name": "finds the permanent exclusions and the procedures they name",
@@ -103,188 +103,188 @@
         },
         {
           "name": "compiles once every row has been confirmed, and runs",
-          "state": "passed",
-          "durationMs": 1
-        },
-        {
-          "name": "finds the sum insured and reads the figure correctly",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "finds the moratorium",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "finds all three waiting periods and reads their lengths",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "finds the permanent exclusions and the procedures they name",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "finds the non-payable heads",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "finds every sub-limit in the wording, with the right cap",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "finds the room rent cap where the wording has one, and not where it does not",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "finds the co-payment where the wording has one",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "finds the deductible where the wording has one",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "quotes wording that is in the document, once, and within 25 words",
-          "state": "passed",
-          "durationMs": 1
-        },
-        {
-          "name": "refuses to compile until a person has confirmed the low-confidence rows",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "compiles once every row has been confirmed, and runs",
-          "state": "passed",
-          "durationMs": 1
-        },
-        {
-          "name": "finds the sum insured and reads the figure correctly",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "finds the moratorium",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "finds all three waiting periods and reads their lengths",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "finds the permanent exclusions and the procedures they name",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "finds the non-payable heads",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "finds every sub-limit in the wording, with the right cap",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "finds the room rent cap where the wording has one, and not where it does not",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "finds the co-payment where the wording has one",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "finds the deductible where the wording has one",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "quotes wording that is in the document, once, and within 25 words",
-          "state": "passed",
-          "durationMs": 1
-        },
-        {
-          "name": "refuses to compile until a person has confirmed the low-confidence rows",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "compiles once every row has been confirmed, and runs",
-          "state": "passed",
-          "durationMs": 4
-        },
-        {
-          "name": "finds the sum insured and reads the figure correctly",
-          "state": "passed",
-          "durationMs": 1
-        },
-        {
-          "name": "finds the moratorium",
-          "state": "passed",
-          "durationMs": 1
-        },
-        {
-          "name": "finds all three waiting periods and reads their lengths",
-          "state": "passed",
-          "durationMs": 1
-        },
-        {
-          "name": "finds the permanent exclusions and the procedures they name",
-          "state": "passed",
-          "durationMs": 1
-        },
-        {
-          "name": "finds the non-payable heads",
-          "state": "passed",
-          "durationMs": 1
-        },
-        {
-          "name": "finds every sub-limit in the wording, with the right cap",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "finds the room rent cap where the wording has one, and not where it does not",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "finds the co-payment where the wording has one",
-          "state": "passed",
-          "durationMs": 1
-        },
-        {
-          "name": "finds the deductible where the wording has one",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "quotes wording that is in the document, once, and within 25 words",
           "state": "passed",
           "durationMs": 2
         },
         {
-          "name": "refuses to compile until a person has confirmed the low-confidence rows",
+          "name": "finds the sum insured and reads the figure correctly",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "finds the moratorium",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "finds all three waiting periods and reads their lengths",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "finds the permanent exclusions and the procedures they name",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "finds the non-payable heads",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "finds every sub-limit in the wording, with the right cap",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "finds the room rent cap where the wording has one, and not where it does not",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "finds the co-payment where the wording has one",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "finds the deductible where the wording has one",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "quotes wording that is in the document, once, and within 25 words",
           "state": "passed",
           "durationMs": 1
         },
         {
+          "name": "refuses to compile until a person has confirmed the low-confidence rows",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
           "name": "compiles once every row has been confirmed, and runs",
           "state": "passed",
-          "durationMs": 3
+          "durationMs": 2
+        },
+        {
+          "name": "finds the sum insured and reads the figure correctly",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "finds the moratorium",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "finds all three waiting periods and reads their lengths",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "finds the permanent exclusions and the procedures they name",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "finds the non-payable heads",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "finds every sub-limit in the wording, with the right cap",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "finds the room rent cap where the wording has one, and not where it does not",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "finds the co-payment where the wording has one",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "finds the deductible where the wording has one",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "quotes wording that is in the document, once, and within 25 words",
+          "state": "passed",
+          "durationMs": 1
+        },
+        {
+          "name": "refuses to compile until a person has confirmed the low-confidence rows",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "compiles once every row has been confirmed, and runs",
+          "state": "passed",
+          "durationMs": 2
+        },
+        {
+          "name": "finds the sum insured and reads the figure correctly",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "finds the moratorium",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "finds all three waiting periods and reads their lengths",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "finds the permanent exclusions and the procedures they name",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "finds the non-payable heads",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "finds every sub-limit in the wording, with the right cap",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "finds the room rent cap where the wording has one, and not where it does not",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "finds the co-payment where the wording has one",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "finds the deductible where the wording has one",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "quotes wording that is in the document, once, and within 25 words",
+          "state": "passed",
+          "durationMs": 1
+        },
+        {
+          "name": "refuses to compile until a person has confirmed the low-confidence rows",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "compiles once every row has been confirmed, and runs",
+          "state": "passed",
+          "durationMs": 1
         }
       ]
     },
@@ -295,12 +295,12 @@
       "passed": 13,
       "failed": 0,
       "skipped": 0,
-      "durationMs": 26,
+      "durationMs": 28,
       "cases": [
         {
           "name": "classifies every sample letter as the ground it was written to express",
           "state": "passed",
-          "durationMs": 4
+          "durationMs": 5
         },
         {
           "name": "separates a waiting-period letter from a non-disclosure letter",
@@ -315,7 +315,7 @@
         {
           "name": "handles an empty paste without throwing",
           "state": "passed",
-          "durationMs": 0
+          "durationMs": 1
         },
         {
           "name": "reports matched spans that line up with the reader’s own text",
@@ -325,12 +325,12 @@
         {
           "name": "marks a letter that straddles two grounds as low confidence",
           "state": "passed",
-          "durationMs": 1
+          "durationMs": 0
         },
         {
           "name": "reaches the moratorium when a disclosure letter arrives past month sixty",
           "state": "passed",
-          "durationMs": 8
+          "durationMs": 9
         },
         {
           "name": "does not reach the moratorium when it has not run",
@@ -371,67 +371,67 @@
       "passed": 12,
       "failed": 0,
       "skipped": 0,
-      "durationMs": 2867,
+      "durationMs": 4261,
       "cases": [
         {
           "name": "covers a wide enough matrix to be worth trusting",
           "state": "passed",
-          "durationMs": 2
+          "durationMs": 3
         },
         {
           "name": "gives every generated sentence a rule id or a quotation",
           "state": "passed",
-          "durationMs": 240
+          "durationMs": 278
         },
         {
           "name": "never attributes a sentence to a rule that is not in the registry",
           "state": "passed",
-          "durationMs": 146
+          "durationMs": 169
         },
         {
           "name": "writes every sentence in both languages, with neither left empty",
           "state": "passed",
-          "durationMs": 510
+          "durationMs": 772
         },
         {
           "name": "never leaves a template placeholder in the output",
           "state": "passed",
-          "durationMs": 1084
+          "durationMs": 1768
         },
         {
           "name": "keeps to the copy rules on every sentence it can produce",
           "state": "passed",
-          "durationMs": 708
+          "durationMs": 1026
         },
         {
           "name": "always states how the figures were produced, and always in the last section",
           "state": "passed",
-          "durationMs": 41
+          "durationMs": 54
         },
         {
           "name": "always sets out the moratorium boundary, whichever ground was stated",
           "state": "passed",
-          "durationMs": 36
+          "durationMs": 54
         },
         {
           "name": "renders to plain text in both languages without losing a sentence",
           "state": "passed",
-          "durationMs": 29
+          "durationMs": 40
         },
         {
           "name": "never cites a clause that is not in the policy it was generated against",
           "state": "passed",
-          "durationMs": 32
+          "durationMs": 47
         },
         {
           "name": "never quotes wording that is not in the policy it was generated against",
           "state": "passed",
-          "durationMs": 35
+          "durationMs": 45
         },
         {
           "name": "sources every sentence of every appeal built from a sample letter",
           "state": "passed",
-          "durationMs": 4
+          "durationMs": 5
         }
       ]
     },
@@ -442,17 +442,47 @@
       "passed": 29,
       "failed": 0,
       "skipped": 0,
-      "durationMs": 371,
+      "durationMs": 455,
       "cases": [
         {
           "name": "ships exactly four, all marked synthetic, none naming an insurer",
           "state": "passed",
-          "durationMs": 3
+          "durationMs": 6
         },
         {
           "name": "parses every one of them through the boundary schema",
           "state": "passed",
-          "durationMs": 4
+          "durationMs": 5
+        },
+        {
+          "name": "gives every clause a quotable source",
+          "state": "passed",
+          "durationMs": 2
+        },
+        {
+          "name": "keeps every quote inside the twenty-five word limit",
+          "state": "passed",
+          "durationMs": 1
+        },
+        {
+          "name": "points every character range at the words it claims to quote",
+          "state": "passed",
+          "durationMs": 1
+        },
+        {
+          "name": "has a typeset box for every quoted range, so the inspector can highlight it",
+          "state": "passed",
+          "durationMs": 11
+        },
+        {
+          "name": "exempts pharmacy, consumables, implants and diagnostics wherever it caps room rent",
+          "state": "passed",
+          "durationMs": 2
+        },
+        {
+          "name": "produces a balanced verdict across every procedure, bill and length of cover",
+          "state": "passed",
+          "durationMs": 114
         },
         {
           "name": "gives every clause a quotable source",
@@ -463,6 +493,36 @@
           "name": "keeps every quote inside the twenty-five word limit",
           "state": "passed",
           "durationMs": 1
+        },
+        {
+          "name": "points every character range at the words it claims to quote",
+          "state": "passed",
+          "durationMs": 1
+        },
+        {
+          "name": "has a typeset box for every quoted range, so the inspector can highlight it",
+          "state": "passed",
+          "durationMs": 10
+        },
+        {
+          "name": "exempts pharmacy, consumables, implants and diagnostics wherever it caps room rent",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "produces a balanced verdict across every procedure, bill and length of cover",
+          "state": "passed",
+          "durationMs": 114
+        },
+        {
+          "name": "gives every clause a quotable source",
+          "state": "passed",
+          "durationMs": 2
+        },
+        {
+          "name": "keeps every quote inside the twenty-five word limit",
+          "state": "passed",
+          "durationMs": 0
         },
         {
           "name": "points every character range at the words it claims to quote",
@@ -477,12 +537,12 @@
         {
           "name": "exempts pharmacy, consumables, implants and diagnostics wherever it caps room rent",
           "state": "passed",
-          "durationMs": 5
+          "durationMs": 0
         },
         {
           "name": "produces a balanced verdict across every procedure, bill and length of cover",
           "state": "passed",
-          "durationMs": 132
+          "durationMs": 84
         },
         {
           "name": "gives every clause a quotable source",
@@ -492,7 +552,7 @@
         {
           "name": "keeps every quote inside the twenty-five word limit",
           "state": "passed",
-          "durationMs": 0
+          "durationMs": 1
         },
         {
           "name": "points every character range at the words it claims to quote",
@@ -502,7 +562,7 @@
         {
           "name": "has a typeset box for every quoted range, so the inspector can highlight it",
           "state": "passed",
-          "durationMs": 8
+          "durationMs": 7
         },
         {
           "name": "exempts pharmacy, consumables, implants and diagnostics wherever it caps room rent",
@@ -512,67 +572,7 @@
         {
           "name": "produces a balanced verdict across every procedure, bill and length of cover",
           "state": "passed",
-          "durationMs": 74
-        },
-        {
-          "name": "gives every clause a quotable source",
-          "state": "passed",
-          "durationMs": 1
-        },
-        {
-          "name": "keeps every quote inside the twenty-five word limit",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "points every character range at the words it claims to quote",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "has a typeset box for every quoted range, so the inspector can highlight it",
-          "state": "passed",
-          "durationMs": 5
-        },
-        {
-          "name": "exempts pharmacy, consumables, implants and diagnostics wherever it caps room rent",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "produces a balanced verdict across every procedure, bill and length of cover",
-          "state": "passed",
-          "durationMs": 52
-        },
-        {
-          "name": "gives every clause a quotable source",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "keeps every quote inside the twenty-five word limit",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "points every character range at the words it claims to quote",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "has a typeset box for every quoted range, so the inspector can highlight it",
-          "state": "passed",
-          "durationMs": 6
-        },
-        {
-          "name": "exempts pharmacy, consumables, implants and diagnostics wherever it caps room rent",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "produces a balanced verdict across every procedure, bill and length of cover",
-          "state": "passed",
-          "durationMs": 58
+          "durationMs": 70
         },
         {
           "name": "splits every bill profile into shares that total the whole bill",
@@ -587,7 +587,7 @@
         {
           "name": "flips contestability, and only contestability, past the sixtieth month",
           "state": "passed",
-          "durationMs": 0
+          "durationMs": 1
         }
       ]
     },
@@ -598,32 +598,32 @@
       "passed": 18,
       "failed": 0,
       "skipped": 0,
-      "durationMs": 43,
+      "durationMs": 30,
       "cases": [
         {
           "name": "01 pays a clean claim in full when no clause bites",
           "state": "passed",
-          "durationMs": 10
+          "durationMs": 8
         },
         {
           "name": "02 refuses the whole claim for a permanent exclusion",
           "state": "passed",
-          "durationMs": 9
+          "durationMs": 2
         },
         {
           "name": "03 refuses the whole claim inside the initial waiting period",
           "state": "passed",
-          "durationMs": 4
+          "durationMs": 1
         },
         {
           "name": "04 refuses the whole claim inside a named-condition waiting period",
           "state": "passed",
-          "durationMs": 2
+          "durationMs": 1
         },
         {
           "name": "05 refuses the whole claim inside the pre-existing disease waiting period",
           "state": "passed",
-          "durationMs": 2
+          "durationMs": 1
         },
         {
           "name": "06 reports the most binding wait when two are unexpired at once",
@@ -668,7 +668,7 @@
         {
           "name": "14 the headline: four lakh becomes two lakh twelve thousand across four clauses",
           "state": "passed",
-          "durationMs": 2
+          "durationMs": 3
         },
         {
           "name": "15 handles a bill of zero without inventing a deduction",
@@ -699,12 +699,12 @@
       "passed": 6,
       "failed": 0,
       "skipped": 0,
-      "durationMs": 27,
+      "durationMs": 17,
       "cases": [
         {
           "name": "changes contestability once sixty months of continuous cover are complete",
           "state": "passed",
-          "durationMs": 20
+          "durationMs": 4
         },
         {
           "name": "changes nothing whatsoever in the waterfall",
@@ -714,7 +714,7 @@
         {
           "name": "never appears as a stage of the pipeline",
           "state": "passed",
-          "durationMs": 4
+          "durationMs": 8
         },
         {
           "name": "does not override an unexpired waiting period even once complete",
@@ -724,12 +724,12 @@
         {
           "name": "does not override a permanent exclusion even once complete",
           "state": "passed",
-          "durationMs": 0
+          "durationMs": 1
         },
         {
           "name": "does not lift the co-pay or the sub-limit once complete",
           "state": "passed",
-          "durationMs": 0
+          "durationMs": 1
         }
       ]
     },
@@ -740,7 +740,7 @@
       "passed": 7,
       "failed": 0,
       "skipped": 0,
-      "durationMs": 12,
+      "durationMs": 10,
       "cases": [
         {
           "name": "is exactly the eight documented stages in the documented sequence",
@@ -765,7 +765,7 @@
         {
           "name": "emits a trace step for all eight stages, in order, on every verdict",
           "state": "passed",
-          "durationMs": 4
+          "durationMs": 3
         },
         {
           "name": "marks the stages a blocked claim never reached",
@@ -775,7 +775,7 @@
         {
           "name": "emits deductions in stage order and never out of it",
           "state": "passed",
-          "durationMs": 2
+          "durationMs": 1
         }
       ]
     },
@@ -786,42 +786,42 @@
       "passed": 13,
       "failed": 0,
       "skipped": 0,
-      "durationMs": 99,
+      "durationMs": 94,
       "cases": [
         {
           "name": "rounds half up, and only half up",
           "state": "passed",
-          "durationMs": 12
+          "durationMs": 3
         },
         {
           "name": "never loses or invents a paise across a proportionate split",
           "state": "passed",
-          "durationMs": 59
+          "durationMs": 65
         },
         {
           "name": "refuses negative money loudly rather than quietly",
           "state": "passed",
-          "durationMs": 1
+          "durationMs": 2
         },
         {
           "name": "takes a percentage share the way a policy schedule reads it",
           "state": "passed",
-          "durationMs": 0
+          "durationMs": 1
         },
         {
           "name": "groups rupees the Indian way",
           "state": "passed",
-          "durationMs": 0
+          "durationMs": 2
         },
         {
           "name": "prints basis points as a schedule would",
           "state": "passed",
-          "durationMs": 0
+          "durationMs": 1
         },
         {
           "name": "round-trips every day number it produces",
           "state": "passed",
-          "durationMs": 26
+          "durationMs": 17
         },
         {
           "name": "counts whole months the way a waiting period is read",
@@ -831,7 +831,7 @@
         {
           "name": "clamps the day when a month is shorter than the one it started in",
           "state": "passed",
-          "durationMs": 0
+          "durationMs": 1
         },
         {
           "name": "counts a same-day admission and discharge as one day",
@@ -846,7 +846,7 @@
         {
           "name": "rejects anything that is not a calendar date",
           "state": "passed",
-          "durationMs": 1
+          "durationMs": 2
         },
         {
           "name": "picks the earlier of two dates",
@@ -862,17 +862,17 @@
       "passed": 8,
       "failed": 0,
       "skipped": 0,
-      "durationMs": 624,
+      "durationMs": 707,
       "cases": [
         {
           "name": "I1 never pays more than was claimed",
           "state": "passed",
-          "durationMs": 121
+          "durationMs": 99
         },
         {
           "name": "I2 paid plus every deduction equals claimed, exactly",
           "state": "passed",
-          "durationMs": 74
+          "durationMs": 46
         },
         {
           "name": "I3 never pays more than the sum insured",
@@ -882,27 +882,27 @@
         {
           "name": "I4 never pays less as months of cover increase",
           "state": "passed",
-          "durationMs": 43
+          "durationMs": 50
         },
         {
           "name": "I5 is idempotent: the same inputs always give the same verdict",
           "state": "passed",
-          "durationMs": 86
+          "durationMs": 90
         },
         {
           "name": "I6 is order-independent: shuffling clauses and bill lines changes nothing",
           "state": "passed",
-          "durationMs": 91
+          "durationMs": 126
         },
         {
           "name": "I7 is key-order-independent: rebuilding the inputs with reversed keys changes nothing",
           "state": "passed",
-          "durationMs": 114
+          "durationMs": 174
         },
         {
           "name": "I8 attributes every deduction to a clause that exists in the policy",
           "state": "passed",
-          "durationMs": 52
+          "durationMs": 79
         }
       ]
     }

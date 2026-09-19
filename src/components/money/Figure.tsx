@@ -15,6 +15,8 @@ type FigureProps = {
   reserve?: string;
   /** Duration in seconds. Ignored when the reader has asked for less motion. */
   duration?: number;
+  /** Overrides the colour, for the nil figure. */
+  style?: React.CSSProperties;
 };
 
 /**
@@ -25,7 +27,7 @@ type FigureProps = {
  * times a second to move four digits. Tabular figures and a reserved cell mean
  * nothing shifts while it runs.
  */
-export function Figure({ paise, className, reserve, duration = 0.45 }: FigureProps) {
+export function Figure({ paise, className, reserve, duration = 0.45, style }: FigureProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const currentRef = useRef<number>(Number(paise));
   const reduceMotion = useReducedMotion();
@@ -60,7 +62,7 @@ export function Figure({ paise, className, reserve, duration = 0.45 }: FigurePro
 
   if (reserve) {
     return (
-      <span className={`grid ${className ?? ''}`} data-figure>
+      <span className={`grid ${className ?? ''}`} data-figure style={style}>
         <span className="invisible col-start-1 row-start-1" aria-hidden="true">
           {reserve}
         </span>
@@ -72,7 +74,7 @@ export function Figure({ paise, className, reserve, duration = 0.45 }: FigurePro
   }
 
   return (
-    <span ref={ref} className={className} data-figure>
+    <span ref={ref} className={className} data-figure style={style}>
       {formatted}
     </span>
   );

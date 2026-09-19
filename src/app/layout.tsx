@@ -4,6 +4,7 @@ import './globals.css';
 import { SiteHeader } from '@/components/SiteHeader';
 import { SiteFooter } from '@/components/SiteFooter';
 import { SITE_URL } from '@/lib/site';
+import { THEME_BOOTSTRAP } from '@/components/ThemeToggle';
 
 /*
  * One typeface family, two cuts. `ui` is the grotesk at normal width; `display`
@@ -64,7 +65,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#0D1F22',
+  themeColor: [
+    { media: '(prefers-color-scheme: dark)', color: '#0F1429' },
+    { media: '(prefers-color-scheme: light)', color: '#E3EDF4' },
+  ],
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
@@ -72,7 +76,16 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${ui.variable} ${deva.variable}`}>
+    <html lang="en" className={`${ui.variable} ${deva.variable}`} suppressHydrationWarning>
+      <head>
+        {/*
+          Applies a stored theme choice before first paint. Without this, a
+          reader who chose light would see the dark page for one frame on every
+          navigation, which is exactly the flicker a theme switcher exists to
+          avoid.
+        */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP }} />
+      </head>
       <body className="min-h-screen flex flex-col">
         <a
           href="#main"

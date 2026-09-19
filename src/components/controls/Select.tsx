@@ -49,7 +49,7 @@ export function Select<T extends string>({ label, value, options, onChange, hint
         >
           <path
             d="M1 1.5 6 6.5 11 1.5"
-            stroke="var(--accent-ink)"
+            stroke="var(--accent)"
             strokeWidth="1.5"
             strokeLinecap="square"
           />

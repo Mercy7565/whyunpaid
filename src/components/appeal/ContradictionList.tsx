@@ -43,7 +43,7 @@ export function ContradictionList({ contradictions }: { contradictions: readonly
                   color:
                     contradiction.strength === 'direct'
                       ? 'var(--paid-full)'
-                      : 'color-mix(in srgb, var(--sand) 62%, transparent)',
+                      : 'color-mix(in srgb, var(--ink) 62%, transparent)',
                 }}
                 aria-hidden="true"
               >
@@ -53,7 +53,7 @@ export function ContradictionList({ contradictions }: { contradictions: readonly
                 className="shrink-0 px-[5px] py-[1px] text-[11px] font-semibold uppercase leading-[1.4] tracking-[0.08em]"
                 style={{
                   border: 'var(--hair) solid color-mix(in srgb, var(--line) 75%, transparent)',
-                  color: 'color-mix(in srgb, var(--sand) 82%, transparent)',
+                  color: 'color-mix(in srgb, var(--ink) 82%, transparent)',
                 }}
               >
                 {contradiction.strength === 'direct' ? 'Direct' : 'Supporting'}

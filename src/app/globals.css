@@ -1,56 +1,121 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   The palette.
+   The palette, in two modes.
 
-   Five brand colours, shipped verbatim, plus four tonal extensions of --slate
-   that exist for one reason: the five on their own cannot carry readable text.
-   Sand on slate measures 3.66:1, which fails AA for body copy, so the darkest
-   brand colour is extended down to an ink and up to a rule. Every value below
-   is measured against --ground:
+   Five brand colours, shipped verbatim. Dark mode is built on --indigo; light
+   mode is built on --steel. Neither mode uses a brand colour where it cannot
+   be read: on a light page --amber measures 1.7:1, so the figure takes a
+   deepened amber and only the BAR keeps the brand value. That is why there is
+   a `--paid-full` for text and a `--paid-fill` for graphics.
 
-     --sand   on --ground   9.6:1   body copy, the paid figure
-     --sage   on --ground   7.5:1   secondary numerals
-     --blue   on --ground   4.2:1   fills, focus rings, active backgrounds
-     --accent-ink on --ground 6.4:1   blue text, where --blue would fail AA
-     --teal   on --ground   3.2:1   borders and 18px+ labels
-     --line   on --ground   3.5:1   rules and component boundaries
-     --slate  on --ground   2.6:1   fills only, never text
+   DARK, measured against --ground #0F1429:
+     --ink      #E9EEE0  15.4:1   body copy
+     --olive    brand     9.6:1   partially-paid figures
+     --amber    brand     9.0:1   the amount that survives
+     --steel    brand     6.1:1   interaction: focus, active, links
+     --paprika  brand     5.0:1   refusal: a nil claim
+     --line     #6273A8   3.9:1   rules, borders, 18px+ labels
+     --band     #3A4680   2.1:1   deduction bars; a fill, never text
+     --surface  brand     1.5:1   cards and panels; a fill, never text
 
-   The warm/cool split is the whole visual idea: everything structural is cool
-   teal, and the one thing that survives the waterfall is warm sand.
+   LIGHT, measured against --ground #E3EDF4:
+     --ink      #29335C  10.3:1   body copy, and the brand indigo itself
+     --accent   #2C6690   5.2:1   interaction
+     --paid-part #4C6B2F  5.1:1   partially-paid figures
+     --paid-full #8A5A06  5.0:1   the amount that survives
+     --alert    #B83A12   4.8:1   refusal
+     --line     #4E7E9F   3.7:1   rules, borders, 18px+ labels
+     --band     brand     2.5:1   deduction bars; a fill, never text
 
-   No hex literal appears anywhere else in the codebase.
+   The idea is the same in both: everything structural recedes, the thing that
+   survives the waterfall is amber, and the one colour meaning "nothing
+   survived" is paprika. Both are paired with a sign, a clause reference and a
+   named state, so meaning never rests on hue alone.
+
+   No hex literal appears anywhere else in the application.
    --------------------------------------------------------------------------- */
+
+/* The five, exactly as given. Identical in both modes. */
 :root {
-  /* The five, exactly as given. */
-  --blue:  #2589BD; /* primary interaction: focus, active states, links   */
-  --teal:  #187795; /* secondary interaction, hover, chart series two     */
-  --slate: #38686A; /* elevated surfaces, deduction bands                 */
-  --sage:  #A3B4A2; /* partially-paid figures, secondary numerals         */
-  --sand:  #CDC6AE; /* body copy, and the amount that survives            */
-
-  /* Tonal extensions of --slate. Derived, documented, and nothing else. */
-  --ground:  #0D1F22; /* page background: slate taken down to 8% lightness  */
-  --surface: #17383B; /* cards and panels: slate at 16%                     */
-  --line:    #4A7C7E; /* borders and rules: slate lifted to clear 3:1       */
-  --accent-ink: #59A9D8; /* blue TEXT on dark: 6.4:1, where --blue is 4.2:1 */
-  --on-accent: #08171A; /* ink on a blue, sage or sand fill: 4.6:1 or better */
-
-  /* Semantic aliases. Components speak in these, never in brand names. */
-  --paid-part: var(--sage);
-  --paid-full: var(--sand);
-  --accent:      var(--blue);
-  --accent-deep: var(--teal);
-
-  /* Text opacities. Body copy is --sand held back, never --line. */
-  --ink-strong: 0.96;
-  --ink-body:   0.88;
-  --ink-muted:  0.72;
+  --paprika: #E4572E;
+  --indigo:  #29335C;
+  --amber:   #F3A712;
+  --olive:   #A8C686;
+  --steel:   #669BBC;
 
   --measure: 68ch;
   --radius:  2px;
   --hair:    1px;
+
+  --ink-strong: 0.96;
+  --ink-body:   0.88;
+  --ink-muted:  0.72;
+}
+
+/* Dark is the default, and the mode the product was designed in. */
+:root {
+  color-scheme: dark;
+
+  --ground:  #0F1429; /* indigo taken down to a page      */
+  --surface: #29335C; /* the brand indigo: cards, panels  */
+  --band:    #3A4680; /* indigo lifted: deduction bars    */
+  --line:    #6273A8; /* indigo lifted: rules and borders */
+  --ink:     #E9EEE0; /* olive tinted: body copy          */
+
+  --paid-full: var(--amber);
+  --paid-fill: var(--amber);
+  --paid-part: var(--olive);
+  --part-fill: var(--olive);
+  --accent:      var(--steel);
+  --accent-deep: var(--indigo);
+  --alert:       var(--paprika);
+  --alert-fill:  var(--paprika);
+  --on-accent:   var(--ground);
+}
+
+/* Light mode, built on --steel. Applied by system preference... */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+
+    --ground:  #E3EDF4;
+    --surface: #F3F8FB;
+    --band:    var(--steel);
+    --line:    #4E7E9F;
+    --ink:     var(--indigo);
+
+    --paid-full: #8A5A06;
+    --paid-fill: var(--amber);
+    --paid-part: #4C6B2F;
+    --part-fill: var(--olive);
+    --accent:      #2C6690;
+    --accent-deep: #1C4A6B;
+    --alert:       #B83A12;
+    --alert-fill:  var(--paprika);
+    --on-accent:   var(--ground);
+  }
+}
+
+/* ...and by explicit choice, which always wins. */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --ground:  #E3EDF4;
+  --surface: #F3F8FB;
+  --band:    var(--steel);
+  --line:    #4E7E9F;
+  --ink:     var(--indigo);
+
+  --paid-full: #8A5A06;
+  --paid-fill: var(--amber);
+  --paid-part: #4C6B2F;
+  --part-fill: var(--olive);
+  --accent:      #2C6690;
+  --accent-deep: #1C4A6B;
+  --alert:       #B83A12;
+  --alert-fill:  var(--paprika);
+  --on-accent:   var(--ground);
 }
 
 /* Tailwind reads the palette; it never redeclares it. */
@@ -63,8 +128,11 @@
   --color-on-accent: var(--on-accent);
   --color-accent:      var(--accent);
   --color-accent-deep: var(--accent-deep);
-  --color-accent-ink:  var(--accent-ink);
-  --color-slate:       var(--slate);
+  --color-alert:       var(--alert);
+  --color-ink:         var(--ink);
+  --color-band:        var(--band);
+  --color-paid-fill:   var(--paid-fill);
+  --color-part-fill:   var(--part-fill);
 
   /* An 8px spacing scale, enforced by the engine: every p-*, m-*, gap-* is 8px * n. */
   --spacing: 8px;
@@ -91,7 +159,7 @@
   body {
     margin: 0;
     background: var(--ground);
-    color: color-mix(in srgb, var(--paid-full) calc(var(--ink-body) * 100%), transparent);
+    color: color-mix(in srgb, var(--ink) calc(var(--ink-body) * 100%), transparent);
     font-family: var(--font-ui);
     font-size: 16px;
     line-height: 1.6;
@@ -112,7 +180,7 @@
     margin: 0;
     font-weight: 500;
     letter-spacing: -0.015em;
-    color: color-mix(in srgb, var(--paid-full) calc(var(--ink-strong) * 100%), transparent);
+    color: color-mix(in srgb, var(--ink) calc(var(--ink-strong) * 100%), transparent);
   }
 
   p { margin: 0; max-width: var(--measure); }
@@ -131,7 +199,7 @@
 
   ::selection {
     background: color-mix(in srgb, var(--accent) 45%, transparent);
-    color: var(--sand);
+    color: var(--ink);
   }
 
   /* No system chrome tinting outside the palette. */
@@ -146,11 +214,11 @@
 
 @layer utilities {
   /* Ink levels. Body copy never uses --line. */
-  .ink-strong { color: color-mix(in srgb, var(--paid-full) calc(var(--ink-strong) * 100%), transparent); }
-  .ink-body   { color: color-mix(in srgb, var(--paid-full) calc(var(--ink-body) * 100%), transparent); }
-  .ink-muted  { color: color-mix(in srgb, var(--paid-full) calc(var(--ink-muted) * 100%), transparent); }
+  .ink-strong { color: color-mix(in srgb, var(--ink) calc(var(--ink-strong) * 100%), transparent); }
+  .ink-body   { color: color-mix(in srgb, var(--ink) calc(var(--ink-body) * 100%), transparent); }
+  .ink-muted  { color: color-mix(in srgb, var(--ink) calc(var(--ink-muted) * 100%), transparent); }
 
-  /* --line as text is permitted at 18px and above only (it measures 3.5:1 on --ground). */
+  /* --line as text is permitted at 18px and above only (it measures 3.9:1 on --ground). */
   .label-line {
     color: var(--line);
     font-size: 18px;
@@ -164,7 +232,7 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
     font-weight: 600;
-    color: color-mix(in srgb, var(--paid-full) calc(var(--ink-muted) * 100%), transparent);
+    color: color-mix(in srgb, var(--ink) calc(var(--ink-muted) * 100%), transparent);
   }
 
   .hair-t { border-top: var(--hair) solid color-mix(in srgb, var(--line) 55%, transparent); }
@@ -191,7 +259,7 @@
     border-radius: var(--radius);
   }
   .panel-raised {
-    background: color-mix(in srgb, var(--slate) 30%, var(--surface));
+    background: color-mix(in srgb, var(--band) 60%, var(--surface));
     border: var(--hair) solid color-mix(in srgb, var(--line) 62%, transparent);
     border-radius: var(--radius);
   }
@@ -216,7 +284,21 @@
 @media print {
   @page { size: A4; margin: 20mm 18mm 22mm; }
 
-  :root { --ink-body: 1; --ink-strong: 1; --ink-muted: 1; }
+  /*
+   * Print never follows the theme. In light mode --ground is a pale steel and
+   * printing it as ink would put nearly nothing on the page, so both modes
+   * print the same dark indigo on unpainted paper.
+   */
+  :root,
+  :root[data-theme="light"],
+  :root[data-theme="dark"] {
+    --ink-body: 1;
+    --ink-strong: 1;
+    --ink-muted: 1;
+    --ground: #1B2445;
+    --ink: #1B2445;
+    --line: #1B2445;
+  }
 
   html, body {
     background: none !important;

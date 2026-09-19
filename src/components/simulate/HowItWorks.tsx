@@ -47,7 +47,7 @@ export function HowItWorks() {
           <li key={step.step} className="flex flex-col gap-1">
             <span
               className="display text-[22px] leading-none"
-              style={{ color: 'var(--accent-ink)' }}
+              style={{ color: 'var(--accent)' }}
               aria-hidden="true"
             >
               {step.step}
@@ -57,7 +57,7 @@ export function HowItWorks() {
             <Link
               href={step.href}
               className="mt-[2px] self-start text-[13px] font-medium underline underline-offset-4"
-              style={{ color: 'var(--accent-ink)' }}
+              style={{ color: 'var(--accent)' }}
             >
               {step.link}
             </Link>

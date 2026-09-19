@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { NAV, PRODUCT_NAME } from '@/lib/copy';
 
 export function SiteHeader() {
@@ -20,13 +21,14 @@ export function SiteHeader() {
           </span>
           <span
             className="display text-[19px] leading-none sm:text-[21px]"
-            style={{ color: 'var(--accent-ink)' }}
+            style={{ color: 'var(--accent)' }}
             aria-hidden="true"
           >
             ?
           </span>
         </Link>
 
+        <div className="flex items-center gap-1 sm:gap-2">
         <nav aria-label="Primary">
           <ul className="flex items-center gap-0">
             {NAV.map((item) => {
@@ -40,8 +42,8 @@ export function SiteHeader() {
                     className="relative block px-1 py-1 text-[13px] font-medium transition-opacity sm:px-2 sm:text-[14px]"
                     style={{
                       color: active
-                        ? 'var(--sand)'
-                        : 'color-mix(in srgb, var(--sand) 66%, transparent)',
+                        ? 'var(--ink)'
+                        : 'color-mix(in srgb, var(--ink) 66%, transparent)',
                     }}
                   >
                     {item.label}
@@ -56,6 +58,8 @@ export function SiteHeader() {
             })}
           </ul>
         </nav>
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );

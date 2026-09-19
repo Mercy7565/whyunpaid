@@ -173,7 +173,7 @@ export function CommandPalette({ open, onClose, onPick }: CommandPaletteProps) {
                 color:
                   index === active
                     ? 'var(--on-accent)'
-                    : 'color-mix(in srgb, var(--sand) 88%, transparent)',
+                    : 'color-mix(in srgb, var(--ink) 88%, transparent)',
               }}
             >
               <span className="block text-[14px] font-medium">{preset.title}</span>

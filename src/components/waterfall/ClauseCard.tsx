@@ -192,7 +192,7 @@ export function ClauseCard({
         <Link
           href={`/vm?policy=${policyId}&clause=${deduction.clauseId}`}
           className="text-[13px] font-medium underline underline-offset-4"
-          style={{ color: 'var(--accent-ink)' }}
+          style={{ color: 'var(--accent)' }}
         >
           Find this clause in the wording
         </Link>

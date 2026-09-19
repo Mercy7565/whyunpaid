@@ -21,11 +21,12 @@ export const alt = 'WhyUnpaid? — run your health policy like the program it is
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
-const GROUND = '#0D1F22';
-const SLATE = '#38686A';
-const SAND = '#CDC6AE';
-const BLUE = '#2589BD';
-const LINE = '#4A7C7E';
+const GROUND = '#0F1429';
+const BAND = '#3A4680';
+const INK = '#E9EEE0';
+const STEEL = '#669BBC';
+const LINE = '#6273A8';
+const AMBER = '#F3A712';
 
 const BANDS = [
   { label: '3.9   Ineligible items', amount: '−Rs. 5,000', left: 98.75, width: 1.25 },
@@ -52,15 +53,15 @@ export default function OpengraphImage() {
         {/* Wordmark and the line */}
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div style={{ display: 'flex', alignItems: 'baseline' }}>
-            <div style={{ fontSize: 32, fontWeight: 700, color: SAND, letterSpacing: -0.5 }}>
+            <div style={{ fontSize: 32, fontWeight: 700, color: INK, letterSpacing: -0.5 }}>
               WhyUnpaid
             </div>
-            <div style={{ fontSize: 32, fontWeight: 700, color: BLUE }}>?</div>
+            <div style={{ fontSize: 32, fontWeight: 700, color: STEEL }}>?</div>
           </div>
-          <div style={{ display: 'flex', fontSize: 40, color: SAND, letterSpacing: -0.8, marginTop: 22 }}>
+          <div style={{ display: 'flex', fontSize: 40, color: INK, letterSpacing: -0.8, marginTop: 22 }}>
             Your policy is already a program.
           </div>
-          <div style={{ display: 'flex', fontSize: 40, color: SAND, letterSpacing: -0.8, marginTop: 4 }}>
+          <div style={{ display: 'flex', fontSize: 40, color: INK, letterSpacing: -0.8, marginTop: 4 }}>
             Nobody can read it. So run it.
           </div>
         </div>
@@ -71,19 +72,19 @@ export default function OpengraphImage() {
             <div style={{ display: 'flex', fontSize: 15, color: LINE, letterSpacing: 2.4 }}>
               HOSPITAL BILL
             </div>
-            <div style={{ display: 'flex', fontSize: 22, color: SAND }}>Rs. 4,00,000</div>
+            <div style={{ display: 'flex', fontSize: 22, color: INK }}>Rs. 4,00,000</div>
           </div>
-          <div style={{ display: 'flex', width: '100%', height: 9, background: SLATE, marginTop: 7 }} />
+          <div style={{ display: 'flex', width: '100%', height: 9, background: BAND, marginTop: 7 }} />
 
           {BANDS.map((band) => (
             <div key={band.label} style={{ display: 'flex', flexDirection: 'column', marginTop: 12 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                <div style={{ display: 'flex', fontSize: 17, color: SAND }}>{band.label}</div>
+                <div style={{ display: 'flex', fontSize: 17, color: INK }}>{band.label}</div>
                 <div style={{ display: 'flex', fontSize: 17, color: LINE }}>{band.amount}</div>
               </div>
               <div style={{ display: 'flex', width: '100%', height: 8, marginTop: 5 }}>
                 <div style={{ display: 'flex', width: `${band.left}%`, height: 8 }} />
-                <div style={{ display: 'flex', width: `${band.width}%`, height: 8, background: SLATE }} />
+                <div style={{ display: 'flex', width: `${band.width}%`, height: 8, background: BAND }} />
               </div>
             </div>
           ))}
@@ -92,14 +93,14 @@ export default function OpengraphImage() {
         {/* What survives */}
         <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
           <div style={{ display: 'flex', alignItems: 'flex-end' }}>
-            <div style={{ display: 'flex', fontSize: 78, color: SAND, letterSpacing: -2.5, lineHeight: 1 }}>
+            <div style={{ display: 'flex', fontSize: 78, color: AMBER, letterSpacing: -2.5, lineHeight: 1 }}>
               Rs. 2,12,000
             </div>
             <div style={{ display: 'flex', fontSize: 18, color: LINE, marginLeft: 18, paddingBottom: 10 }}>
               payable, across four named clauses
             </div>
           </div>
-          <div style={{ display: 'flex', width: '53%', height: 12, background: SAND, marginTop: 12 }} />
+          <div style={{ display: 'flex', width: '53%', height: 12, background: AMBER, marginTop: 12 }} />
         </div>
       </div>
     ),

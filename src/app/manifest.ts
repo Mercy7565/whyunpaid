@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'Your policy is already a program. Nobody can read it. So run it.',
     start_url: '/',
     display: 'standalone',
-    background_color: '#0D1F22',
-    theme_color: '#0D1F22',
+    background_color: '#0F1429',
+    theme_color: '#0F1429',
     icons: [{ src: '/icon.svg', sizes: 'any', type: 'image/svg+xml' }],
   };
 }

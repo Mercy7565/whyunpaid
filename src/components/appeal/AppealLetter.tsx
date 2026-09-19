@@ -139,7 +139,7 @@ export function AppealLetter({ appeal }: { appeal: Appeal }) {
                           : 'color-mix(in srgb, var(--line) 80%, transparent)',
                       color:
                         activeId === sentence.id
-                          ? 'color-mix(in srgb, var(--sand) 100%, transparent)'
+                          ? 'color-mix(in srgb, var(--ink) 100%, transparent)'
                           : 'inherit',
                     }}
                   >

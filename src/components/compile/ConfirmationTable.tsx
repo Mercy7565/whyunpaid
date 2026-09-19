@@ -68,7 +68,7 @@ function ChipToggles<T extends string>({
               style={{
                 border: 'var(--hair) solid color-mix(in srgb, var(--line) 70%, transparent)',
                 background: on ? 'var(--accent)' : 'transparent',
-                color: on ? 'var(--on-accent)' : 'color-mix(in srgb, var(--sand) 80%, transparent)',
+                color: on ? 'var(--on-accent)' : 'color-mix(in srgb, var(--ink) 80%, transparent)',
               }}
             >
               <input

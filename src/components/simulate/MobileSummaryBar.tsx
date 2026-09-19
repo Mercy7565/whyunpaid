@@ -40,7 +40,7 @@ export function MobileSummaryBar({
           className="h-full transition-[width] duration-300"
           style={{
             width: `${Math.max(paidPercent, nothingPayable ? 0 : 0.5)}%`,
-            background: 'var(--paid-full)',
+            background: 'var(--paid-fill)',
           }}
         />
       </div>
@@ -50,8 +50,9 @@ export function MobileSummaryBar({
           <p className="eyebrow">Payable</p>
           <Figure
             paise={verdict.paidPaise}
-            className="display block text-[26px] leading-[1.05] ink-strong"
+            className="display block text-[26px] leading-[1.05]"
             reserve={reserveFor(maxBillPaise)}
+            style={{ color: nothingPayable ? 'var(--alert)' : 'var(--paid-full)' }}
           />
         </div>
         <button

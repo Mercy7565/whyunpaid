@@ -250,7 +250,7 @@ export function SimulateScreen() {
             <Link
               href="/compile"
               className="text-[13px] underline underline-offset-4"
-              style={{ color: 'var(--accent-ink)' }}
+              style={{ color: 'var(--accent)' }}
             >
               Or compile a policy you actually hold
             </Link>

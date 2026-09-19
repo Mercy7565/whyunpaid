@@ -49,7 +49,7 @@ export function Segmented<T extends string>({
                 background: selected ? 'var(--accent)' : 'transparent',
                 color: selected
                   ? 'var(--on-accent)'
-                  : 'color-mix(in srgb, var(--sand) 80%, transparent)',
+                  : 'color-mix(in srgb, var(--ink) 80%, transparent)',
                 borderLeft:
                   index === 0
                     ? 'none'

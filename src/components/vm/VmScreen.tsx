@@ -88,7 +88,7 @@ export function VmScreen() {
         <Link
           href="/compile"
           className="underline underline-offset-4"
-          style={{ color: 'var(--accent-ink)' }}
+          style={{ color: 'var(--accent)' }}
         >
           Compile a policy of your own
         </Link>

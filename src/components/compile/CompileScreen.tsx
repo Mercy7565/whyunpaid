@@ -282,7 +282,7 @@ export function CompileScreen() {
           {error ? (
             <p className="mt-2 text-[14px] leading-[1.6] ink-strong measure">
               {error}{' '}
-              <Link href="/" className="underline underline-offset-4" style={{ color: 'var(--accent-ink)' }}>
+              <Link href="/" className="underline underline-offset-4" style={{ color: 'var(--accent)' }}>
                 The four specimen policies are on the simulator.
               </Link>
             </p>
@@ -364,7 +364,7 @@ export function CompileScreen() {
                   background: blocking.length > 0 ? 'transparent' : 'var(--accent)',
                   color:
                     blocking.length > 0
-                      ? 'color-mix(in srgb, var(--sand) 55%, transparent)'
+                      ? 'color-mix(in srgb, var(--ink) 55%, transparent)'
                       : 'var(--on-accent)',
                   border:
                     blocking.length > 0

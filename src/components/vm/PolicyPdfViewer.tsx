@@ -269,7 +269,7 @@ export function PolicyPdfViewer({
                 top: `calc(${rect.top}px + 8px)`,
                 width: `${rect.width}px`,
                 height: `${rect.height}px`,
-                background: 'color-mix(in srgb, var(--blue) 40%, transparent)',
+                background: 'color-mix(in srgb, var(--accent) 40%, transparent)',
                 mixBlendMode: 'multiply',
               }}
             />
