@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { SkeletonBar } from '@/components/Skeleton';
+import { PDF_WORKER_SRC, standardFontDataUrl, whenVisible } from '@/lib/pdfjs';
 
 /**
  * The specimen wording, with the clause highlighted.
@@ -24,20 +25,6 @@ type Rect = { left: number; top: number; width: number; height: number };
 
 type Status = 'idle' | 'loading' | 'ready' | 'fallback';
 
-/**
- * An ABSOLUTE url for the standard font data.
- *
- * pdf.js resolves this inside its worker, and a root-relative path does not
- * reliably resolve against a worker's base url. On a local server the request
- * happened to succeed; on the CDN it did not, and pdf.js WAITS on a font it
- * cannot fetch rather than failing, so the render never settled. An absolute
- * origin removes the ambiguity in every context.
- */
-function standardFontDataUrl(): string {
-  return typeof window === 'undefined'
-    ? '/standard_fonts/'
-    : `${window.location.origin}/standard_fonts/`;
-}
 
 
 const spansCache = new Map<string, Promise<SpansFile>>();
@@ -116,6 +103,7 @@ export function PolicyPdfViewer({
   useEffect(() => {
     let cancelled = false;
     let renderTask: { cancel: () => void } | null = null;
+    const visibility = { cancelled: false };
 
     async function run() {
       setStatus('loading');
@@ -137,7 +125,7 @@ export function PolicyPdfViewer({
 
       try {
         const pdfjs = await import('pdfjs-dist');
-        pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
+        pdfjs.GlobalWorkerOptions.workerSrc = PDF_WORKER_SRC;
 
         const document_ = await pdfjs.getDocument({
           url: pdfUrl,
@@ -167,12 +155,22 @@ export function PolicyPdfViewer({
         canvas.style.width = `${width}px`;
         canvas.style.height = `${base.height * scale}px`;
 
+        /*
+         * pdf.js continues each chunk of a render from requestAnimationFrame,
+         * which never fires while the tab is hidden. Starting here would stall
+         * for as long as the reader is looking at something else, so the render
+         * waits for the page to come back first.
+         */
+        await whenVisible(visibility);
+        if (cancelled) return;
+
         const task = page.render({ canvas, canvasContext: context, viewport });
         renderTask = task;
         /*
-         * A missing font file makes pdf.js wait rather than reject, so the
-         * render is raced against a deadline. Falling back to the text view is
-         * always better than a skeleton that never resolves.
+         * With that out of the way, a render that has not finished inside
+         * fifteen seconds is genuinely stuck - a missing font file makes pdf.js
+         * wait rather than reject - and the text view is better than a skeleton
+         * that never resolves.
          */
         await Promise.race([
           task.promise,
@@ -224,6 +222,7 @@ export function PolicyPdfViewer({
 
     return () => {
       cancelled = true;
+      visibility.cancelled = true;
       renderTask?.cancel();
     };
   }, [charEnd, charStart, pdfUrl, prepareFallback, slug, spansUrl, textUrl]);

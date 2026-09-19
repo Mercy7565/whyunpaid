@@ -9,6 +9,8 @@
  * side means there is no upload endpoint to secure, rate limit or apologise for.
  */
 
+import { PDF_WORKER_SRC, standardFontDataUrl } from '@/lib/pdfjs';
+
 export type ExtractedDocument = {
   text: string;
   /** Character offset at which each page begins, 0-based index is page 1. */
@@ -57,20 +59,6 @@ export function separateHeadings(text: string): string {
   return out.join('\n');
 }
 
-/**
- * An ABSOLUTE url for the standard font data.
- *
- * pdf.js resolves this inside its worker, and a root-relative path does not
- * reliably resolve against a worker's base url. On a local server the request
- * happened to succeed; on the CDN it did not, and pdf.js WAITS on a font it
- * cannot fetch rather than failing, so the render never settled. An absolute
- * origin removes the ambiguity in every context.
- */
-function standardFontDataUrl(): string {
-  return typeof window === 'undefined'
-    ? '/standard_fonts/'
-    : `${window.location.origin}/standard_fonts/`;
-}
 
 type TextItemLike = { str?: string; hasEOL?: boolean };
 
@@ -86,7 +74,7 @@ export async function extractPdfText(file: File): Promise<ExtractedDocument> {
   let pdfjs: typeof import('pdfjs-dist');
   try {
     pdfjs = await import('pdfjs-dist');
-    pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
+    pdfjs.GlobalWorkerOptions.workerSrc = PDF_WORKER_SRC;
   } catch {
     throw new PdfExtractionError('The PDF reader could not start in this browser.');
   }
