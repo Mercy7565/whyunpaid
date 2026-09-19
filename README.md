@@ -44,8 +44,10 @@ that took the money, and the arithmetic for that specific deduction.
 > Drop the file in at `docs/demo.gif` and replace this block with
 > `![WhyUnpaid? demo](docs/demo.gif)`.
 
-**Live:** deploy with the button below, or run it locally in two commands. There
-are no environment variables on the demo path.
+**Live: <https://whyunpaid.vercel.app>**
+
+No account, no upload, no environment variables. Open it on a phone, drag one
+slider, and the waterfall above is what you get.
 
 ---
 
