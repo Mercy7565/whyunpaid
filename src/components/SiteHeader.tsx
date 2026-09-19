@@ -14,7 +14,7 @@ export function SiteHeader() {
       data-print="hide"
     >
       <div className="mx-auto flex w-full max-w-[1280px] items-center justify-between gap-2 px-2 py-2 sm:px-4">
-        <Link href="/" className="group flex items-baseline gap-1" aria-label={`${PRODUCT_NAME} home`}>
+        <Link href="/" className="group flex items-baseline" aria-label={`${PRODUCT_NAME} home`}>
           <span className="display text-[19px] leading-none ink-strong sm:text-[21px]">
             WhyUnpaid
           </span>

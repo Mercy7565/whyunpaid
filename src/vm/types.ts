@@ -143,6 +143,13 @@ export type RoomRentCapClause = ClauseCommon & {
   limit: RoomRentLimit;
   associatedCategories: readonly LineCategory[];
   exemptCategories: readonly LineCategory[];
+  /**
+   * The sentence in the wording that protects the exempt heads, quoted
+   * separately from the sentence that imposes the proportion. Both appear on
+   * the clause card, because "what it takes" and "what it may not touch" are
+   * two different promises and a reader deserves to see each in the original.
+   */
+  exemptionProvenance?: Provenance;
 };
 
 export type SubLimitClause = ClauseCommon & {

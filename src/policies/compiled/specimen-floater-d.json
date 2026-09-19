@@ -1,0 +1,142 @@
+{
+  "id": "specimen-d",
+  "name": "Specimen Floater D",
+  "synthetic": true,
+  "slug": "specimen-floater-d",
+  "summary": "Twenty-five lakh cover. No room cap, no sub-limits, one large deductible.",
+  "shape": "There is no room rent cap and no procedure sub-limit at all, so a single large deductible is the only thing standing between the bill and the Sum Insured.",
+  "clauses": [
+    {
+      "id": "specimen-d.sumInsured",
+      "ref": "2.1",
+      "title": "Sum insured",
+      "kind": "SumInsured",
+      "amountPaise": "250000000",
+      "provenance": {
+        "sourceQuote": "Sum Insured: Rupees Twenty-Five Lakh (Rs. 25,00,000) for the Policy Year, available on a floater basis to all Insured Persons named in the Schedule.",
+        "page": 1,
+        "charStart": 1036,
+        "charEnd": 1184,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-d.nonPayable",
+      "ref": "3.9",
+      "title": "Non-payable items",
+      "kind": "LineItemIneligibility",
+      "categories": [
+        "nonMedical"
+      ],
+      "provenance": {
+        "sourceQuote": "items of personal comfort and convenience, toiletries, attendant charges, admission and registration fees, documentation and service charges, and other non-medical items",
+        "page": 1,
+        "charStart": 2298,
+        "charEnd": 2467,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-d.deductible",
+      "ref": "4.8",
+      "title": "Deductible",
+      "kind": "Deductible",
+      "amountPaise": "10000000",
+      "provenance": {
+        "sourceQuote": "A deductible of Rupees One Lakh (Rs. 1,00,000) shall be borne by the Insured Person in respect of each and every claim",
+        "page": 2,
+        "charStart": 3020,
+        "charEnd": 3138,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-d.wait.initial",
+      "ref": "5.1",
+      "title": "Initial waiting period",
+      "kind": "WaitingPeriod",
+      "waitingKind": "initial",
+      "months": 1,
+      "appliesTo": {
+        "scope": "all"
+      },
+      "provenance": {
+        "sourceQuote": "No claim is admissible for any Illness contracted within thirty days of the commencement of the first Policy Year",
+        "page": 2,
+        "charStart": 3283,
+        "charEnd": 3396,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-d.wait.specific",
+      "ref": "5.2",
+      "title": "Specified-condition waiting period",
+      "kind": "WaitingPeriod",
+      "waitingKind": "specificDisease",
+      "months": 24,
+      "appliesTo": {
+        "scope": "procedures",
+        "procedures": [
+          "cataract",
+          "herniaRepair"
+        ]
+      },
+      "provenance": {
+        "sourceQuote": "Cataract surgery and hernia repair are subject to a waiting period of twenty-four months of Continuous Cover",
+        "page": 2,
+        "charStart": 3457,
+        "charEnd": 3565,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-d.wait.ped",
+      "ref": "5.3",
+      "title": "Pre-existing disease waiting period",
+      "kind": "WaitingPeriod",
+      "waitingKind": "preExistingDisease",
+      "months": 36,
+      "appliesTo": {
+        "scope": "preExisting"
+      },
+      "provenance": {
+        "sourceQuote": "A condition pre-existing at the commencement of the first Policy Year is subject to a waiting period of thirty-six months of Continuous Cover",
+        "page": 2,
+        "charStart": 3680,
+        "charEnd": 3821,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-d.exclusions",
+      "ref": "6.1",
+      "title": "Permanent exclusions",
+      "kind": "PermanentExclusion",
+      "procedures": [
+        "cosmeticSurgery"
+      ],
+      "provenance": {
+        "sourceQuote": "The Company shall not be liable for any expense in respect of the following at any time during the currency of this Policy",
+        "page": 2,
+        "charStart": 3933,
+        "charEnd": 4055,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-d.moratorium",
+      "ref": "7.4",
+      "title": "Moratorium period",
+      "kind": "Moratorium",
+      "months": 60,
+      "provenance": {
+        "sourceQuote": "After sixty months of Continuous Cover, no claim under this Policy shall be contestable on the ground of non-disclosure or misrepresentation",
+        "page": 2,
+        "charStart": 4433,
+        "charEnd": 4573,
+        "confidence": "high"
+      }
+    }
+  ]
+}

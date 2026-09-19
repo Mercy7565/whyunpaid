@@ -1,0 +1,65 @@
+SPECIMEN FLOATER A
+
+Synthetic specimen wording. Not the wording of any insurer. Generated for demonstration and testing.
+
+1. Preamble
+
+This is a synthetic specimen policy wording. It is not the wording of any insurer, no insurer is named in it, and it creates no rights or obligations of any kind. It has been written to model the structure of indemnity health insurance cover issued in India so that the operation of that structure can be demonstrated and tested.
+
+Whereas the Insured Person has made a proposal to the Company and has paid the premium stated in the Schedule, the Company agrees, subject to the terms, conditions, limits and exclusions of this Policy, to indemnify the Insured Person in respect of the reasonable and customary expenses of Hospitalisation incurred during the Policy Year.
+
+This Policy is issued in the shape described as follows. The room rent is pegged to the Sum Insured, two procedures carry their own ceilings, and a co-payment is taken from whatever survives.
+
+2. The Schedule
+
+Sum Insured: Rupees Five Lakh (Rs. 5,00,000) for the Policy Year, available on a floater basis to all Insured Persons named in the Schedule.
+
+Policy Year: a period of twelve consecutive months commencing on the date of inception stated in the Schedule, or on any anniversary of that date.
+
+Continuous Cover: cover under this Policy or under a policy it replaced, renewed without a break, reckoned from the date of inception of the first Policy Year.
+
+3. Cover
+
+The Company shall indemnify the medical expenses reasonably and necessarily incurred by an Insured Person on Hospitalisation for the medical or surgical treatment of an Illness or Injury contracted or sustained during the Policy Year, provided the Hospitalisation is medically necessary and is on the written advice of a Medical Practitioner.
+
+Payable heads of expense include room rent for the category of room occupied, nursing charges, the fees of the surgeon, anaesthetist and physician, operation theatre charges, the cost of drugs and consumables administered during the Hospitalisation, the cost of implants and prostheses used in the course of the procedure, and diagnostic and investigative charges directly related to the treatment.
+
+The following are not payable under this Policy: items of personal comfort and convenience, toiletries, attendant charges, admission and registration fees, documentation and service charges, and other non-medical items of the kind set out in the annexure of non-medical expenses.
+
+4. Limits, deductions and shares
+
+The amounts payable under Part 3 are subject to the limits, deductions and shares set out in this Part. They are applied in the sequence in which they appear below.
+
+The eligible room rent per day is one per cent of the Sum Insured. Where the Insured Person occupies a room whose rent exceeds the eligible room rent, the room charge and the associated charges for nursing, surgeon, anaesthetist and operation theatre shall be payable in the same proportion that the eligible room rent bears to the room rent actually incurred.
+
+Proportionate deduction under this Clause shall not be applied to pharmacy, consumables, implants or diagnostics, the cost of which does not vary with the category of room occupied.
+
+The Company shall not be liable to pay more than the amount stated against a procedure in the table below, whatever the amount otherwise admissible. Cataract surgery, per eye: Rupees Forty Thousand (Rs. 40,000). Total knee replacement, per joint: Rupees Two Lakh Sixty-Five Thousand (Rs. 2,65,000).
+
+No deductible applies to a claim under this Policy.
+
+Every admissible claim under this Policy is subject to a co-payment of twenty per cent, which shall be borne by the Insured Person and applied to the admissible amount after every other limit and deduction in this Part has been applied.
+
+5. Waiting periods
+
+No claim is admissible for any Illness contracted within thirty days of the commencement of the first Policy Year, other than a claim arising from accidental bodily Injury.
+
+Cataract surgery, hernia repair and total knee replacement are subject to a waiting period of twenty-four months of Continuous Cover reckoned from the commencement of the first Policy Year, whether or not the condition was disclosed at proposal.
+
+A condition pre-existing at the commencement of the first Policy Year is subject to a waiting period of thirty-six months of Continuous Cover. A waiting period runs from the date of inception and is not interrupted by a claim.
+
+6. Permanent exclusions
+
+The Company shall not be liable for any expense in respect of the following at any time during the currency of this Policy: cosmetic or aesthetic treatment.
+
+A permanent exclusion is not a waiting period. It does not expire, and no length of Continuous Cover brings the excluded treatment within the scope of this Policy.
+
+7. Conditions
+
+Notice of a claim shall be given to the Company within the period stated in the Schedule, and the documents listed in the claim form shall be furnished with it.
+
+After sixty months of Continuous Cover, no claim under this Policy shall be contestable on the ground of non-disclosure or misrepresentation, save where fraud is established.
+
+The preceding Clause does not extend cover. Permanent exclusions, sub-limits, deductibles, co-payment and any waiting period that remains unexpired continue to apply in full after the moratorium is complete.
+
+This Policy shall be governed by the law in force in India and is subject to the grievance redressal and ombudsman mechanism described in the Schedule.

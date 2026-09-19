@@ -1,0 +1,214 @@
+{
+  "id": "specimen-a",
+  "name": "Specimen Floater A",
+  "synthetic": true,
+  "slug": "specimen-floater-a",
+  "summary": "Five lakh floater. Room rent pegged to the sum insured, a fifth of the claim co-paid.",
+  "shape": "The room rent is pegged to the Sum Insured, two procedures carry their own ceilings, and a co-payment is taken from whatever survives.",
+  "clauses": [
+    {
+      "id": "specimen-a.sumInsured",
+      "ref": "2.1",
+      "title": "Sum insured",
+      "kind": "SumInsured",
+      "amountPaise": "50000000",
+      "provenance": {
+        "sourceQuote": "Sum Insured: Rupees Five Lakh (Rs. 5,00,000) for the Policy Year, available on a floater basis to all Insured Persons named in the Schedule.",
+        "page": 1,
+        "charStart": 1016,
+        "charEnd": 1156,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-a.nonPayable",
+      "ref": "3.9",
+      "title": "Non-payable items",
+      "kind": "LineItemIneligibility",
+      "categories": [
+        "nonMedical"
+      ],
+      "provenance": {
+        "sourceQuote": "items of personal comfort and convenience, toiletries, attendant charges, admission and registration fees, documentation and service charges, and other non-medical items",
+        "page": 1,
+        "charStart": 2270,
+        "charEnd": 2439,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-a.roomCap",
+      "ref": "4.2",
+      "title": "Room rent limit and proportionate deduction",
+      "kind": "RoomRentCap",
+      "limit": {
+        "basis": "percentOfSumInsuredPerDay",
+        "percentBps": 100
+      },
+      "associatedCategories": [
+        "room",
+        "nursing",
+        "surgeon",
+        "anaesthetist",
+        "operationTheatre"
+      ],
+      "exemptCategories": [
+        "pharmacy",
+        "consumables",
+        "implants",
+        "diagnostics"
+      ],
+      "provenance": {
+        "sourceQuote": "the room charge and the associated charges for nursing, surgeon, anaesthetist and operation theatre shall be payable in the same proportion",
+        "page": 2,
+        "charStart": 2853,
+        "charEnd": 2992,
+        "confidence": "high"
+      },
+      "exemptionProvenance": {
+        "sourceQuote": "Proportionate deduction under this Clause shall not be applied to pharmacy, consumables, implants or diagnostics",
+        "page": 2,
+        "charStart": 3064,
+        "charEnd": 3176,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-a.subLimit.0",
+      "ref": "4.6(a)",
+      "title": "Sub-limit: cataract surgery",
+      "kind": "SubLimit",
+      "procedures": [
+        "cataract"
+      ],
+      "capPaise": "4000000",
+      "provenance": {
+        "sourceQuote": "Cataract surgery, per eye: Rupees Forty Thousand (Rs. 40,000).",
+        "page": 2,
+        "charStart": 3396,
+        "charEnd": 3458,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-a.subLimit.1",
+      "ref": "4.6(b)",
+      "title": "Sub-limit: total knee replacement",
+      "kind": "SubLimit",
+      "procedures": [
+        "kneeReplacement"
+      ],
+      "capPaise": "26500000",
+      "provenance": {
+        "sourceQuote": "Total knee replacement, per joint: Rupees Two Lakh Sixty-Five Thousand (Rs. 2,65,000).",
+        "page": 2,
+        "charStart": 3459,
+        "charEnd": 3545,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-a.coPay",
+      "ref": "4.9",
+      "title": "Co-payment",
+      "kind": "CoPay",
+      "percentBps": 2000,
+      "provenance": {
+        "sourceQuote": "a co-payment of twenty per cent, which shall be borne by the Insured Person and applied to the admissible amount",
+        "page": 2,
+        "charStart": 3655,
+        "charEnd": 3767,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-a.wait.initial",
+      "ref": "5.1",
+      "title": "Initial waiting period",
+      "kind": "WaitingPeriod",
+      "waitingKind": "initial",
+      "months": 1,
+      "appliesTo": {
+        "scope": "all"
+      },
+      "provenance": {
+        "sourceQuote": "No claim is admissible for any Illness contracted within thirty days of the commencement of the first Policy Year",
+        "page": 2,
+        "charStart": 3858,
+        "charEnd": 3971,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-a.wait.specific",
+      "ref": "5.2",
+      "title": "Specified-condition waiting period",
+      "kind": "WaitingPeriod",
+      "waitingKind": "specificDisease",
+      "months": 24,
+      "appliesTo": {
+        "scope": "procedures",
+        "procedures": [
+          "cataract",
+          "herniaRepair",
+          "kneeReplacement"
+        ]
+      },
+      "provenance": {
+        "sourceQuote": "Cataract surgery, hernia repair and total knee replacement are subject to a waiting period of twenty-four months of Continuous Cover",
+        "page": 2,
+        "charStart": 4032,
+        "charEnd": 4164,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-a.wait.ped",
+      "ref": "5.3",
+      "title": "Pre-existing disease waiting period",
+      "kind": "WaitingPeriod",
+      "waitingKind": "preExistingDisease",
+      "months": 36,
+      "appliesTo": {
+        "scope": "preExisting"
+      },
+      "provenance": {
+        "sourceQuote": "A condition pre-existing at the commencement of the first Policy Year is subject to a waiting period of thirty-six months of Continuous Cover",
+        "page": 2,
+        "charStart": 4279,
+        "charEnd": 4420,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-a.exclusions",
+      "ref": "6.1",
+      "title": "Permanent exclusions",
+      "kind": "PermanentExclusion",
+      "procedures": [
+        "cosmeticSurgery"
+      ],
+      "provenance": {
+        "sourceQuote": "The Company shall not be liable for any expense in respect of the following at any time during the currency of this Policy",
+        "page": 2,
+        "charStart": 4532,
+        "charEnd": 4654,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-a.moratorium",
+      "ref": "7.4",
+      "title": "Moratorium period",
+      "kind": "Moratorium",
+      "months": 60,
+      "provenance": {
+        "sourceQuote": "After sixty months of Continuous Cover, no claim under this Policy shall be contestable on the ground of non-disclosure or misrepresentation",
+        "page": 2,
+        "charStart": 5032,
+        "charEnd": 5172,
+        "confidence": "high"
+      }
+    }
+  ]
+}

@@ -2,6 +2,7 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  devIndicators: false,
   outputFileTracingRoot: import.meta.dirname,
   // pdf.js ships its own worker; we serve it from /public and never bundle it.
   webpack(config) {

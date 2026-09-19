@@ -1,0 +1,231 @@
+{
+  "id": "specimen-b",
+  "name": "Specimen Floater B",
+  "synthetic": true,
+  "slug": "specimen-floater-b",
+  "summary": "Ten lakh floater. A flat room cap and a deductible instead of a co-payment.",
+  "shape": "The room rent is capped in rupees rather than as a share of the Sum Insured, a deductible is taken on every claim, and there is no co-payment.",
+  "clauses": [
+    {
+      "id": "specimen-b.sumInsured",
+      "ref": "2.1",
+      "title": "Sum insured",
+      "kind": "SumInsured",
+      "amountPaise": "100000000",
+      "provenance": {
+        "sourceQuote": "Sum Insured: Rupees Ten Lakh (Rs. 10,00,000) for the Policy Year, available on a floater basis to all Insured Persons named in the Schedule.",
+        "page": 1,
+        "charStart": 1024,
+        "charEnd": 1164,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-b.nonPayable",
+      "ref": "3.9",
+      "title": "Non-payable items",
+      "kind": "LineItemIneligibility",
+      "categories": [
+        "nonMedical"
+      ],
+      "provenance": {
+        "sourceQuote": "items of personal comfort and convenience, toiletries, attendant charges, admission and registration fees, documentation and service charges, and other non-medical items",
+        "page": 1,
+        "charStart": 2278,
+        "charEnd": 2447,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-b.roomCap",
+      "ref": "4.2",
+      "title": "Room rent limit and proportionate deduction",
+      "kind": "RoomRentCap",
+      "limit": {
+        "basis": "perDayAmount",
+        "perDayPaise": "750000"
+      },
+      "associatedCategories": [
+        "room",
+        "nursing",
+        "surgeon",
+        "anaesthetist",
+        "operationTheatre"
+      ],
+      "exemptCategories": [
+        "pharmacy",
+        "consumables",
+        "implants",
+        "diagnostics"
+      ],
+      "provenance": {
+        "sourceQuote": "the room charge and the associated charges for nursing, surgeon, anaesthetist and operation theatre shall be payable in the same proportion",
+        "page": 2,
+        "charStart": 2876,
+        "charEnd": 3015,
+        "confidence": "high"
+      },
+      "exemptionProvenance": {
+        "sourceQuote": "Proportionate deduction under this Clause shall not be applied to pharmacy, consumables, implants or diagnostics",
+        "page": 2,
+        "charStart": 3087,
+        "charEnd": 3199,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-b.subLimit.0",
+      "ref": "4.6(a)",
+      "title": "Sub-limit: cataract surgery",
+      "kind": "SubLimit",
+      "procedures": [
+        "cataract"
+      ],
+      "capPaise": "3500000",
+      "provenance": {
+        "sourceQuote": "Cataract surgery, per eye: Rupees Thirty-Five Thousand (Rs. 35,000).",
+        "page": 2,
+        "charStart": 3419,
+        "charEnd": 3487,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-b.subLimit.1",
+      "ref": "4.6(b)",
+      "title": "Sub-limit: total knee replacement",
+      "kind": "SubLimit",
+      "procedures": [
+        "kneeReplacement"
+      ],
+      "capPaise": "30000000",
+      "provenance": {
+        "sourceQuote": "Total knee replacement, per joint: Rupees Three Lakh (Rs. 3,00,000).",
+        "page": 2,
+        "charStart": 3488,
+        "charEnd": 3556,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-b.subLimit.2",
+      "ref": "4.6(c)",
+      "title": "Sub-limit: coronary angioplasty",
+      "kind": "SubLimit",
+      "procedures": [
+        "angioplasty"
+      ],
+      "capPaise": "20000000",
+      "provenance": {
+        "sourceQuote": "Coronary angioplasty, per admission: Rupees Two Lakh (Rs. 2,00,000).",
+        "page": 2,
+        "charStart": 3557,
+        "charEnd": 3625,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-b.deductible",
+      "ref": "4.8",
+      "title": "Deductible",
+      "kind": "Deductible",
+      "amountPaise": "5000000",
+      "provenance": {
+        "sourceQuote": "A deductible of Rupees Fifty Thousand (Rs. 50,000) shall be borne by the Insured Person in respect of each and every claim",
+        "page": 2,
+        "charStart": 3627,
+        "charEnd": 3749,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-b.wait.initial",
+      "ref": "5.1",
+      "title": "Initial waiting period",
+      "kind": "WaitingPeriod",
+      "waitingKind": "initial",
+      "months": 1,
+      "appliesTo": {
+        "scope": "all"
+      },
+      "provenance": {
+        "sourceQuote": "No claim is admissible for any Illness contracted within thirty days of the commencement of the first Policy Year",
+        "page": 2,
+        "charStart": 3894,
+        "charEnd": 4007,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-b.wait.specific",
+      "ref": "5.2",
+      "title": "Specified-condition waiting period",
+      "kind": "WaitingPeriod",
+      "waitingKind": "specificDisease",
+      "months": 24,
+      "appliesTo": {
+        "scope": "procedures",
+        "procedures": [
+          "cataract",
+          "herniaRepair"
+        ]
+      },
+      "provenance": {
+        "sourceQuote": "Cataract surgery and hernia repair are subject to a waiting period of twenty-four months of Continuous Cover",
+        "page": 2,
+        "charStart": 4068,
+        "charEnd": 4176,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-b.wait.ped",
+      "ref": "5.3",
+      "title": "Pre-existing disease waiting period",
+      "kind": "WaitingPeriod",
+      "waitingKind": "preExistingDisease",
+      "months": 24,
+      "appliesTo": {
+        "scope": "preExisting"
+      },
+      "provenance": {
+        "sourceQuote": "A condition pre-existing at the commencement of the first Policy Year is subject to a waiting period of twenty-four months of Continuous Cover",
+        "page": 2,
+        "charStart": 4291,
+        "charEnd": 4433,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-b.exclusions",
+      "ref": "6.1",
+      "title": "Permanent exclusions",
+      "kind": "PermanentExclusion",
+      "procedures": [
+        "cosmeticSurgery",
+        "bariatricSurgery"
+      ],
+      "provenance": {
+        "sourceQuote": "The Company shall not be liable for any expense in respect of the following at any time during the currency of this Policy",
+        "page": 2,
+        "charStart": 4545,
+        "charEnd": 4667,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "specimen-b.moratorium",
+      "ref": "7.4",
+      "title": "Moratorium period",
+      "kind": "Moratorium",
+      "months": 60,
+      "provenance": {
+        "sourceQuote": "After sixty months of Continuous Cover, no claim under this Policy shall be contestable on the ground of non-disclosure or misrepresentation",
+        "page": 3,
+        "charStart": 5086,
+        "charEnd": 5226,
+        "confidence": "high"
+      }
+    }
+  ]
+}
