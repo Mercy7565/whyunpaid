@@ -80,7 +80,7 @@ whole appeal pipeline — runs with no key, no server and no network call.
 |---|---|
 | `/` | **Simulate.** Pick a specimen policy, set a procedure, a bill and a length of cover, and watch the waterfall. Deep-linkable; `Cmd+K` swaps between twelve scenarios. |
 | `/appeal` | **Letter mode.** Paste a rejection reason. It classifies the stated ground, runs the same claim through the wording, lists the contradictions, and generates an appeal in English or Hindi. |
-| `/vm` | **Inspector.** The compiled clause tree as data, the fixed evaluation order, the test run, and the specimen PDF with the selected clause highlighted word for word. |
+| `/vm` | **Inspector.** The compiled clause tree as data, the fixed evaluation order with the clauses the selected policy carries at each stage, the test run, and the specimen PDF with the selected clause highlighted word for word. |
 
 Plus `/compile`, a bonus path: open a policy PDF, watch it read into draft
 clauses in your browser, confirm each one, and run it.
