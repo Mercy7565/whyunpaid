@@ -161,7 +161,7 @@ export function PolicyPdfViewer({
         await Promise.race([
           task.promise,
           new Promise((_, reject) =>
-            window.setTimeout(() => reject(new Error('render timed out')), 8_000),
+            window.setTimeout(() => reject(new Error('render timed out after 15s')), 15_000),
           ),
         ]);
         if (cancelled) return;
@@ -179,8 +179,12 @@ export function PolicyPdfViewer({
         );
         setStatus('ready');
         void prepareFallbackQuietly();
-      } catch {
-        if (!cancelled) await prepareFallback('The PDF renderer could not start in this browser.');
+      } catch (caught) {
+        /* Say what actually went wrong; a generic message is not diagnosable. */
+        const detail = caught instanceof Error ? caught.message : String(caught);
+        if (!cancelled) {
+          await prepareFallback(`The PDF could not be drawn in this browser (${detail}).`);
+        }
       }
     }
 
