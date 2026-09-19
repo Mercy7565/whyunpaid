@@ -46,8 +46,8 @@ export function HowItWorks() {
         {STEPS.map((step) => (
           <li key={step.step} className="flex flex-col gap-1">
             <span
-              className="display text-[22px] leading-none"
-              style={{ color: 'var(--accent)' }}
+              className="slab display flex h-[34px] w-[34px] items-center justify-center text-[17px] leading-none"
+              style={{ background: 'var(--amber)' }}
               aria-hidden="true"
             >
               {step.step}

@@ -36,7 +36,7 @@ export function Select<T extends string>({ label, value, options, onChange, hint
           style={{ background: 'color-mix(in srgb, var(--surface) 90%, transparent)' }}
         >
           {options.map((option) => (
-            <option key={option.value} value={option.value} style={{ color: 'var(--on-accent)' }}>
+            <option key={option.value} value={option.value}>
               {option.label}
             </option>
           ))}

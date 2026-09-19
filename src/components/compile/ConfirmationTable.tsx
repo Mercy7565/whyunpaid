@@ -257,13 +257,13 @@ export function ConfirmationTable({ draft, onChange }: Props) {
                         })
                       }
                     >
-                      <option value="initial" style={{ color: 'var(--on-accent)' }}>
+                      <option value="initial">
                         Initial
                       </option>
-                      <option value="specificDisease" style={{ color: 'var(--on-accent)' }}>
+                      <option value="specificDisease">
                         Specified condition
                       </option>
-                      <option value="preExistingDisease" style={{ color: 'var(--on-accent)' }}>
+                      <option value="preExistingDisease">
                         Pre-existing disease
                       </option>
                     </select>
@@ -277,13 +277,13 @@ export function ConfirmationTable({ draft, onChange }: Props) {
                         update(clause.id, { scope: event.target.value as DraftClause['scope'] })
                       }
                     >
-                      <option value="all" style={{ color: 'var(--on-accent)' }}>
+                      <option value="all">
                         Every claim
                       </option>
-                      <option value="procedures" style={{ color: 'var(--on-accent)' }}>
+                      <option value="procedures">
                         Named procedures
                       </option>
-                      <option value="preExisting" style={{ color: 'var(--on-accent)' }}>
+                      <option value="preExisting">
                         Pre-existing conditions
                       </option>
                     </select>
@@ -304,10 +304,10 @@ export function ConfirmationTable({ draft, onChange }: Props) {
                         })
                       }
                     >
-                      <option value="perDayAmount" style={{ color: 'var(--on-accent)' }}>
+                      <option value="perDayAmount">
                         Rupees per day
                       </option>
-                      <option value="percentOfSumInsuredPerDay" style={{ color: 'var(--on-accent)' }}>
+                      <option value="percentOfSumInsuredPerDay">
                         Per cent of the sum insured, per day
                       </option>
                     </select>

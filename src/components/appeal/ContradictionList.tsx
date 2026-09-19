@@ -38,19 +38,18 @@ export function ContradictionList({ contradictions }: { contradictions: readonly
           <li key={contradiction.id} className="hair-t py-2 first:border-t-0 first:pt-0">
             <div className="flex items-baseline gap-1">
               <span
-                className="display shrink-0 text-[15px] leading-none"
+                className="slab display flex h-[26px] w-[26px] shrink-0 items-center justify-center text-[13px] leading-none"
                 style={{
-                  color:
-                    contradiction.strength === 'direct'
-                      ? 'var(--paid-full)'
-                      : 'color-mix(in srgb, var(--ink) 62%, transparent)',
+                  background:
+                    contradiction.strength === 'direct' ? 'var(--paprika)' : 'var(--olive)',
+                  boxShadow: 'var(--shadow-hard-sm)',
                 }}
                 aria-hidden="true"
               >
                 {String(index + 1).padStart(2, '0')}
               </span>
               <span
-                className="shrink-0 px-[5px] py-[1px] text-[11px] font-semibold uppercase leading-[1.4] tracking-[0.08em]"
+                className="shrink-0 px-[6px] py-[1px] text-[11px] font-bold uppercase leading-[1.4] tracking-[0.08em]"
                 style={{
                   border: 'var(--hair) solid var(--line)',
                   borderRadius: '4px',

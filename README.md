@@ -239,10 +239,33 @@ on either ground — 6.0:1 on indigo, 1.5:1 on steel — so the payable figure
 | `--accent` | `#8FC0DC` **6.2:1** | `#16224A` **5.1:1** | interaction |
 | `--band` | `#5A69AE` **2.4:1** | `#29335C` **4.1:1** | deduction bars, fills only |
 | `--surface` | `#1A2140` **1.3:1** | `#F7FAF2` **2.9:1** | cards; the 2px rule separates them |
-| `--on-accent` | `#0B0F1F` | `#0B0F1F` | text on any block |
+| `--on-block` | `#0B0F1F` | `#0B0F1F` | text on an amber, paprika or olive block |
+| `--on-accent` | `#0B0F1F` **9.7:1** | `#F7FAF2` **14.6:1** | text on an `--accent` fill |
 
-`--on-accent` is near-black in **both** modes, because every block colour is a
-light one: amber 9.4:1, olive 10.1:1, paprika 5.2:1.
+There are **two** inks for filled things, and keeping them apart matters:
+
+- `--on-block` is text on a solid brand block — amber, paprika, olive. Those are
+  light colours in both modes, so it is near-black in both: 9.4:1, 5.2:1, 10.1:1.
+- `--on-accent` is text on an `--accent` fill, and `--accent` **inverts** — a
+  light steel in dark mode, a dark navy in light mode — so its ink inverts with
+  it.
+
+Collapsing those two into one token is what made every selected control render
+near-black text on a near-black fill in light mode.
+
+### Brand
+
+Paprika and amber are mid-light colours: on the light steel ground they measure
+1.2:1 and 1.5:1, so they can never *be* text there. They carry the brand as
+**fields** instead, which works identically in both modes:
+
+- a three-segment brand rule across the top of every page, where each segment
+  is judged against its neighbour rather than against the page;
+- the question mark in the wordmark, as a paprika block;
+- a paprika tick before every section label;
+- the numbered steps and the primary action, as amber blocks;
+- contradiction rank markers — paprika for a direct point, olive for a
+  supporting one.
 
 The switcher has **two states, light and dark**. The system preference still
 decides what a first-time visitor sees, because the stylesheet handles that in

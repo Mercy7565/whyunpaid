@@ -25,6 +25,7 @@
      --alert    brand     3.3:1   block fills only
      --band     #5A69AE   2.4:1   deduction bars; a fill, never text
      --surface  #1A2140   1.3:1   cards; the 2px rule does the separating
+     --on-accent #0B0F1F  9.7:1   on an --accent fill, which is light here
 
    LIGHT, measured against --ground #669BBC:
      --ink      #0B0F1F   6.3:1   body copy
@@ -33,9 +34,13 @@
      --paid-part #1B2C0B  4.9:1   secondary numerals
      --band     brand     4.1:1   deduction bars
      --surface  #F7FAF2   2.9:1   cards
+     --on-accent #F7FAF2 14.6:1   on an --accent fill, which is DARK here
 
-   --on-accent is near-black in BOTH modes, because every block colour is a
-   light one: amber 9.4:1, olive 10.1:1, paprika 5.2:1.
+   --on-block is the ink for a solid brand block and is near-black in BOTH
+   modes, because amber, paprika and olive are light in both: 9.4:1, 5.2:1 and
+   10.1:1. --on-accent is separate and inverts with --accent, which is a light
+   steel in dark mode and a dark navy in light mode. Collapsing the two is what
+   made selected controls render near-black text on a near-black fill.
 
    No hex literal appears anywhere else in the application.
    --------------------------------------------------------------------------- */
@@ -77,6 +82,7 @@
   --accent-deep: #5E93B4;
   --alert:       var(--paprika);
   --on-accent:   #0B0F1F;
+  --on-block:    #0B0F1F;
 }
 
 /* Light sits on the brand steel. Applied by system preference... */
@@ -95,7 +101,8 @@
     --accent:      #16224A;
     --accent-deep: #0B142E;
     --alert:       var(--paprika);
-    --on-accent:   #0B0F1F;
+    --on-accent:   #F7FAF2;
+    --on-block:    #0B0F1F;
   }
 }
 
@@ -114,7 +121,8 @@
   --accent:      #16224A;
   --accent-deep: #0B142E;
   --alert:       var(--paprika);
-  --on-accent:   #0B0F1F;
+  --on-accent:   #F7FAF2;
+  --on-block:    #0B0F1F;
 }
 
 /* Tailwind reads the palette; it never redeclares it. */
@@ -128,6 +136,7 @@
   --color-accent:      var(--accent);
   --color-accent-deep: var(--accent-deep);
   --color-alert:       var(--alert);
+  --color-on-block:    var(--on-block);
   --color-ink:         var(--ink);
   --color-band:        var(--band);
 
@@ -163,6 +172,21 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     font-variant-numeric: tabular-nums;
+
+    /* A 32px grid at 9% of the rule colour. Structure, not decoration. */
+    background-image:
+      linear-gradient(
+        to right,
+        color-mix(in srgb, var(--line) 9%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--line) 9%, transparent) 1px,
+        transparent 1px
+      );
+    background-size: 32px 32px;
+    background-attachment: fixed;
   }
 
   /* Every figure in the product. Digits must never change width mid-animation. */
@@ -227,12 +251,33 @@
     font-weight: 600;
   }
 
+  /*
+   * Every section label carries a paprika tick. It is a solid bar rather than
+   * coloured text because paprika measures 1.2:1 on the light ground and could
+   * never be read there; as a mark beside the words it is brand without being
+   * a legibility problem. Table headers opt out, where it would be noise.
+   */
+  .eyebrow::before {
+    content: "";
+    display: inline-block;
+    width: 3px;
+    height: 0.9em;
+    margin-right: 7px;
+    vertical-align: -0.06em;
+    background: var(--paprika);
+  }
+
+  th.eyebrow::before,
+  .eyebrow.no-mark::before {
+    display: none;
+  }
+
   .eyebrow {
     font-size: 11px;
     line-height: 1.2;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 700;
     color: color-mix(in srgb, var(--ink) calc(var(--ink-muted) * 100%), transparent);
   }
 
@@ -270,7 +315,7 @@
   /*
    * A solid block of brand colour with a hard edge. This is how anything that
    * matters is emphasised: the payable figure, a refused claim, an active
-   * control. Text on a slab is always --on-accent, which is near-black in
+   * control. Text on a slab is always --on-block, which is near-black in
    * both modes because every slab colour is a light one.
    *
    * It is called `slab` and not `block` because `block` is a Tailwind display
@@ -278,10 +323,20 @@
    * element in the product that happened to be display:block.
    */
   .slab {
-    color: var(--on-accent);
+    color: var(--on-block);
     border: var(--hair) solid var(--line);
     border-radius: var(--radius);
     box-shadow: var(--shadow-hard);
+  }
+
+  /* The primary action on a screen. Amber block, near-black ink, 9.4:1. */
+  .cta {
+    background: var(--amber);
+    color: var(--on-block);
+    border: var(--hair) solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-hard);
+    font-weight: 700;
   }
 
   /* Controls press into their own shadow. */
@@ -334,6 +389,7 @@
 
   html, body {
     background: none !important;
+    background-image: none !important;
     color: var(--ground) !important;
     font-size: 11.5pt;
     line-height: 1.55;

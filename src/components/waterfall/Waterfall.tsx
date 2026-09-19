@@ -254,13 +254,13 @@ export function Waterfall({
           <div className="flex flex-wrap items-baseline justify-between gap-1">
             <span
               className="text-[11px] font-bold uppercase leading-[1.2] tracking-[0.14em]"
-              style={{ color: 'var(--on-accent)' }}
+              style={{ color: 'var(--on-block)' }}
             >
               {nothingPayable ? 'Not admissible' : 'Payable by the policy'}
             </span>
             <span
               className="text-[12px] font-semibold"
-              style={{ color: 'var(--on-accent)', opacity: 0.78 }}
+              style={{ color: 'var(--on-block)', opacity: 0.78 }}
             >
               {claimed > 0 ? `${Math.round(paidPercent)}% of the bill` : 'no bill entered'}
             </span>
@@ -271,14 +271,14 @@ export function Waterfall({
             className="display mt-1 block text-[clamp(44px,13vw,84px)] leading-[0.95]"
             reserve={reserve}
             duration={0.55}
-            style={{ color: 'var(--on-accent)' }}
+            style={{ color: 'var(--on-block)' }}
           />
 
           {/* The share of the bill, drawn inside the block in the same ink. */}
           <div
             className="mt-1 h-[10px] w-full"
             style={{
-              border: '2px solid var(--on-accent)',
+              border: '2px solid var(--on-block)',
               borderRadius: '3px',
               background: 'transparent',
             }}
@@ -288,7 +288,7 @@ export function Waterfall({
               className="h-full"
               animate={{ width: `${Math.max(paidPercent, 0)}%` }}
               transition={barTransition}
-              style={{ background: 'var(--on-accent)' }}
+              style={{ background: 'var(--on-block)' }}
             />
           </div>
         </div>

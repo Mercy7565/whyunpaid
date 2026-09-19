@@ -93,6 +93,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
+        {/*
+          The brand rule. Three adjacent segments, so each is judged against
+          its neighbour rather than against the page - which is what lets
+          paprika and amber appear at full strength in both modes.
+        */}
+        <div aria-hidden="true" className="flex h-[5px] w-full shrink-0">
+          <span className="h-full flex-[5]" style={{ background: 'var(--paprika)' }} />
+          <span className="h-full flex-[3]" style={{ background: 'var(--amber)' }} />
+          <span className="h-full flex-[2]" style={{ background: 'var(--olive)' }} />
+        </div>
         <SiteHeader />
         <main id="main" className="flex-1 w-full">
           {children}

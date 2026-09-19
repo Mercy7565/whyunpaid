@@ -251,8 +251,7 @@ export function CompileScreen() {
             />
             <label
               htmlFor="policy-file"
-              className="cursor-pointer px-2 py-1 text-[14px] font-medium"
-              style={{ background: 'var(--accent)', color: 'var(--on-accent)' }}
+              className="cta pressable cursor-pointer px-2 py-1 text-[14px]"
             >
               Choose a PDF
             </label>
@@ -359,18 +358,14 @@ export function CompileScreen() {
                 type="button"
                 onClick={compile}
                 disabled={blocking.length > 0}
-                className="mt-2 w-full px-1 py-1 text-[14px] font-medium disabled:cursor-not-allowed"
-                style={{
-                  background: blocking.length > 0 ? 'transparent' : 'var(--accent)',
-                  color:
-                    blocking.length > 0
-                      ? 'color-mix(in srgb, var(--ink) 55%, transparent)'
-                      : 'var(--on-accent)',
-                  border:
-                    blocking.length > 0
-                      ? 'var(--hair) solid color-mix(in srgb, var(--line) 70%, transparent)'
-                      : 'none',
-                }}
+                className={`pressable mt-2 w-full px-1 py-1 text-[14px] disabled:cursor-not-allowed ${
+                  blocking.length > 0 ? 'hair' : 'cta'
+                }`}
+                style={
+                  blocking.length > 0
+                    ? { color: 'color-mix(in srgb, var(--ink) 65%, transparent)' }
+                    : undefined
+                }
               >
                 {blocking.length > 0 ? `${blocking.length} to resolve` : 'Compile and run'}
               </button>

@@ -116,11 +116,11 @@ export function GroundCard({
           className="mt-1 w-full appearance-none hair bg-transparent px-1 py-1 text-[14px] ink-strong"
           style={{ background: 'color-mix(in srgb, var(--surface) 90%, transparent)' }}
         >
-          <option value="" style={{ color: 'var(--on-accent)' }}>
+          <option value="">
             No ground stated
           </option>
           {GROUND_KINDS.map((kind) => (
-            <option key={kind} value={kind} style={{ color: 'var(--on-accent)' }}>
+            <option key={kind} value={kind}>
               {GROUND_LABELS[kind]}
             </option>
           ))}

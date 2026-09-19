@@ -15,13 +15,13 @@ export function SiteHeader() {
       data-print="hide"
     >
       <div className="mx-auto flex w-full max-w-[1280px] items-center justify-between gap-2 px-2 py-2 sm:px-4">
-        <Link href="/" className="group flex items-baseline" aria-label={`${PRODUCT_NAME} home`}>
+        <Link href="/" className="group flex items-center gap-[5px]" aria-label={`${PRODUCT_NAME} home`}>
           <span className="display text-[19px] leading-none ink-strong sm:text-[21px]">
             WhyUnpaid
           </span>
           <span
-            className="display text-[19px] leading-none sm:text-[21px]"
-            style={{ color: 'var(--accent)' }}
+            className="slab display flex h-[22px] w-[20px] items-center justify-center text-[15px] leading-none sm:h-[24px] sm:w-[22px] sm:text-[17px]"
+            style={{ background: 'var(--paprika)', boxShadow: 'var(--shadow-hard-sm)' }}
             aria-hidden="true"
           >
             ?
@@ -43,7 +43,7 @@ export function SiteHeader() {
                     style={{
                       color: active
                         ? 'var(--ink)'
-                        : 'color-mix(in srgb, var(--ink) 66%, transparent)',
+                        : 'color-mix(in srgb, var(--ink) 80%, transparent)',
                     }}
                   >
                     {item.label}
