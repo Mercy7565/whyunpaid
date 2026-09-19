@@ -1,0 +1,7 @@
+# The deployed build does not need the test suite; `npm test` runs locally and
+# in CI, and its output (src/generated/vm-summary.json) is checked in.
+**/__tests__
+**/__snapshots__
+tests
+.next-check
+docs
