@@ -13,6 +13,7 @@ import { getPolicy } from '@/policies';
 import { STAGE_LABELS } from '@/vm/labels';
 import { ORDER_TABLE, OUT_OF_PIPELINE } from '@/vm/orderTable';
 import { clausesInReadingOrder } from '@/vm/selectors';
+import type { Clause, ClauseKind } from '@/vm/types';
 
 /**
  * The inspector.
@@ -44,6 +45,31 @@ export function VmScreen() {
       window.history.replaceState(null, '', `${window.location.pathname}?${params.toString()}`);
     }
   }, []);
+
+  /*
+   * The order table describes the engine, which is the same for every policy.
+   * Without this, a reader looking at a policy that carries no room rent cap
+   * sees a stage for one anyway and has no way to tell whether it did nothing
+   * or did something invisible. Each stage now names the clauses this policy
+   * actually carries there, or says plainly that it carries none.
+   */
+  const byKind = useMemo(() => {
+    const map = new Map<ClauseKind, Clause[]>();
+    for (const clause of clausesInReadingOrder(policy)) {
+      const list = map.get(clause.kind);
+      if (list) list.push(clause);
+      else map.set(clause.kind, [clause]);
+    }
+    return map;
+  }, [policy]);
+
+  const reveal = useCallback(
+    (id: string) => {
+      pick(id);
+      document.getElementById('clauses')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    },
+    [pick],
+  );
 
   const changePolicy = useCallback((id: string) => {
     setPolicyId(id);
@@ -97,7 +123,10 @@ export function VmScreen() {
         </span>
       </p>
 
-      <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:gap-4 lg:gap-6">
+      <div
+        id="clauses"
+        className="grid scroll-mt-[64px] gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:gap-4 lg:gap-6"
+      >
         <ClauseTree policy={policy} selectedId={selected?.id ?? null} onSelect={pick} />
 
         <div className="md:sticky md:top-[64px] md:self-start">
@@ -131,9 +160,10 @@ export function VmScreen() {
         </p>
 
         <div className="mt-2 overflow-x-auto">
-          <table className="w-full min-w-[640px] border-collapse text-[13px]">
+          <table className="w-full min-w-[760px] border-collapse text-[13px]">
             <caption className="sr-only">
-              The eight stages of evaluation, in the order they run
+              The eight stages of evaluation, in the order they run, and the clauses this policy
+              carries at each of them
             </caption>
             <thead>
               <tr>
@@ -148,6 +178,9 @@ export function VmScreen() {
                 </th>
                 <th scope="col" className="eyebrow pb-1 pr-1 text-left font-semibold">
                   Operates on
+                </th>
+                <th scope="col" className="eyebrow pb-1 pr-1 text-left font-semibold">
+                  In this policy
                 </th>
                 <th scope="col" className="eyebrow pb-1 text-left font-semibold">
                   Effect
@@ -172,6 +205,26 @@ export function VmScreen() {
                     <code className="text-[12px] ink-body">{row.clauseKind}</code>
                   </td>
                   <td className="py-1 pr-1 ink-muted">{row.operatesOn}</td>
+                  <td className="py-1 pr-1">
+                    {(byKind.get(row.clauseKind) ?? []).length === 0 ? (
+                      <span className="ink-muted">no clause &middot; deducts nothing</span>
+                    ) : (
+                      <span className="flex flex-wrap gap-[3px]">
+                        {(byKind.get(row.clauseKind) ?? []).map((clause) => (
+                          <button
+                            key={clause.id}
+                            type="button"
+                            onClick={() => reveal(clause.id)}
+                            title={`${clause.title} — show it in the wording`}
+                            className="hair pressable px-[5px] py-[1px] text-[12px] font-medium ink-strong"
+                            data-figure
+                          >
+                            {clause.ref}
+                          </button>
+                        ))}
+                      </span>
+                    )}
+                  </td>
                   <td className="py-1 ink-body">{row.effect}</td>
                 </tr>
               ))}

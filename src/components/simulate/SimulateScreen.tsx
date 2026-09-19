@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { CommandPalette } from '@/components/CommandPalette';
+import { copyText } from '@/lib/clipboard';
 import { ContestabilityPanel } from '@/components/ContestabilityPanel';
 import { BillBreakdown } from '@/components/simulate/BillBreakdown';
 import { HowItWorks } from '@/components/simulate/HowItWorks';
@@ -59,7 +60,7 @@ export function SimulateScreen() {
   const searchParams = useSearchParams();
   const [scenario, setScenario] = useState<Scenario>(() => scenarioFromParams(searchParams));
   const [paletteOpen, setPaletteOpen] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const [copyState, setCopyState] = useState<'idle' | 'copied' | 'failed'>('idle');
   const verdictRef = useRef<HTMLDivElement>(null);
 
   /*
@@ -110,14 +111,14 @@ export function SimulateScreen() {
   const copyLink = useCallback(async () => {
     if (typeof window === 'undefined') return;
     const url = `${window.location.origin}${window.location.pathname}${scenarioToQuery(scenario)}`;
-    try {
-      await navigator.clipboard.writeText(url);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 2_000);
-    } catch {
-      /* Clipboard refused; the address bar already holds the same link. */
-      setCopied(false);
-    }
+    /*
+     * Both outcomes are reported. A button that silently does nothing when the
+     * clipboard refuses is worse than one that says the address bar already
+     * holds the link.
+     */
+    const result = await copyText(url);
+    setCopyState(result);
+    window.setTimeout(() => setCopyState('idle'), 3_000);
   }, [scenario]);
 
   const years = Math.floor(scenario.months / 12);
@@ -159,7 +160,11 @@ export function SimulateScreen() {
               onClick={copyLink}
               className="hair pressable px-1 py-[6px] text-[13px] font-medium ink-body transition-colors hover:ink-strong"
             >
-              {copied ? 'Link copied' : 'Copy link'}
+              {copyState === 'copied'
+                ? 'Link copied'
+                : copyState === 'failed'
+                  ? 'Use the address bar'
+                  : 'Copy link'}
             </button>
           </div>
         </div>
@@ -268,6 +273,14 @@ export function SimulateScreen() {
           <ContestabilityPanel contestability={verdict.contestability} />
         </div>
       </div>
+
+      <p className="sr-only" role="status">
+        {copyState === 'copied'
+          ? 'Link copied to the clipboard.'
+          : copyState === 'failed'
+            ? 'The clipboard refused. The address bar holds the same link.'
+            : ''}
+      </p>
 
       <HowItWorks />
 

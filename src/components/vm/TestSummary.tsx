@@ -89,9 +89,15 @@ export function TestSummary() {
                 </span>
               </p>
               <ul className="m-0 mt-[2px] list-none p-0">
-                {file.cases.map((test) => (
+                {/*
+                  Keyed by position, not by name. A test that runs once per
+                  specimen policy carries the same name four times inside one
+                  file, and keying by name made React drop the duplicates: the
+                  count said 159 while the list showed fewer.
+                */}
+                {file.cases.map((test, index) => (
                   <li
-                    key={test.name}
+                    key={`${test.name}#${index}`}
                     className="flex items-baseline gap-1 py-[1px] text-[12px] ink-muted"
                   >
                     <span

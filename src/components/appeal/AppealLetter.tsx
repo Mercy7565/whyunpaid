@@ -10,6 +10,7 @@ import {
   type AppealSentence,
   appealToText,
 } from '@/letter/appeal';
+import { copyText } from '@/lib/clipboard';
 import { RULE_DESCRIPTIONS, isKnownRuleId } from '@/vm/rules';
 
 type Language = 'en' | 'hi';
@@ -28,7 +29,7 @@ type Language = 'en' | 'hi';
 export function AppealLetter({ appeal }: { appeal: Appeal }) {
   const [language, setLanguage] = useState<Language>('en');
   const [activeId, setActiveId] = useState<string | null>(null);
-  const [copied, setCopied] = useState(false);
+  const [copyState, setCopyState] = useState<'idle' | 'copied' | 'failed'>('idle');
 
   const grouped = useMemo(() => {
     const map = new Map<AppealSection, AppealSentence[]>();
@@ -48,13 +49,9 @@ export function AppealLetter({ appeal }: { appeal: Appeal }) {
   );
 
   const copy = useCallback(async () => {
-    try {
-      await navigator.clipboard.writeText(appealToText(appeal, language));
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 2_000);
-    } catch {
-      setCopied(false);
-    }
+    const result = await copyText(appealToText(appeal, language));
+    setCopyState(result);
+    window.setTimeout(() => setCopyState('idle'), 3_000);
   }, [appeal, language]);
 
   return (
@@ -85,7 +82,7 @@ export function AppealLetter({ appeal }: { appeal: Appeal }) {
             onClick={copy}
             className="hair pressable px-1 py-[6px] text-[13px] font-medium ink-body"
           >
-            {copied ? 'Copied' : 'Copy'}
+            {copyState === 'copied' ? 'Copied' : copyState === 'failed' ? 'Select and copy' : 'Copy'}
           </button>
           <button
             type="button"
@@ -105,6 +102,14 @@ export function AppealLetter({ appeal }: { appeal: Appeal }) {
       >
         <p className="eyebrow mb-2" data-print="hide">
           Draft &middot; check the dates and the claim number before sending
+        </p>
+
+        <p className="sr-only" role="status">
+          {copyState === 'copied'
+            ? 'The appeal was copied to the clipboard.'
+            : copyState === 'failed'
+              ? 'The clipboard refused. Select the letter and copy it by hand.'
+              : ''}
         </p>
 
         {grouped.map((group) => (
@@ -162,7 +167,7 @@ export function AppealLetter({ appeal }: { appeal: Appeal }) {
 
       {/* What backs the sentence under the cursor. */}
       <div
-        className="hair pressable px-2 py-1"
+        className="hair px-2 py-1"
         aria-live="polite"
         data-print="hide"
         style={{ minHeight: '92px' }}
