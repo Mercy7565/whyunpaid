@@ -76,3 +76,8 @@ Every non-obvious call made while building WhyUnpaid?, with the reason. Appended
 - **The demo is re-reading one of our own specimen PDFs** — Path A wrote that wording and typeset it; Path B has to read it back out of the PDF knowing nothing about how it was made. It reproduces the same answer to the rupee: four lakh becomes two lakh fifty thousand on Specimen B by both routes.
 - **`/compile` is not in the primary navigation** — the brief specifies three screens. It is linked from the simulator and the inspector so it is discoverable without competing with them.
 - **`next build` honours `NEXT_DIST_DIR`** — building into `.next` while `next dev` is watching it corrupts the dev server's chunk manifest, which cost real time to diagnose once.
+
+## Phase 10 — documentation
+
+- **The GIF placeholder is a visible block, not a broken `<img>` tag** — a README that renders a broken image icon on GitHub looks worse than one that says plainly what the recording should contain and where to drop it.
+- **The README states the limitations at length** — this is a tool about reading contracts carefully, and it would be poor form to be careful about the policy wording and careless about what the tool itself cannot do. The synthetic specimens, the day-level rounding on the initial wait, the fixed bill profile, medical necessity being outside the model, and the fact that Path B reads text rather than images are all named.
