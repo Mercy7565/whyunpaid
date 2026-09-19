@@ -1,0 +1,712 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`golden scenarios > 01 pays a clean claim in full when no clause bites 1`] = `
+{
+  "block": null,
+  "claimed": "₹80,000 (8000000 paise)",
+  "contestability": {
+    "insurerMayContestNonDisclosure": true,
+    "monthsOfContinuousCover": 42,
+    "moratoriumComplete": false,
+  },
+  "deductions": [],
+  "monthsOfCoverAtTest": 42,
+  "paid": "₹80,000 (8000000 paise)",
+  "testedAt": "2024-10-01",
+  "trace": [
+    "1. exclusion no-op ₹80,000 -> ₹80,000 | This policy declares no permanent exclusions.",
+    "2. waitingPeriod no-op ₹80,000 -> ₹80,000 | No waiting period in this policy applies to this claim.",
+    "3. lineItemIneligible no-op ₹80,000 -> ₹80,000 | This policy lists no non-payable heads.",
+    "4. roomRentProportionate no-op ₹80,000 -> ₹80,000 | This policy caps no room rent.",
+    "5. subLimit no-op ₹80,000 -> ₹80,000 | This policy sets no sub-limit for total knee replacement.",
+    "6. deductible no-op ₹80,000 -> ₹80,000 | This policy carries no deductible.",
+    "7. coPay no-op ₹80,000 -> ₹80,000 | This policy carries no co-pay.",
+    "8. sumInsured no-op ₹80,000 -> ₹80,000 | The admissible amount was within the sum insured.",
+  ],
+}
+`;
+
+exports[`golden scenarios > 02 refuses the whole claim for a permanent exclusion 1`] = `
+{
+  "block": {
+    "clauseRef": "5.1",
+    "ruleId": "vm.exclusion.permanent",
+    "stage": "exclusion",
+  },
+  "claimed": "₹4,00,000 (40000000 paise)",
+  "contestability": {
+    "insurerMayContestNonDisclosure": true,
+    "monthsOfContinuousCover": 42,
+    "moratoriumComplete": false,
+  },
+  "deductions": [
+    {
+      "amount": "₹4,00,000 (40000000 paise)",
+      "basisKind": "wholeClaim",
+      "clause": "5.1 Permanent exclusions",
+      "humanReason": "Cosmetic surgery is listed as a permanent exclusion at 5.1, so no part of this claim is admissible under this policy.",
+      "ruleId": "vm.exclusion.permanent",
+      "stage": "exclusion",
+    },
+  ],
+  "monthsOfCoverAtTest": 42,
+  "paid": "₹0 (0 paise)",
+  "testedAt": "2024-10-01",
+  "trace": [
+    "1. exclusion APPLIED ₹4,00,000 -> ₹0 | Cosmetic surgery matches the exclusion list at 5.1.",
+    "2. waitingPeriod unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "3. lineItemIneligible unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "4. roomRentProportionate unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "5. subLimit unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "6. deductible unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "7. coPay unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "8. sumInsured unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+  ],
+}
+`;
+
+exports[`golden scenarios > 03 refuses the whole claim inside the initial waiting period 1`] = `
+{
+  "block": {
+    "clauseRef": "4.2a",
+    "ruleId": "vm.waiting.specificDisease",
+    "stage": "waitingPeriod",
+  },
+  "claimed": "₹4,00,000 (40000000 paise)",
+  "contestability": {
+    "insurerMayContestNonDisclosure": true,
+    "monthsOfContinuousCover": 0,
+    "moratoriumComplete": false,
+  },
+  "deductions": [
+    {
+      "amount": "₹4,00,000 (40000000 paise)",
+      "basisKind": "wholeClaim",
+      "clause": "4.2a Waiting period",
+      "humanReason": "The 24 months named-condition waiting period at 4.2a had not expired: the claim was tested at 0 months of continuous cover.",
+      "ruleId": "vm.waiting.specificDisease",
+      "stage": "waitingPeriod",
+    },
+  ],
+  "monthsOfCoverAtTest": 0,
+  "paid": "₹0 (0 paise)",
+  "testedAt": "2024-10-01",
+  "trace": [
+    "1. exclusion no-op ₹4,00,000 -> ₹4,00,000 | Total knee replacement does not appear on any exclusion list in this policy.",
+    "2. waitingPeriod APPLIED ₹4,00,000 -> ₹0 | 0 months of cover at the date tested, against 24 months required by 4.2a.",
+    "3. lineItemIneligible unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "4. roomRentProportionate unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "5. subLimit unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "6. deductible unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "7. coPay unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "8. sumInsured unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+  ],
+}
+`;
+
+exports[`golden scenarios > 04 refuses the whole claim inside a named-condition waiting period 1`] = `
+{
+  "block": {
+    "clauseRef": "4.2a",
+    "ruleId": "vm.waiting.specificDisease",
+    "stage": "waitingPeriod",
+  },
+  "claimed": "₹4,00,000 (40000000 paise)",
+  "contestability": {
+    "insurerMayContestNonDisclosure": true,
+    "monthsOfContinuousCover": 16,
+    "moratoriumComplete": false,
+  },
+  "deductions": [
+    {
+      "amount": "₹4,00,000 (40000000 paise)",
+      "basisKind": "wholeClaim",
+      "clause": "4.2a Waiting period",
+      "humanReason": "The 24 months named-condition waiting period at 4.2a had not expired: the claim was tested at 16 months of continuous cover.",
+      "ruleId": "vm.waiting.specificDisease",
+      "stage": "waitingPeriod",
+    },
+  ],
+  "monthsOfCoverAtTest": 16,
+  "paid": "₹0 (0 paise)",
+  "testedAt": "2024-10-01",
+  "trace": [
+    "1. exclusion no-op ₹4,00,000 -> ₹4,00,000 | Total knee replacement does not appear on any exclusion list in this policy.",
+    "2. waitingPeriod APPLIED ₹4,00,000 -> ₹0 | 16 months of cover at the date tested, against 24 months required by 4.2a.",
+    "3. lineItemIneligible unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "4. roomRentProportionate unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "5. subLimit unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "6. deductible unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "7. coPay unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "8. sumInsured unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+  ],
+}
+`;
+
+exports[`golden scenarios > 05 refuses the whole claim inside the pre-existing disease waiting period 1`] = `
+{
+  "block": {
+    "clauseRef": "4.3",
+    "ruleId": "vm.waiting.preExisting",
+    "stage": "waitingPeriod",
+  },
+  "claimed": "₹4,00,000 (40000000 paise)",
+  "contestability": {
+    "insurerMayContestNonDisclosure": true,
+    "monthsOfContinuousCover": 30,
+    "moratoriumComplete": false,
+  },
+  "deductions": [
+    {
+      "amount": "₹4,00,000 (40000000 paise)",
+      "basisKind": "wholeClaim",
+      "clause": "4.3 Waiting period",
+      "humanReason": "The 36 months pre-existing disease waiting period at 4.3 had not expired: the claim was tested at 30 months of continuous cover.",
+      "ruleId": "vm.waiting.preExisting",
+      "stage": "waitingPeriod",
+    },
+  ],
+  "monthsOfCoverAtTest": 30,
+  "paid": "₹0 (0 paise)",
+  "testedAt": "2024-10-01",
+  "trace": [
+    "1. exclusion no-op ₹4,00,000 -> ₹4,00,000 | Total knee replacement does not appear on any exclusion list in this policy.",
+    "2. waitingPeriod APPLIED ₹4,00,000 -> ₹0 | 30 months of cover at the date tested, against 36 months required by 4.3.",
+    "3. lineItemIneligible unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "4. roomRentProportionate unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "5. subLimit unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "6. deductible unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "7. coPay unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "8. sumInsured unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+  ],
+}
+`;
+
+exports[`golden scenarios > 06 reports the most binding wait when two are unexpired at once 1`] = `
+{
+  "block": {
+    "clauseRef": "4.3",
+    "ruleId": "vm.waiting.preExisting",
+    "stage": "waitingPeriod",
+  },
+  "claimed": "₹4,00,000 (40000000 paise)",
+  "contestability": {
+    "insurerMayContestNonDisclosure": true,
+    "monthsOfContinuousCover": 6,
+    "moratoriumComplete": false,
+  },
+  "deductions": [
+    {
+      "amount": "₹4,00,000 (40000000 paise)",
+      "basisKind": "wholeClaim",
+      "clause": "4.3 Waiting period",
+      "humanReason": "The 48 months pre-existing disease waiting period at 4.3 had not expired: the claim was tested at 6 months of continuous cover.",
+      "ruleId": "vm.waiting.preExisting",
+      "stage": "waitingPeriod",
+    },
+  ],
+  "monthsOfCoverAtTest": 6,
+  "paid": "₹0 (0 paise)",
+  "testedAt": "2024-10-01",
+  "trace": [
+    "1. exclusion no-op ₹4,00,000 -> ₹4,00,000 | This policy declares no permanent exclusions.",
+    "2. waitingPeriod APPLIED ₹4,00,000 -> ₹0 | 6 months of cover at the date tested, against 48 months required by 4.3.",
+    "3. lineItemIneligible unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "4. roomRentProportionate unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "5. subLimit unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "6. deductible unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "7. coPay unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+    "8. sumInsured unreached ₹0 -> ₹0 | Not reached: the claim was already nil-admissible.",
+  ],
+}
+`;
+
+exports[`golden scenarios > 07 removes non-payable line items and nothing else 1`] = `
+{
+  "block": null,
+  "claimed": "₹4,00,000 (40000000 paise)",
+  "contestability": {
+    "insurerMayContestNonDisclosure": true,
+    "monthsOfContinuousCover": 42,
+    "moratoriumComplete": false,
+  },
+  "deductions": [
+    {
+      "amount": "₹5,000 (500000 paise)",
+      "basisKind": "lines",
+      "clause": "3.9 Non-payable items",
+      "humanReason": "Non-medical items are listed as non-payable at 3.9, so those lines are removed before any cap is applied.",
+      "ruleId": "vm.lineItem.ineligible",
+      "stage": "lineItemIneligible",
+    },
+  ],
+  "monthsOfCoverAtTest": 42,
+  "paid": "₹3,95,000 (39500000 paise)",
+  "testedAt": "2024-10-01",
+  "trace": [
+    "1. exclusion no-op ₹4,00,000 -> ₹4,00,000 | This policy declares no permanent exclusions.",
+    "2. waitingPeriod no-op ₹4,00,000 -> ₹4,00,000 | No waiting period in this policy applies to this claim.",
+    "3. lineItemIneligible APPLIED ₹4,00,000 -> ₹3,95,000 | Non-payable heads removed line by line.",
+    "4. roomRentProportionate no-op ₹3,95,000 -> ₹3,95,000 | This policy caps no room rent.",
+    "5. subLimit no-op ₹3,95,000 -> ₹3,95,000 | This policy sets no sub-limit for total knee replacement.",
+    "6. deductible no-op ₹3,95,000 -> ₹3,95,000 | This policy carries no deductible.",
+    "7. coPay no-op ₹3,95,000 -> ₹3,95,000 | This policy carries no co-pay.",
+    "8. sumInsured no-op ₹3,95,000 -> ₹3,95,000 | The admissible amount was within the sum insured.",
+  ],
+}
+`;
+
+exports[`golden scenarios > 08 reduces associated heads in proportion and leaves exempt heads untouched 1`] = `
+{
+  "block": null,
+  "claimed": "₹4,00,000 (40000000 paise)",
+  "contestability": {
+    "insurerMayContestNonDisclosure": true,
+    "monthsOfContinuousCover": 42,
+    "moratoriumComplete": false,
+  },
+  "deductions": [
+    {
+      "amount": "₹97,333.33 (9733333 paise)",
+      "basisKind": "proportionate",
+      "clause": "4.2 Room rent limit and proportionate deduction",
+      "humanReason": "The room occupied cost ₹9,000 a day against an eligible ₹5,000 a day, so room rent, nursing charges, surgeon fee, anaesthetist fee and operation theatre are payable at 55.56% under 4.2. Pharmacy, consumables, implants and diagnostics are exempt and were not reduced.",
+      "ruleId": "vm.roomRent.proportionate",
+      "stage": "roomRentProportionate",
+    },
+  ],
+  "monthsOfCoverAtTest": 42,
+  "paid": "₹3,02,666.67 (30266667 paise)",
+  "testedAt": "2024-10-01",
+  "trace": [
+    "1. exclusion no-op ₹4,00,000 -> ₹4,00,000 | This policy declares no permanent exclusions.",
+    "2. waitingPeriod no-op ₹4,00,000 -> ₹4,00,000 | No waiting period in this policy applies to this claim.",
+    "3. lineItemIneligible no-op ₹4,00,000 -> ₹4,00,000 | This policy lists no non-payable heads.",
+    "4. roomRentProportionate APPLIED ₹4,00,000 -> ₹3,02,666.67 | Associated heads reduced in proportion; pharmacy, consumables, implants and diagnostics exempt.",
+    "5. subLimit no-op ₹3,02,666.67 -> ₹3,02,666.67 | This policy sets no sub-limit for total knee replacement.",
+    "6. deductible no-op ₹3,02,666.67 -> ₹3,02,666.67 | This policy carries no deductible.",
+    "7. coPay no-op ₹3,02,666.67 -> ₹3,02,666.67 | This policy carries no co-pay.",
+    "8. sumInsured no-op ₹3,02,666.67 -> ₹3,02,666.67 | The admissible amount was within the sum insured.",
+  ],
+}
+`;
+
+exports[`golden scenarios > 09 takes nothing when the room occupied is within the eligible room rent 1`] = `
+{
+  "block": null,
+  "claimed": "₹4,00,000 (40000000 paise)",
+  "contestability": {
+    "insurerMayContestNonDisclosure": true,
+    "monthsOfContinuousCover": 42,
+    "moratoriumComplete": false,
+  },
+  "deductions": [],
+  "monthsOfCoverAtTest": 42,
+  "paid": "₹4,00,000 (40000000 paise)",
+  "testedAt": "2024-10-01",
+  "trace": [
+    "1. exclusion no-op ₹4,00,000 -> ₹4,00,000 | This policy declares no permanent exclusions.",
+    "2. waitingPeriod no-op ₹4,00,000 -> ₹4,00,000 | No waiting period in this policy applies to this claim.",
+    "3. lineItemIneligible no-op ₹4,00,000 -> ₹4,00,000 | This policy lists no non-payable heads.",
+    "4. roomRentProportionate no-op ₹4,00,000 -> ₹4,00,000 | The room occupied was within the eligible room rent, so nothing was reduced.",
+    "5. subLimit no-op ₹4,00,000 -> ₹4,00,000 | This policy sets no sub-limit for total knee replacement.",
+    "6. deductible no-op ₹4,00,000 -> ₹4,00,000 | This policy carries no deductible.",
+    "7. coPay no-op ₹4,00,000 -> ₹4,00,000 | This policy carries no co-pay.",
+    "8. sumInsured no-op ₹4,00,000 -> ₹4,00,000 | The admissible amount was within the sum insured.",
+  ],
+}
+`;
+
+exports[`golden scenarios > 10 applies a per-procedure sub-limit to what survives the earlier stages 1`] = `
+{
+  "block": null,
+  "claimed": "₹85,000 (8500000 paise)",
+  "contestability": {
+    "insurerMayContestNonDisclosure": true,
+    "monthsOfContinuousCover": 42,
+    "moratoriumComplete": false,
+  },
+  "deductions": [
+    {
+      "amount": "₹45,000 (4500000 paise)",
+      "basisKind": "cap",
+      "clause": "4.6 Procedure sub-limit",
+      "humanReason": "Cataract surgery carries a ceiling of ₹40,000 at 4.6, and ₹85,000 was otherwise admissible.",
+      "ruleId": "vm.subLimit.procedure",
+      "stage": "subLimit",
+    },
+  ],
+  "monthsOfCoverAtTest": 42,
+  "paid": "₹40,000 (4000000 paise)",
+  "testedAt": "2024-10-01",
+  "trace": [
+    "1. exclusion no-op ₹85,000 -> ₹85,000 | This policy declares no permanent exclusions.",
+    "2. waitingPeriod no-op ₹85,000 -> ₹85,000 | No waiting period in this policy applies to this claim.",
+    "3. lineItemIneligible no-op ₹85,000 -> ₹85,000 | This policy lists no non-payable heads.",
+    "4. roomRentProportionate no-op ₹85,000 -> ₹85,000 | This policy caps no room rent.",
+    "5. subLimit APPLIED ₹85,000 -> ₹40,000 | A per-procedure ceiling was reached.",
+    "6. deductible no-op ₹40,000 -> ₹40,000 | This policy carries no deductible.",
+    "7. coPay no-op ₹40,000 -> ₹40,000 | This policy carries no co-pay.",
+    "8. sumInsured no-op ₹40,000 -> ₹40,000 | The admissible amount was within the sum insured.",
+  ],
+}
+`;
+
+exports[`golden scenarios > 11 applies a deductible to the admissible amount 1`] = `
+{
+  "block": null,
+  "claimed": "₹4,00,000 (40000000 paise)",
+  "contestability": {
+    "insurerMayContestNonDisclosure": true,
+    "monthsOfContinuousCover": 42,
+    "moratoriumComplete": false,
+  },
+  "deductions": [
+    {
+      "amount": "₹25,000 (2500000 paise)",
+      "basisKind": "flat",
+      "clause": "4.8 Deductible",
+      "humanReason": "The first ₹25,000 of every claim is borne by the policyholder under 4.8.",
+      "ruleId": "vm.deductible.perClaim",
+      "stage": "deductible",
+    },
+  ],
+  "monthsOfCoverAtTest": 42,
+  "paid": "₹3,75,000 (37500000 paise)",
+  "testedAt": "2024-10-01",
+  "trace": [
+    "1. exclusion no-op ₹4,00,000 -> ₹4,00,000 | This policy declares no permanent exclusions.",
+    "2. waitingPeriod no-op ₹4,00,000 -> ₹4,00,000 | No waiting period in this policy applies to this claim.",
+    "3. lineItemIneligible no-op ₹4,00,000 -> ₹4,00,000 | This policy lists no non-payable heads.",
+    "4. roomRentProportionate no-op ₹4,00,000 -> ₹4,00,000 | This policy caps no room rent.",
+    "5. subLimit no-op ₹4,00,000 -> ₹4,00,000 | This policy sets no sub-limit for total knee replacement.",
+    "6. deductible APPLIED ₹4,00,000 -> ₹3,75,000 | The deductible was applied to the admissible amount.",
+    "7. coPay no-op ₹3,75,000 -> ₹3,75,000 | This policy carries no co-pay.",
+    "8. sumInsured no-op ₹3,75,000 -> ₹3,75,000 | The admissible amount was within the sum insured.",
+  ],
+}
+`;
+
+exports[`golden scenarios > 12 applies the co-pay last, on the admissible amount 1`] = `
+{
+  "block": null,
+  "claimed": "₹4,00,000 (40000000 paise)",
+  "contestability": {
+    "insurerMayContestNonDisclosure": true,
+    "monthsOfContinuousCover": 42,
+    "moratoriumComplete": false,
+  },
+  "deductions": [
+    {
+      "amount": "₹80,000 (8000000 paise)",
+      "basisKind": "percent",
+      "clause": "4.9 Co-payment",
+      "humanReason": "A 20% co-pay under 4.9 is applied last, to the ₹4,00,000 that remained admissible.",
+      "ruleId": "vm.coPay.percentage",
+      "stage": "coPay",
+    },
+  ],
+  "monthsOfCoverAtTest": 42,
+  "paid": "₹3,20,000 (32000000 paise)",
+  "testedAt": "2024-10-01",
+  "trace": [
+    "1. exclusion no-op ₹4,00,000 -> ₹4,00,000 | This policy declares no permanent exclusions.",
+    "2. waitingPeriod no-op ₹4,00,000 -> ₹4,00,000 | No waiting period in this policy applies to this claim.",
+    "3. lineItemIneligible no-op ₹4,00,000 -> ₹4,00,000 | This policy lists no non-payable heads.",
+    "4. roomRentProportionate no-op ₹4,00,000 -> ₹4,00,000 | This policy caps no room rent.",
+    "5. subLimit no-op ₹4,00,000 -> ₹4,00,000 | This policy sets no sub-limit for total knee replacement.",
+    "6. deductible no-op ₹4,00,000 -> ₹4,00,000 | This policy carries no deductible.",
+    "7. coPay APPLIED ₹4,00,000 -> ₹3,20,000 | The co-pay share was taken from the admissible amount.",
+    "8. sumInsured no-op ₹3,20,000 -> ₹3,20,000 | The admissible amount was within the sum insured.",
+  ],
+}
+`;
+
+exports[`golden scenarios > 13 caps the admissible amount at the sum insured 1`] = `
+{
+  "block": null,
+  "claimed": "₹4,00,000 (40000000 paise)",
+  "contestability": {
+    "insurerMayContestNonDisclosure": true,
+    "monthsOfContinuousCover": 42,
+    "moratoriumComplete": false,
+  },
+  "deductions": [
+    {
+      "amount": "₹2,50,000 (25000000 paise)",
+      "basisKind": "cap",
+      "clause": "2.1 Sum insured",
+      "humanReason": "The sum insured of ₹1,50,000 at 2.1 is the ceiling for the period, and ₹4,00,000 was otherwise admissible.",
+      "ruleId": "vm.sumInsured.cap",
+      "stage": "sumInsured",
+    },
+  ],
+  "monthsOfCoverAtTest": 42,
+  "paid": "₹1,50,000 (15000000 paise)",
+  "testedAt": "2024-10-01",
+  "trace": [
+    "1. exclusion no-op ₹4,00,000 -> ₹4,00,000 | This policy declares no permanent exclusions.",
+    "2. waitingPeriod no-op ₹4,00,000 -> ₹4,00,000 | No waiting period in this policy applies to this claim.",
+    "3. lineItemIneligible no-op ₹4,00,000 -> ₹4,00,000 | This policy lists no non-payable heads.",
+    "4. roomRentProportionate no-op ₹4,00,000 -> ₹4,00,000 | This policy caps no room rent.",
+    "5. subLimit no-op ₹4,00,000 -> ₹4,00,000 | This policy sets no sub-limit for total knee replacement.",
+    "6. deductible no-op ₹4,00,000 -> ₹4,00,000 | This policy carries no deductible.",
+    "7. coPay no-op ₹4,00,000 -> ₹4,00,000 | This policy carries no co-pay.",
+    "8. sumInsured APPLIED ₹4,00,000 -> ₹1,50,000 | The admissible amount exceeded the sum insured and was capped.",
+  ],
+}
+`;
+
+exports[`golden scenarios > 14 the headline: four lakh becomes two lakh twelve thousand across four clauses 1`] = `
+{
+  "block": null,
+  "claimed": "₹4,00,000 (40000000 paise)",
+  "contestability": {
+    "insurerMayContestNonDisclosure": true,
+    "monthsOfContinuousCover": 42,
+    "moratoriumComplete": false,
+  },
+  "deductions": [
+    {
+      "amount": "₹5,000 (500000 paise)",
+      "basisKind": "lines",
+      "clause": "3.9 Non-payable items",
+      "humanReason": "Non-medical items are listed as non-payable at 3.9, so those lines are removed before any cap is applied.",
+      "ruleId": "vm.lineItem.ineligible",
+      "stage": "lineItemIneligible",
+    },
+    {
+      "amount": "₹97,333.33 (9733333 paise)",
+      "basisKind": "proportionate",
+      "clause": "4.2 Room rent limit and proportionate deduction",
+      "humanReason": "The room occupied cost ₹9,000 a day against an eligible ₹5,000 a day, so room rent, nursing charges, surgeon fee, anaesthetist fee and operation theatre are payable at 55.56% under 4.2. Pharmacy, consumables, implants and diagnostics are exempt and were not reduced.",
+      "ruleId": "vm.roomRent.proportionate",
+      "stage": "roomRentProportionate",
+    },
+    {
+      "amount": "₹32,666.67 (3266667 paise)",
+      "basisKind": "cap",
+      "clause": "4.6 Procedure sub-limit",
+      "humanReason": "Total knee replacement carries a ceiling of ₹2,65,000 at 4.6, and ₹2,97,666.67 was otherwise admissible.",
+      "ruleId": "vm.subLimit.procedure",
+      "stage": "subLimit",
+    },
+    {
+      "amount": "₹53,000 (5300000 paise)",
+      "basisKind": "percent",
+      "clause": "4.9 Co-payment",
+      "humanReason": "A 20% co-pay under 4.9 is applied last, to the ₹2,65,000 that remained admissible.",
+      "ruleId": "vm.coPay.percentage",
+      "stage": "coPay",
+    },
+  ],
+  "monthsOfCoverAtTest": 42,
+  "paid": "₹2,12,000 (21200000 paise)",
+  "testedAt": "2024-10-01",
+  "trace": [
+    "1. exclusion no-op ₹4,00,000 -> ₹4,00,000 | Total knee replacement does not appear on any exclusion list in this policy.",
+    "2. waitingPeriod no-op ₹4,00,000 -> ₹4,00,000 | Every applicable waiting period had expired at 42 months of cover.",
+    "3. lineItemIneligible APPLIED ₹4,00,000 -> ₹3,95,000 | Non-payable heads removed line by line.",
+    "4. roomRentProportionate APPLIED ₹3,95,000 -> ₹2,97,666.67 | Associated heads reduced in proportion; pharmacy, consumables, implants and diagnostics exempt.",
+    "5. subLimit APPLIED ₹2,97,666.67 -> ₹2,65,000 | A per-procedure ceiling was reached.",
+    "6. deductible no-op ₹2,65,000 -> ₹2,65,000 | This policy carries no deductible.",
+    "7. coPay APPLIED ₹2,65,000 -> ₹2,12,000 | The co-pay share was taken from the admissible amount.",
+    "8. sumInsured no-op ₹2,12,000 -> ₹2,12,000 | The admissible amount was within the sum insured.",
+  ],
+}
+`;
+
+exports[`golden scenarios > 15 handles a bill of zero without inventing a deduction 1`] = `
+{
+  "block": null,
+  "claimed": "₹0 (0 paise)",
+  "contestability": {
+    "insurerMayContestNonDisclosure": true,
+    "monthsOfContinuousCover": 42,
+    "moratoriumComplete": false,
+  },
+  "deductions": [],
+  "monthsOfCoverAtTest": 42,
+  "paid": "₹0 (0 paise)",
+  "testedAt": "2024-10-01",
+  "trace": [
+    "1. exclusion no-op ₹0 -> ₹0 | Total knee replacement does not appear on any exclusion list in this policy.",
+    "2. waitingPeriod no-op ₹0 -> ₹0 | Every applicable waiting period had expired at 42 months of cover.",
+    "3. lineItemIneligible no-op ₹0 -> ₹0 | This bill contains nothing in a non-payable head.",
+    "4. roomRentProportionate no-op ₹0 -> ₹0 | The room occupied was within the eligible room rent, so nothing was reduced.",
+    "5. subLimit no-op ₹0 -> ₹0 | The admissible amount was within the per-procedure ceiling.",
+    "6. deductible no-op ₹0 -> ₹0 | This policy carries no deductible.",
+    "7. coPay no-op ₹0 -> ₹0 | Nothing remained for the co-pay to reach.",
+    "8. sumInsured no-op ₹0 -> ₹0 | The admissible amount was within the sum insured.",
+  ],
+}
+`;
+
+exports[`golden scenarios > 16 proves the order: the sub-limit is reached after the room proportion, not before 1`] = `
+{
+  "block": null,
+  "claimed": "₹4,00,000 (40000000 paise)",
+  "contestability": {
+    "insurerMayContestNonDisclosure": true,
+    "monthsOfContinuousCover": 42,
+    "moratoriumComplete": false,
+  },
+  "deductions": [
+    {
+      "amount": "₹5,000 (500000 paise)",
+      "basisKind": "lines",
+      "clause": "3.9 Non-payable items",
+      "humanReason": "Non-medical items are listed as non-payable at 3.9, so those lines are removed before any cap is applied.",
+      "ruleId": "vm.lineItem.ineligible",
+      "stage": "lineItemIneligible",
+    },
+    {
+      "amount": "₹97,333.33 (9733333 paise)",
+      "basisKind": "proportionate",
+      "clause": "4.2 Room rent limit and proportionate deduction",
+      "humanReason": "The room occupied cost ₹9,000 a day against an eligible ₹5,000 a day, so room rent, nursing charges, surgeon fee, anaesthetist fee and operation theatre are payable at 55.56% under 4.2. Pharmacy, consumables, implants and diagnostics are exempt and were not reduced.",
+      "ruleId": "vm.roomRent.proportionate",
+      "stage": "roomRentProportionate",
+    },
+    {
+      "amount": "₹32,666.67 (3266667 paise)",
+      "basisKind": "cap",
+      "clause": "4.6 Procedure sub-limit",
+      "humanReason": "Total knee replacement carries a ceiling of ₹2,65,000 at 4.6, and ₹2,97,666.67 was otherwise admissible.",
+      "ruleId": "vm.subLimit.procedure",
+      "stage": "subLimit",
+    },
+    {
+      "amount": "₹53,000 (5300000 paise)",
+      "basisKind": "percent",
+      "clause": "4.9 Co-payment",
+      "humanReason": "A 20% co-pay under 4.9 is applied last, to the ₹2,65,000 that remained admissible.",
+      "ruleId": "vm.coPay.percentage",
+      "stage": "coPay",
+    },
+  ],
+  "monthsOfCoverAtTest": 42,
+  "paid": "₹2,12,000 (21200000 paise)",
+  "testedAt": "2024-10-01",
+  "trace": [
+    "1. exclusion no-op ₹4,00,000 -> ₹4,00,000 | Total knee replacement does not appear on any exclusion list in this policy.",
+    "2. waitingPeriod no-op ₹4,00,000 -> ₹4,00,000 | Every applicable waiting period had expired at 42 months of cover.",
+    "3. lineItemIneligible APPLIED ₹4,00,000 -> ₹3,95,000 | Non-payable heads removed line by line.",
+    "4. roomRentProportionate APPLIED ₹3,95,000 -> ₹2,97,666.67 | Associated heads reduced in proportion; pharmacy, consumables, implants and diagnostics exempt.",
+    "5. subLimit APPLIED ₹2,97,666.67 -> ₹2,65,000 | A per-procedure ceiling was reached.",
+    "6. deductible no-op ₹2,65,000 -> ₹2,65,000 | This policy carries no deductible.",
+    "7. coPay APPLIED ₹2,65,000 -> ₹2,12,000 | The co-pay share was taken from the admissible amount.",
+    "8. sumInsured no-op ₹2,12,000 -> ₹2,12,000 | The admissible amount was within the sum insured.",
+  ],
+}
+`;
+
+exports[`golden scenarios > 17 runs every stage in one claim, in order 1`] = `
+{
+  "block": null,
+  "claimed": "₹12,00,000 (120000000 paise)",
+  "contestability": {
+    "insurerMayContestNonDisclosure": true,
+    "monthsOfContinuousCover": 42,
+    "moratoriumComplete": false,
+  },
+  "deductions": [
+    {
+      "amount": "₹15,000 (1500000 paise)",
+      "basisKind": "lines",
+      "clause": "3.9 Non-payable items",
+      "humanReason": "Non-medical items are listed as non-payable at 3.9, so those lines are removed before any cap is applied.",
+      "ruleId": "vm.lineItem.ineligible",
+      "stage": "lineItemIneligible",
+    },
+    {
+      "amount": "₹5,35,333.33 (53533333 paise)",
+      "basisKind": "proportionate",
+      "clause": "4.2 Room rent limit and proportionate deduction",
+      "humanReason": "The room occupied cost ₹27,000 a day against an eligible ₹5,000 a day, so room rent, nursing charges, surgeon fee, anaesthetist fee and operation theatre are payable at 18.52% under 4.2. Pharmacy, consumables, implants and diagnostics are exempt and were not reduced.",
+      "ruleId": "vm.roomRent.proportionate",
+      "stage": "roomRentProportionate",
+    },
+    {
+      "amount": "₹3,99,666.67 (39966667 paise)",
+      "basisKind": "cap",
+      "clause": "4.6 Procedure sub-limit",
+      "humanReason": "Total knee replacement carries a ceiling of ₹2,50,000 at 4.6, and ₹6,49,666.67 was otherwise admissible.",
+      "ruleId": "vm.subLimit.procedure",
+      "stage": "subLimit",
+    },
+    {
+      "amount": "₹10,000 (1000000 paise)",
+      "basisKind": "flat",
+      "clause": "4.8 Deductible",
+      "humanReason": "The first ₹10,000 of every claim is borne by the policyholder under 4.8.",
+      "ruleId": "vm.deductible.perClaim",
+      "stage": "deductible",
+    },
+    {
+      "amount": "₹24,000 (2400000 paise)",
+      "basisKind": "percent",
+      "clause": "4.9 Co-payment",
+      "humanReason": "A 10% co-pay under 4.9 is applied last, to the ₹2,40,000 that remained admissible.",
+      "ruleId": "vm.coPay.percentage",
+      "stage": "coPay",
+    },
+    {
+      "amount": "₹16,000 (1600000 paise)",
+      "basisKind": "cap",
+      "clause": "2.1 Sum insured",
+      "humanReason": "The sum insured of ₹2,00,000 at 2.1 is the ceiling for the period, and ₹2,16,000 was otherwise admissible.",
+      "ruleId": "vm.sumInsured.cap",
+      "stage": "sumInsured",
+    },
+  ],
+  "monthsOfCoverAtTest": 42,
+  "paid": "₹2,00,000 (20000000 paise)",
+  "testedAt": "2024-10-01",
+  "trace": [
+    "1. exclusion no-op ₹12,00,000 -> ₹12,00,000 | Total knee replacement does not appear on any exclusion list in this policy.",
+    "2. waitingPeriod no-op ₹12,00,000 -> ₹12,00,000 | Every applicable waiting period had expired at 42 months of cover.",
+    "3. lineItemIneligible APPLIED ₹12,00,000 -> ₹11,85,000 | Non-payable heads removed line by line.",
+    "4. roomRentProportionate APPLIED ₹11,85,000 -> ₹6,49,666.67 | Associated heads reduced in proportion; pharmacy, consumables, implants and diagnostics exempt.",
+    "5. subLimit APPLIED ₹6,49,666.67 -> ₹2,50,000 | A per-procedure ceiling was reached.",
+    "6. deductible APPLIED ₹2,50,000 -> ₹2,40,000 | The deductible was applied to the admissible amount.",
+    "7. coPay APPLIED ₹2,40,000 -> ₹2,16,000 | The co-pay share was taken from the admissible amount.",
+    "8. sumInsured APPLIED ₹2,16,000 -> ₹2,00,000 | The admissible amount exceeded the sum insured and was capped.",
+  ],
+}
+`;
+
+exports[`golden scenarios > 18 treats a head listed as both associated and exempt as exempt 1`] = `
+{
+  "block": null,
+  "claimed": "₹4,00,000 (40000000 paise)",
+  "contestability": {
+    "insurerMayContestNonDisclosure": true,
+    "monthsOfContinuousCover": 42,
+    "moratoriumComplete": false,
+  },
+  "deductions": [
+    {
+      "amount": "₹57,333.33 (5733333 paise)",
+      "basisKind": "proportionate",
+      "clause": "4.2 Room rent limit and proportionate deduction",
+      "humanReason": "The room occupied cost ₹9,000 a day against an eligible ₹5,000 a day, so room rent, nursing charges, surgeon fee, anaesthetist fee and operation theatre are payable at 55.56% under 4.2. Pharmacy, consumables, implants, diagnostics and surgeon fee are exempt and were not reduced.",
+      "ruleId": "vm.roomRent.proportionate",
+      "stage": "roomRentProportionate",
+    },
+  ],
+  "monthsOfCoverAtTest": 42,
+  "paid": "₹3,42,666.67 (34266667 paise)",
+  "testedAt": "2024-10-01",
+  "trace": [
+    "1. exclusion no-op ₹4,00,000 -> ₹4,00,000 | This policy declares no permanent exclusions.",
+    "2. waitingPeriod no-op ₹4,00,000 -> ₹4,00,000 | No waiting period in this policy applies to this claim.",
+    "3. lineItemIneligible no-op ₹4,00,000 -> ₹4,00,000 | This policy lists no non-payable heads.",
+    "4. roomRentProportionate APPLIED ₹4,00,000 -> ₹3,42,666.67 | Associated heads reduced in proportion; pharmacy, consumables, implants, diagnostics and surgeon fee exempt.",
+    "5. subLimit no-op ₹3,42,666.67 -> ₹3,42,666.67 | This policy sets no sub-limit for total knee replacement.",
+    "6. deductible no-op ₹3,42,666.67 -> ₹3,42,666.67 | This policy carries no deductible.",
+    "7. coPay no-op ₹3,42,666.67 -> ₹3,42,666.67 | This policy carries no co-pay.",
+    "8. sumInsured no-op ₹3,42,666.67 -> ₹3,42,666.67 | The admissible amount was within the sum insured.",
+  ],
+}
+`;
