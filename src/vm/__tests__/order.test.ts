@@ -11,6 +11,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { evaluate } from '../evaluate';
+import { ORDER_TABLE, OUT_OF_PIPELINE } from '../orderTable';
 import { STAGES } from '../types';
 import { CLAUSES, claim, policy } from './fixtures';
 
@@ -41,6 +42,17 @@ describe('evaluation order', () => {
 
     expect(rows.map((row) => row.order)).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
     expect(rows.map((row) => row.stage)).toEqual([...STAGES]);
+  });
+
+  it('matches the table the inspector renders, row for row', () => {
+    expect(ORDER_TABLE.map((row) => row.order)).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
+    expect(ORDER_TABLE.map((row) => row.stage)).toEqual([...STAGES]);
+    expect(ORDER_TABLE.filter((row) => row.shortCircuits).map((row) => row.stage)).toEqual([
+      'exclusion',
+      'waitingPeriod',
+    ]);
+    expect(ORDER_TABLE.map((row) => row.clauseKind)).not.toContain('Moratorium');
+    expect(OUT_OF_PIPELINE.clauseKind).toBe('Moratorium');
   });
 
   it('documents that the moratorium is not part of the pipeline', () => {

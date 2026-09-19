@@ -12,7 +12,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "policies:pdf": "node scripts/generate-pdfs.mjs",
-    "postinstall": "node scripts/copy-pdf-worker.mjs"
+    "postinstall": "node scripts/copy-pdf-worker.mjs",
+    "build:check": "node scripts/copy-pdf-worker.mjs && next build --distDir .next-check"
   },
   "dependencies": {
     "framer-motion": "^13.4.0",
