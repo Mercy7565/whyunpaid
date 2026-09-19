@@ -24,6 +24,22 @@ type Rect = { left: number; top: number; width: number; height: number };
 
 type Status = 'idle' | 'loading' | 'ready' | 'fallback';
 
+/**
+ * An ABSOLUTE url for the standard font data.
+ *
+ * pdf.js resolves this inside its worker, and a root-relative path does not
+ * reliably resolve against a worker's base url. On a local server the request
+ * happened to succeed; on the CDN it did not, and pdf.js WAITS on a font it
+ * cannot fetch rather than failing, so the render never settled. An absolute
+ * origin removes the ambiguity in every context.
+ */
+function standardFontDataUrl(): string {
+  return typeof window === 'undefined'
+    ? '/standard_fonts/'
+    : `${window.location.origin}/standard_fonts/`;
+}
+
+
 const spansCache = new Map<string, Promise<SpansFile>>();
 const textCache = new Map<string, Promise<string>>();
 
@@ -126,7 +142,7 @@ export function PolicyPdfViewer({
         const document_ = await pdfjs.getDocument({
           url: pdfUrl,
           /* The specimens use the standard PDF fonts, which are never embedded. */
-          standardFontDataUrl: '/standard_fonts/',
+          standardFontDataUrl: standardFontDataUrl(),
         }).promise;
         if (cancelled) return;
         setPageCount(document_.numPages);

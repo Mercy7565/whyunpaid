@@ -57,6 +57,21 @@ export function separateHeadings(text: string): string {
   return out.join('\n');
 }
 
+/**
+ * An ABSOLUTE url for the standard font data.
+ *
+ * pdf.js resolves this inside its worker, and a root-relative path does not
+ * reliably resolve against a worker's base url. On a local server the request
+ * happened to succeed; on the CDN it did not, and pdf.js WAITS on a font it
+ * cannot fetch rather than failing, so the render never settled. An absolute
+ * origin removes the ambiguity in every context.
+ */
+function standardFontDataUrl(): string {
+  return typeof window === 'undefined'
+    ? '/standard_fonts/'
+    : `${window.location.origin}/standard_fonts/`;
+}
+
 type TextItemLike = { str?: string; hasEOL?: boolean };
 
 /**
@@ -87,7 +102,7 @@ export async function extractPdfText(file: File): Promise<ExtractedDocument> {
   try {
     document_ = await pdfjs.getDocument({
       data: new Uint8Array(buffer),
-      standardFontDataUrl: '/standard_fonts/',
+      standardFontDataUrl: standardFontDataUrl(),
     }).promise;
   } catch {
     throw new PdfExtractionError(
