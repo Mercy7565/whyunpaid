@@ -123,7 +123,11 @@ export function PolicyPdfViewer({
         const pdfjs = await import('pdfjs-dist');
         pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 
-        const document_ = await pdfjs.getDocument({ url: pdfUrl }).promise;
+        const document_ = await pdfjs.getDocument({
+          url: pdfUrl,
+          /* The specimens use the standard PDF fonts, which are never embedded. */
+          standardFontDataUrl: '/standard_fonts/',
+        }).promise;
         if (cancelled) return;
         setPageCount(document_.numPages);
 
@@ -149,7 +153,17 @@ export function PolicyPdfViewer({
 
         const task = page.render({ canvas, canvasContext: context, viewport });
         renderTask = task;
-        await task.promise;
+        /*
+         * A missing font file makes pdf.js wait rather than reject, so the
+         * render is raced against a deadline. Falling back to the text view is
+         * always better than a skeleton that never resolves.
+         */
+        await Promise.race([
+          task.promise,
+          new Promise((_, reject) =>
+            window.setTimeout(() => reject(new Error('render timed out')), 8_000),
+          ),
+        ]);
         if (cancelled) return;
 
         setRects(

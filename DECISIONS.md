@@ -91,3 +91,11 @@ Every non-obvious call made while building WhyUnpaid?, with the reason. Appended
 - **Four files carry literal hex values, and only these four** — `global-error.tsx` renders when the stylesheet may not have loaded, `layout.tsx` and `manifest.ts` set browser chrome metadata, and `opengraph-image.tsx` is rendered by Satori, which has no cascade. Everything else resolves to a custom property.
 - **The specimen PDFs were regenerated with the new ink** — they are typeset in `--ground` on unpainted paper, so the brand change had to reach the documents too.
 - **"How it works" sits below the waterfall, not above it** — the waterfall is the argument, and an explanation that arrives before the thing it explains is a wall between a visitor and the product.
+
+## Deployment and the production sweep
+
+- **Deployed with the Vercel CLI, which was already authenticated on this machine** — the alternative was streaming a megabyte of base64 through the MCP file-upload API, which would have cost enormous context for no benefit. No credential passed through the session.
+- **pdf.js needs `standardFontDataUrl`, and the first production deploy proved it** — the specimen PDFs are typeset in the standard PDF fonts, which by definition are never embedded in the file, so pdf.js has to fetch its own copies. Without them it 404s and then *waits* rather than rejecting, so the inspector sat on a skeleton forever. The copy script now ships `standard_fonts/` alongside the worker.
+- **The PDF render is raced against an eight-second deadline** — a missing asset made pdf.js hang rather than fail, and a component that can hang forever has no error state in practice. Losing the render and falling back to the text view is always better than a skeleton that never resolves.
+- **Satori has no rupee glyph and mismeasures wrapped text** — the share card rendered `₹` as a tofu box and drew the headline over the band list. It now says "Rs." the way the specimen wordings do, and every line is its own element so nothing wraps.
+- **`.vercelignore` excludes the test suite from the deployment** — the deployed build does not run it, and the one artefact the application needs from it, `src/generated/vm-summary.json`, is checked in.

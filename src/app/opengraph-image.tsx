@@ -66,7 +66,7 @@ export default function OpengraphImage() {
         </div>
 
         {/* The waterfall */}
-        <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', width: '100%', marginTop: 18 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
             <div style={{ display: 'flex', fontSize: 15, color: LINE, letterSpacing: 2.4 }}>
               HOSPITAL BILL

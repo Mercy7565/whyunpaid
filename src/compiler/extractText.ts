@@ -85,7 +85,10 @@ export async function extractPdfText(file: File): Promise<ExtractedDocument> {
 
   let document_: Awaited<ReturnType<typeof pdfjs.getDocument>['promise']>;
   try {
-    document_ = await pdfjs.getDocument({ data: new Uint8Array(buffer) }).promise;
+    document_ = await pdfjs.getDocument({
+      data: new Uint8Array(buffer),
+      standardFontDataUrl: '/standard_fonts/',
+    }).promise;
   } catch {
     throw new PdfExtractionError(
       'That file is not a PDF this reader can open. If it is a scan, it has no text layer to read.',
