@@ -1,0 +1,36 @@
+{
+  "name": "whyunpaid",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Compile an Indian health insurance policy into an executable clause tree, then run a hospitalisation through it.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "node scripts/copy-pdf-worker.mjs && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "policies:pdf": "node scripts/generate-pdfs.mjs",
+    "postinstall": "node scripts/copy-pdf-worker.mjs"
+  },
+  "dependencies": {
+    "framer-motion": "^13.4.0",
+    "next": "^15.5.25",
+    "pdfjs-dist": "^6.3.289",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.6.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "fast-check": "^4.10.1",
+    "pdf-lib": "^1.17.1",
+    "tailwindcss": "^4.3.3",
+    "typescript": "5.9",
+    "vitest": "^3.2.7"
+  }
+}
