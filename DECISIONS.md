@@ -64,3 +64,15 @@ Every non-obvious call made while building WhyUnpaid?, with the reason. Appended
 - **On paper a sentence is a sentence** — the dotted underline that makes each sentence hoverable, and the superscript clause markers, are screen furniture. Print strips both; the clause is already named in the prose.
 - **The URL carries only what differs from the default scenario** — a link to the opening scenario is just `/`, and a link to a specific one is short enough to paste into a message.
 - **`Cmd+K` is a hand-built dialog, not a library** — twelve scenarios, filter, arrow keys, Home and End, Enter to run, Escape to close, focus returned to whatever opened it, and Tab trapped because there is nothing else inside to reach.
+
+## Phase 9 — Path B
+
+- **Path B does not need an API key at all** — the brief allows it to, and it does not. A regular-expression clause reader runs in the browser and reads all four specimen wordings back correctly, so the interesting feature does not quietly become a network call the first time someone tries it. A model is an upgrade that proposes better candidates, never a dependency.
+- **The PDF is read in the browser with pdf.js, which was already a dependency** — there is no upload endpoint, so there is nothing to secure, rate-limit or apologise for. The document leaves the machine only if the reader explicitly asks for the model pass.
+- **Almost every heuristic draft is marked low confidence on purpose** — a regular expression reading an insurance contract should not be trusted. The confirmation table exists so that a person has to look, and `compileDraft` refuses a low-confidence row nobody has touched.
+- **A clause whose quotation cannot be found in the document does not compile** — not "compiles with a warning". The product is the claim that every rupee traces to wording; that claim cannot survive a citation to wording that is not there.
+- **Quotations are located whitespace-insensitively as a fallback** — a PDF text layer breaks lines wherever the typesetter did, and a person retyping a quotation will not. The interface says which of the two matched.
+- **There is no "confirm all" button** — eleven clicks for eleven clauses is tedious, and that is the point. Bulk confirmation would turn the audit step into a formality.
+- **The demo is re-reading one of our own specimen PDFs** — Path A wrote that wording and typeset it; Path B has to read it back out of the PDF knowing nothing about how it was made. It reproduces the same answer to the rupee: four lakh becomes two lakh fifty thousand on Specimen B by both routes.
+- **`/compile` is not in the primary navigation** — the brief specifies three screens. It is linked from the simulator and the inspector so it is discoverable without competing with them.
+- **`next build` honours `NEXT_DIST_DIR`** — building into `.next` while `next dev` is watching it corrupts the dev server's chunk manifest, which cost real time to diagnose once.

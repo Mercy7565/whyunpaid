@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useCallback, useMemo, useState } from 'react';
 import { Segmented } from '@/components/controls/Segmented';
@@ -80,8 +81,20 @@ export function VmScreen() {
           }))}
         />
       </div>
-      <p className="mb-4 text-[13px] leading-[1.6] ink-muted measure">
+      <p className="mb-2 text-[13px] leading-[1.6] ink-muted measure">
         <span className="ink-body">{policy.name}.</span> {policy.shape}
+      </p>
+      <p className="mb-4 text-[13px]">
+        <Link
+          href="/compile"
+          className="underline underline-offset-4"
+          style={{ color: 'var(--paid-full)' }}
+        >
+          Compile a policy of your own
+        </Link>
+        <span className="ml-1 ink-muted">
+          &mdash; read in your browser, confirmed clause by clause, no key required.
+        </span>
       </p>
 
       <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:gap-4 lg:gap-6">

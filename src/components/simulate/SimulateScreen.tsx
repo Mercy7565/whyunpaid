@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { CommandPalette } from '@/components/CommandPalette';
@@ -237,13 +238,22 @@ export function SimulateScreen() {
             hint="Brings the pre-existing disease waiting period into play."
           />
 
-          <button
-            type="button"
-            onClick={() => apply(DEFAULT_SCENARIO)}
-            className="self-start text-[13px] underline underline-offset-4 ink-muted transition-colors hover:ink-body"
-          >
-            Reset to the opening scenario
-          </button>
+          <div className="flex flex-col items-start gap-1">
+            <button
+              type="button"
+              onClick={() => apply(DEFAULT_SCENARIO)}
+              className="text-[13px] underline underline-offset-4 ink-muted transition-colors hover:ink-body"
+            >
+              Reset to the opening scenario
+            </button>
+            <Link
+              href="/compile"
+              className="text-[13px] underline underline-offset-4"
+              style={{ color: 'var(--paid-full)' }}
+            >
+              Or compile a policy you actually hold
+            </Link>
+          </div>
         </aside>
 
         {/* The verdict */}

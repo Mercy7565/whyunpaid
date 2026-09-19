@@ -13,7 +13,7 @@
     "test:watch": "vitest",
     "policies:pdf": "node scripts/generate-pdfs.mjs",
     "postinstall": "node scripts/copy-pdf-worker.mjs",
-    "build:check": "node scripts/copy-pdf-worker.mjs && next build --distDir .next-check"
+    "build:check": "node scripts/copy-pdf-worker.mjs && node -e \"process.env.NEXT_DIST_DIR='.next-check';require('child_process').execSync('npx next build',{stdio:'inherit',env:process.env})\""
   },
   "dependencies": {
     "framer-motion": "^13.4.0",
