@@ -97,9 +97,9 @@ export function AppealScreen() {
         </p>
       </header>
 
-      <div className="grid gap-4 lg:grid-cols-[360px_minmax(0,1fr)] lg:gap-6">
+      <div className="grid gap-4 md:grid-cols-[318px_minmax(0,1fr)] md:gap-4 lg:grid-cols-[360px_minmax(0,1fr)] lg:gap-6">
         {/* Input */}
-        <aside className="flex flex-col gap-3" data-print="hide">
+        <aside className="flex flex-col gap-3 md:sticky md:top-[64px] md:self-start md:max-h-[calc(100vh-80px)] md:overflow-y-auto md:pr-1" data-print="hide">
           <LetterInput
             value={letterText}
             onChange={(value) => {

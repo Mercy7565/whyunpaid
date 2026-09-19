@@ -84,10 +84,10 @@ export function VmScreen() {
         <span className="ink-body">{policy.name}.</span> {policy.shape}
       </p>
 
-      <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-6">
+      <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:gap-4 lg:gap-6">
         <ClauseTree policy={policy} selectedId={selected?.id ?? null} onSelect={pick} />
 
-        <div className="lg:sticky lg:top-[64px] lg:self-start">
+        <div className="md:sticky md:top-[64px] md:self-start">
           {selected ? (
             <PolicyPdfViewer
               key={`${policy.slug}-${selected.id}`}

@@ -205,6 +205,63 @@
 
   a { text-decoration: none; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; }
+
+  /*
+   * A hidden grid item still reserves its track, so a two-column screen layout
+   * would print the letter offset by the width of a column that is not there.
+   * On paper everything is one column.
+   */
+  main .grid {
+    display: block !important;
+  }
+
+  /* The appeal, as a sheet you could put in an envelope. */
+  [data-print="sheet"] {
+    border: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: none !important;
+  }
+
+  [data-print="sheet"] section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin: 0 0 11pt 0 !important;
+  }
+
+  [data-print="sheet"] p {
+    max-width: none !important;
+    font-size: 11.5pt;
+    line-height: 1.55;
+    orphans: 2;
+    widows: 2;
+  }
+
+  /* On screen a sentence is a control. On paper it is a sentence. */
+  [data-print="sheet"] [role="button"] {
+    text-decoration: none !important;
+    color: var(--ground) !important;
+    cursor: auto;
+  }
+
+  /* The clause is already named in the prose; the marker is screen furniture. */
+  [data-print="sheet"] sup {
+    display: none !important;
+  }
+
+  mark {
+    background: none !important;
+    color: var(--ground) !important;
+    font-weight: 600;
+  }
+
+  blockquote {
+    border-left: 1pt solid var(--ground) !important;
+  }
+
+  input, select, textarea, canvas {
+    display: none !important;
+  }
 }
 
 /* --------------------------------------------------------------------------

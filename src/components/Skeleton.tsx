@@ -33,7 +33,7 @@ export function SimulateSkeleton() {
         <SkeletonBar width="min(420px, 80%)" height={38} />
         <SkeletonBar width="min(520px, 92%)" height={12} />
       </div>
-      <div className="grid gap-4 lg:grid-cols-[336px_minmax(0,1fr)] lg:gap-6">
+      <div className="grid gap-4 md:grid-cols-[298px_minmax(0,1fr)] lg:grid-cols-[336px_minmax(0,1fr)] lg:gap-6">
         <div className="flex flex-col gap-3">
           <SkeletonBar height={34} />
           <SkeletonBar height={12} width="80%" />

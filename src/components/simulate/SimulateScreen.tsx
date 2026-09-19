@@ -126,7 +126,7 @@ export function SimulateScreen() {
       : `${years > 0 ? `${years} ${years === 1 ? 'year' : 'years'}` : ''}${years > 0 && monthsPart > 0 ? ' ' : ''}${monthsPart > 0 ? `${monthsPart} ${monthsPart === 1 ? 'month' : 'months'}` : ''} into the cover`;
 
   return (
-    <div className="mx-auto w-full max-w-[1280px] px-2 pb-[104px] pt-3 sm:px-4 lg:pb-6">
+    <div className="mx-auto w-full max-w-[1280px] px-2 pb-[104px] pt-3 sm:px-4 md:pb-6">
       <header className="mb-3 flex flex-col gap-2 sm:mb-5">
         <div className="flex flex-wrap items-start justify-between gap-2">
           <div>
@@ -163,9 +163,9 @@ export function SimulateScreen() {
         </div>
       </header>
 
-      <div className="grid gap-4 lg:grid-cols-[336px_minmax(0,1fr)] lg:gap-6">
+      <div className="grid gap-4 md:grid-cols-[298px_minmax(0,1fr)] md:gap-4 lg:grid-cols-[336px_minmax(0,1fr)] lg:gap-6">
         {/* Controls */}
-        <aside className="flex flex-col gap-3 lg:sticky lg:top-[64px] lg:self-start">
+        <aside className="flex flex-col gap-3 md:sticky md:top-[64px] md:self-start">
           <Segmented
             legend="Specimen policy"
             value={scenario.policyId}

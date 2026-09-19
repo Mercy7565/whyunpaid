@@ -56,3 +56,11 @@ Every non-obvious call made while building WhyUnpaid?, with the reason. Appended
 - **`/vm` imports the test summary at build time rather than fetching it** — the page claims the engineering is real, so the numbers must be true of the deployment and not only of a laptop. A custom Vitest reporter writes the file on every run and it is checked in.
 - **The engine is called PolicyVM on `/vm` and in the README, and nowhere else** — a person checking why their claim was cut does not need to learn the name of the evaluator.
 - **`build:check` writes to a separate directory** — running `next build` against `.next` while the dev server is watching it corrupts the dev server's chunk manifest. The default `build` still writes `.next`, which is what Vercel wants.
+
+## Phases 7 and 8 — design, print and shared state
+
+- **The two-column layout moves to the 768px breakpoint rather than 1024px** — at 768 a single column left the controls stretched across the full width with the waterfall pushed below the fold. A 298px control column and a sticky rail use the tablet width properly.
+- **In print, `main .grid` is forced to `display: block`** — a hidden grid item still reserves its track, so the two-column screen layout was printing the appeal offset by the width of a column that was not there. This was a real bug, found only by reasoning about what `display: none` does to a grid child.
+- **On paper a sentence is a sentence** — the dotted underline that makes each sentence hoverable, and the superscript clause markers, are screen furniture. Print strips both; the clause is already named in the prose.
+- **The URL carries only what differs from the default scenario** — a link to the opening scenario is just `/`, and a link to a specific one is short enough to paste into a message.
+- **`Cmd+K` is a hand-built dialog, not a library** — twelve scenarios, filter, arrow keys, Home and End, Enter to run, Escape to close, focus returned to whatever opened it, and Tab trapped because there is nothing else inside to reach.

@@ -16,7 +16,7 @@ function AppealSkeleton() {
         <SkeletonBar width={70} height={10} />
         <SkeletonBar width="min(420px, 80%)" height={38} />
       </div>
-      <div className="grid gap-4 lg:grid-cols-[360px_minmax(0,1fr)] lg:gap-6">
+      <div className="grid gap-4 md:grid-cols-[318px_minmax(0,1fr)] lg:grid-cols-[360px_minmax(0,1fr)] lg:gap-6">
         <div className="flex flex-col gap-2">
           <SkeletonBar height={150} />
           <SkeletonBar height={44} />

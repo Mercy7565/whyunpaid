@@ -16,7 +16,7 @@ function VmSkeleton() {
         <SkeletonBar width={140} height={10} />
         <SkeletonBar width="min(420px, 80%)" height={38} />
       </div>
-      <div className="grid gap-4 lg:grid-cols-2 lg:gap-6">
+      <div className="grid gap-4 md:grid-cols-2 lg:gap-6">
         <div className="flex flex-col gap-1">
           <SkeletonBar height={70} />
           <SkeletonBar height={70} />

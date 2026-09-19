@@ -9,7 +9,7 @@
     "passed": 106,
     "failed": 0,
     "skipped": 0,
-    "durationMs": 5157
+    "durationMs": 5063
   },
   "files": [
     {
@@ -19,7 +19,7 @@
       "passed": 13,
       "failed": 0,
       "skipped": 0,
-      "durationMs": 44,
+      "durationMs": 30,
       "cases": [
         {
           "name": "classifies every sample letter as the ground it was written to express",
@@ -54,12 +54,12 @@
         {
           "name": "reaches the moratorium when a disclosure letter arrives past month sixty",
           "state": "passed",
-          "durationMs": 11
+          "durationMs": 10
         },
         {
           "name": "does not reach the moratorium when it has not run",
           "state": "passed",
-          "durationMs": 2
+          "durationMs": 1
         },
         {
           "name": "contradicts a waiting-period letter when the period had expired",
@@ -69,22 +69,22 @@
         {
           "name": "agrees with the letter, and says so, when the wording supports it",
           "state": "passed",
-          "durationMs": 2
+          "durationMs": 1
         },
         {
           "name": "names the exempt heads when a proportion was taken across the whole bill",
           "state": "passed",
-          "durationMs": 5
+          "durationMs": 2
         },
         {
           "name": "says a document closure is not a decision on the merits",
           "state": "passed",
-          "durationMs": 7
+          "durationMs": 2
         },
         {
           "name": "says plainly when it could not read a ground at all",
           "state": "passed",
-          "durationMs": 4
+          "durationMs": 1
         }
       ]
     },
@@ -95,62 +95,62 @@
       "passed": 12,
       "failed": 0,
       "skipped": 0,
-      "durationMs": 3596,
+      "durationMs": 3667,
       "cases": [
         {
           "name": "covers a wide enough matrix to be worth trusting",
           "state": "passed",
-          "durationMs": 3
+          "durationMs": 2
         },
         {
           "name": "gives every generated sentence a rule id or a quotation",
           "state": "passed",
-          "durationMs": 286
+          "durationMs": 291
         },
         {
           "name": "never attributes a sentence to a rule that is not in the registry",
           "state": "passed",
-          "durationMs": 171
+          "durationMs": 165
         },
         {
           "name": "writes every sentence in both languages, with neither left empty",
           "state": "passed",
-          "durationMs": 739
+          "durationMs": 746
         },
         {
           "name": "never leaves a template placeholder in the output",
           "state": "passed",
-          "durationMs": 1389
+          "durationMs": 1301
         },
         {
           "name": "keeps to the copy rules on every sentence it can produce",
           "state": "passed",
-          "durationMs": 828
+          "durationMs": 977
         },
         {
           "name": "always states how the figures were produced, and always in the last section",
           "state": "passed",
-          "durationMs": 41
+          "durationMs": 49
         },
         {
           "name": "always sets out the moratorium boundary, whichever ground was stated",
           "state": "passed",
-          "durationMs": 39
+          "durationMs": 40
         },
         {
           "name": "renders to plain text in both languages without losing a sentence",
           "state": "passed",
-          "durationMs": 27
+          "durationMs": 22
         },
         {
           "name": "never cites a clause that is not in the policy it was generated against",
           "state": "passed",
-          "durationMs": 35
+          "durationMs": 34
         },
         {
           "name": "never quotes wording that is not in the policy it was generated against",
           "state": "passed",
-          "durationMs": 34
+          "durationMs": 36
         },
         {
           "name": "sources every sentence of every appeal built from a sample letter",
@@ -166,127 +166,97 @@
       "passed": 29,
       "failed": 0,
       "skipped": 0,
-      "durationMs": 511,
+      "durationMs": 447,
       "cases": [
         {
           "name": "ships exactly four, all marked synthetic, none naming an insurer",
           "state": "passed",
-          "durationMs": 6
+          "durationMs": 4
         },
         {
           "name": "parses every one of them through the boundary schema",
           "state": "passed",
+          "durationMs": 5
+        },
+        {
+          "name": "gives every clause a quotable source",
+          "state": "passed",
+          "durationMs": 1
+        },
+        {
+          "name": "keeps every quote inside the twenty-five word limit",
+          "state": "passed",
+          "durationMs": 1
+        },
+        {
+          "name": "points every character range at the words it claims to quote",
+          "state": "passed",
+          "durationMs": 1
+        },
+        {
+          "name": "has a typeset box for every quoted range, so the inspector can highlight it",
+          "state": "passed",
+          "durationMs": 10
+        },
+        {
+          "name": "exempts pharmacy, consumables, implants and diagnostics wherever it caps room rent",
+          "state": "passed",
+          "durationMs": 1
+        },
+        {
+          "name": "produces a balanced verdict across every procedure, bill and length of cover",
+          "state": "passed",
+          "durationMs": 175
+        },
+        {
+          "name": "gives every clause a quotable source",
+          "state": "passed",
+          "durationMs": 1
+        },
+        {
+          "name": "keeps every quote inside the twenty-five word limit",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "points every character range at the words it claims to quote",
+          "state": "passed",
+          "durationMs": 1
+        },
+        {
+          "name": "has a typeset box for every quoted range, so the inspector can highlight it",
+          "state": "passed",
+          "durationMs": 11
+        },
+        {
+          "name": "exempts pharmacy, consumables, implants and diagnostics wherever it caps room rent",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "produces a balanced verdict across every procedure, bill and length of cover",
+          "state": "passed",
+          "durationMs": 79
+        },
+        {
+          "name": "gives every clause a quotable source",
+          "state": "passed",
+          "durationMs": 2
+        },
+        {
+          "name": "keeps every quote inside the twenty-five word limit",
+          "state": "passed",
+          "durationMs": 1
+        },
+        {
+          "name": "points every character range at the words it claims to quote",
+          "state": "passed",
+          "durationMs": 1
+        },
+        {
+          "name": "has a typeset box for every quoted range, so the inspector can highlight it",
+          "state": "passed",
           "durationMs": 7
-        },
-        {
-          "name": "gives every clause a quotable source",
-          "state": "passed",
-          "durationMs": 2
-        },
-        {
-          "name": "keeps every quote inside the twenty-five word limit",
-          "state": "passed",
-          "durationMs": 1
-        },
-        {
-          "name": "points every character range at the words it claims to quote",
-          "state": "passed",
-          "durationMs": 2
-        },
-        {
-          "name": "has a typeset box for every quoted range, so the inspector can highlight it",
-          "state": "passed",
-          "durationMs": 19
-        },
-        {
-          "name": "exempts pharmacy, consumables, implants and diagnostics wherever it caps room rent",
-          "state": "passed",
-          "durationMs": 2
-        },
-        {
-          "name": "produces a balanced verdict across every procedure, bill and length of cover",
-          "state": "passed",
-          "durationMs": 163
-        },
-        {
-          "name": "gives every clause a quotable source",
-          "state": "passed",
-          "durationMs": 5
-        },
-        {
-          "name": "keeps every quote inside the twenty-five word limit",
-          "state": "passed",
-          "durationMs": 4
-        },
-        {
-          "name": "points every character range at the words it claims to quote",
-          "state": "passed",
-          "durationMs": 2
-        },
-        {
-          "name": "has a typeset box for every quoted range, so the inspector can highlight it",
-          "state": "passed",
-          "durationMs": 13
-        },
-        {
-          "name": "exempts pharmacy, consumables, implants and diagnostics wherever it caps room rent",
-          "state": "passed",
-          "durationMs": 1
-        },
-        {
-          "name": "produces a balanced verdict across every procedure, bill and length of cover",
-          "state": "passed",
-          "durationMs": 143
-        },
-        {
-          "name": "gives every clause a quotable source",
-          "state": "passed",
-          "durationMs": 1
-        },
-        {
-          "name": "keeps every quote inside the twenty-five word limit",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "points every character range at the words it claims to quote",
-          "state": "passed",
-          "durationMs": 1
-        },
-        {
-          "name": "has a typeset box for every quoted range, so the inspector can highlight it",
-          "state": "passed",
-          "durationMs": 8
-        },
-        {
-          "name": "exempts pharmacy, consumables, implants and diagnostics wherever it caps room rent",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "produces a balanced verdict across every procedure, bill and length of cover",
-          "state": "passed",
-          "durationMs": 64
-        },
-        {
-          "name": "gives every clause a quotable source",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "keeps every quote inside the twenty-five word limit",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "points every character range at the words it claims to quote",
-          "state": "passed",
-          "durationMs": 0
-        },
-        {
-          "name": "has a typeset box for every quoted range, so the inspector can highlight it",
-          "state": "passed",
-          "durationMs": 5
         },
         {
           "name": "exempts pharmacy, consumables, implants and diagnostics wherever it caps room rent",
@@ -297,6 +267,36 @@
           "name": "produces a balanced verdict across every procedure, bill and length of cover",
           "state": "passed",
           "durationMs": 59
+        },
+        {
+          "name": "gives every clause a quotable source",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "keeps every quote inside the twenty-five word limit",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "points every character range at the words it claims to quote",
+          "state": "passed",
+          "durationMs": 1
+        },
+        {
+          "name": "has a typeset box for every quoted range, so the inspector can highlight it",
+          "state": "passed",
+          "durationMs": 5
+        },
+        {
+          "name": "exempts pharmacy, consumables, implants and diagnostics wherever it caps room rent",
+          "state": "passed",
+          "durationMs": 0
+        },
+        {
+          "name": "produces a balanced verdict across every procedure, bill and length of cover",
+          "state": "passed",
+          "durationMs": 79
         },
         {
           "name": "splits every bill profile into shares that total the whole bill",
@@ -311,7 +311,7 @@
         {
           "name": "flips contestability, and only contestability, past the sixtieth month",
           "state": "passed",
-          "durationMs": 1
+          "durationMs": 0
         }
       ]
     },
@@ -322,22 +322,22 @@
       "passed": 18,
       "failed": 0,
       "skipped": 0,
-      "durationMs": 68,
+      "durationMs": 33,
       "cases": [
         {
           "name": "01 pays a clean claim in full when no clause bites",
           "state": "passed",
-          "durationMs": 22
+          "durationMs": 9
         },
         {
           "name": "02 refuses the whole claim for a permanent exclusion",
           "state": "passed",
-          "durationMs": 3
+          "durationMs": 2
         },
         {
           "name": "03 refuses the whole claim inside the initial waiting period",
           "state": "passed",
-          "durationMs": 2
+          "durationMs": 1
         },
         {
           "name": "04 refuses the whole claim inside a named-condition waiting period",
@@ -357,12 +357,12 @@
         {
           "name": "07 removes non-payable line items and nothing else",
           "state": "passed",
-          "durationMs": 2
+          "durationMs": 1
         },
         {
           "name": "08 reduces associated heads in proportion and leaves exempt heads untouched",
           "state": "passed",
-          "durationMs": 5
+          "durationMs": 4
         },
         {
           "name": "09 takes nothing when the room occupied is within the eligible room rent",
@@ -372,7 +372,7 @@
         {
           "name": "10 applies a per-procedure sub-limit to what survives the earlier stages",
           "state": "passed",
-          "durationMs": 2
+          "durationMs": 1
         },
         {
           "name": "11 applies a deductible to the admissible amount",
@@ -392,27 +392,27 @@
         {
           "name": "14 the headline: four lakh becomes two lakh twelve thousand across four clauses",
           "state": "passed",
-          "durationMs": 4
+          "durationMs": 3
         },
         {
           "name": "15 handles a bill of zero without inventing a deduction",
           "state": "passed",
-          "durationMs": 2
+          "durationMs": 1
         },
         {
           "name": "16 proves the order: the sub-limit is reached after the room proportion, not before",
           "state": "passed",
-          "durationMs": 6
+          "durationMs": 1
         },
         {
           "name": "17 runs every stage in one claim, in order",
           "state": "passed",
-          "durationMs": 2
+          "durationMs": 1
         },
         {
           "name": "18 treats a head listed as both associated and exempt as exempt",
           "state": "passed",
-          "durationMs": 11
+          "durationMs": 2
         }
       ]
     },
@@ -423,12 +423,12 @@
       "passed": 6,
       "failed": 0,
       "skipped": 0,
-      "durationMs": 18,
+      "durationMs": 12,
       "cases": [
         {
           "name": "changes contestability once sixty months of continuous cover are complete",
           "state": "passed",
-          "durationMs": 6
+          "durationMs": 4
         },
         {
           "name": "changes nothing whatsoever in the waterfall",
@@ -438,7 +438,7 @@
         {
           "name": "never appears as a stage of the pipeline",
           "state": "passed",
-          "durationMs": 7
+          "durationMs": 4
         },
         {
           "name": "does not override an unexpired waiting period even once complete",
@@ -448,7 +448,7 @@
         {
           "name": "does not override a permanent exclusion even once complete",
           "state": "passed",
-          "durationMs": 1
+          "durationMs": 0
         },
         {
           "name": "does not lift the co-pay or the sub-limit once complete",
@@ -464,7 +464,7 @@
       "passed": 7,
       "failed": 0,
       "skipped": 0,
-      "durationMs": 15,
+      "durationMs": 14,
       "cases": [
         {
           "name": "is exactly the eight documented stages in the documented sequence",
@@ -489,7 +489,7 @@
         {
           "name": "emits a trace step for all eight stages, in order, on every verdict",
           "state": "passed",
-          "durationMs": 5
+          "durationMs": 4
         },
         {
           "name": "marks the stages a blocked claim never reached",
@@ -510,47 +510,47 @@
       "passed": 13,
       "failed": 0,
       "skipped": 0,
-      "durationMs": 120,
+      "durationMs": 109,
       "cases": [
         {
           "name": "rounds half up, and only half up",
           "state": "passed",
-          "durationMs": 2
+          "durationMs": 3
         },
         {
           "name": "never loses or invents a paise across a proportionate split",
           "state": "passed",
-          "durationMs": 71
+          "durationMs": 69
         },
         {
           "name": "refuses negative money loudly rather than quietly",
           "state": "passed",
-          "durationMs": 2
+          "durationMs": 3
         },
         {
           "name": "takes a percentage share the way a policy schedule reads it",
           "state": "passed",
-          "durationMs": 1
+          "durationMs": 2
         },
         {
           "name": "groups rupees the Indian way",
           "state": "passed",
-          "durationMs": 2
+          "durationMs": 3
         },
         {
           "name": "prints basis points as a schedule would",
           "state": "passed",
-          "durationMs": 2
+          "durationMs": 3
         },
         {
           "name": "round-trips every day number it produces",
           "state": "passed",
-          "durationMs": 33
+          "durationMs": 22
         },
         {
           "name": "counts whole months the way a waiting period is read",
           "state": "passed",
-          "durationMs": 1
+          "durationMs": 0
         },
         {
           "name": "clamps the day when a month is shorter than the one it started in",
@@ -565,12 +565,12 @@
         {
           "name": "handles the leap day and the century rule",
           "state": "passed",
-          "durationMs": 1
+          "durationMs": 0
         },
         {
           "name": "rejects anything that is not a calendar date",
           "state": "passed",
-          "durationMs": 3
+          "durationMs": 2
         },
         {
           "name": "picks the earlier of two dates",
@@ -586,47 +586,47 @@
       "passed": 8,
       "failed": 0,
       "skipped": 0,
-      "durationMs": 785,
+      "durationMs": 751,
       "cases": [
         {
           "name": "I1 never pays more than was claimed",
           "state": "passed",
-          "durationMs": 118
+          "durationMs": 100
         },
         {
           "name": "I2 paid plus every deduction equals claimed, exactly",
           "state": "passed",
-          "durationMs": 66
+          "durationMs": 52
         },
         {
           "name": "I3 never pays more than the sum insured",
           "state": "passed",
-          "durationMs": 56
+          "durationMs": 49
         },
         {
           "name": "I4 never pays less as months of cover increase",
           "state": "passed",
-          "durationMs": 80
+          "durationMs": 70
         },
         {
           "name": "I5 is idempotent: the same inputs always give the same verdict",
           "state": "passed",
-          "durationMs": 115
+          "durationMs": 137
         },
         {
           "name": "I6 is order-independent: shuffling clauses and bill lines changes nothing",
           "state": "passed",
-          "durationMs": 157
+          "durationMs": 155
         },
         {
           "name": "I7 is key-order-independent: rebuilding the inputs with reversed keys changes nothing",
           "state": "passed",
-          "durationMs": 135
+          "durationMs": 121
         },
         {
           "name": "I8 attributes every deduction to a clause that exists in the policy",
           "state": "passed",
-          "durationMs": 58
+          "durationMs": 67
         }
       ]
     }

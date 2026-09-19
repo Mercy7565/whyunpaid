@@ -27,7 +27,7 @@ export function MobileSummaryBar({
 
   return (
     <div
-      className="fixed inset-x-0 bottom-0 z-30 lg:hidden"
+      className="fixed inset-x-0 bottom-0 z-30 md:hidden"
       style={{ background: 'var(--ground)' }}
       data-print="hide"
     >
