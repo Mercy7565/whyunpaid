@@ -135,11 +135,11 @@ export function AppealLetter({ appeal }: { appeal: Appeal }) {
                       textUnderlineOffset: '4px',
                       textDecorationColor:
                         activeId === sentence.id
-                          ? 'var(--paid-full)'
+                          ? 'var(--accent)'
                           : 'color-mix(in srgb, var(--line) 80%, transparent)',
                       color:
                         activeId === sentence.id
-                          ? 'color-mix(in srgb, var(--paid-full) 98%, transparent)'
+                          ? 'color-mix(in srgb, var(--sand) 100%, transparent)'
                           : 'inherit',
                     }}
                   >

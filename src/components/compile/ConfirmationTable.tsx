@@ -40,7 +40,7 @@ function Field({
 
 const inputClass =
   'w-full hair bg-transparent px-1 py-[5px] text-[13px] ink-strong';
-const inputStyle = { background: 'color-mix(in srgb, var(--surface) 34%, transparent)' };
+const inputStyle = { background: 'color-mix(in srgb, var(--surface) 90%, transparent)' };
 
 function ChipToggles<T extends string>({
   values,
@@ -67,8 +67,8 @@ function ChipToggles<T extends string>({
               className="cursor-pointer px-[6px] py-[2px] text-[12px]"
               style={{
                 border: 'var(--hair) solid color-mix(in srgb, var(--line) 70%, transparent)',
-                background: on ? 'var(--paid-full)' : 'transparent',
-                color: on ? 'var(--on-accent)' : 'color-mix(in srgb, var(--paid-full) 76%, transparent)',
+                background: on ? 'var(--accent)' : 'transparent',
+                color: on ? 'var(--on-accent)' : 'color-mix(in srgb, var(--sand) 80%, transparent)',
               }}
             >
               <input
@@ -121,7 +121,7 @@ export function ConfirmationTable({ draft, onChange }: Props) {
             style={{
               borderLeft: needsAttention
                 ? '2px solid color-mix(in srgb, var(--line) 95%, transparent)'
-                : '2px solid var(--paid-full)',
+                : '2px solid var(--accent)',
               paddingLeft: '10px',
             }}
           >
@@ -138,7 +138,7 @@ export function ConfirmationTable({ draft, onChange }: Props) {
                     type="button"
                     onClick={() => update(clause.id, {})}
                     className="px-1 py-[3px] text-[12px] font-medium"
-                    style={{ background: 'var(--paid-full)', color: 'var(--on-accent)' }}
+                    style={{ background: 'var(--accent)', color: 'var(--on-accent)' }}
                   >
                     Confirm this row
                   </button>

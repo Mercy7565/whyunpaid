@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="WhyUnpaid">
+  <rect width="64" height="64" fill="#0D1F22"/>
+  <rect x="10" y="12" width="44" height="7" fill="#38686A"/>
+  <rect x="22" y="24" width="32" height="7" fill="#38686A"/>
+  <rect x="34" y="36" width="20" height="7" fill="#2589BD"/>
+  <rect x="10" y="48" width="26" height="7" fill="#CDC6AE"/>
+</svg>

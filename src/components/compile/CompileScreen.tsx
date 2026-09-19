@@ -252,7 +252,7 @@ export function CompileScreen() {
             <label
               htmlFor="policy-file"
               className="cursor-pointer px-2 py-1 text-[14px] font-medium"
-              style={{ background: 'var(--paid-full)', color: 'var(--on-accent)' }}
+              style={{ background: 'var(--accent)', color: 'var(--on-accent)' }}
             >
               Choose a PDF
             </label>
@@ -282,7 +282,7 @@ export function CompileScreen() {
           {error ? (
             <p className="mt-2 text-[14px] leading-[1.6] ink-strong measure">
               {error}{' '}
-              <Link href="/" className="underline underline-offset-4" style={{ color: 'var(--paid-full)' }}>
+              <Link href="/" className="underline underline-offset-4" style={{ color: 'var(--accent-ink)' }}>
                 The four specimen policies are on the simulator.
               </Link>
             </p>
@@ -361,10 +361,10 @@ export function CompileScreen() {
                 disabled={blocking.length > 0}
                 className="mt-2 w-full px-1 py-1 text-[14px] font-medium disabled:cursor-not-allowed"
                 style={{
-                  background: blocking.length > 0 ? 'transparent' : 'var(--paid-full)',
+                  background: blocking.length > 0 ? 'transparent' : 'var(--accent)',
                   color:
                     blocking.length > 0
-                      ? 'color-mix(in srgb, var(--paid-full) 55%, transparent)'
+                      ? 'color-mix(in srgb, var(--sand) 55%, transparent)'
                       : 'var(--on-accent)',
                   border:
                     blocking.length > 0

@@ -169,11 +169,11 @@ export function CommandPalette({ open, onClose, onPick }: CommandPaletteProps) {
               }}
               className="cursor-pointer px-2 py-1 hair-t first:border-t-0"
               style={{
-                background: index === active ? 'var(--paid-full)' : 'transparent',
+                background: index === active ? 'var(--accent)' : 'transparent',
                 color:
                   index === active
                     ? 'var(--on-accent)'
-                    : 'color-mix(in srgb, var(--paid-full) 86%, transparent)',
+                    : 'color-mix(in srgb, var(--sand) 88%, transparent)',
               }}
             >
               <span className="block text-[14px] font-medium">{preset.title}</span>

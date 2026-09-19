@@ -115,7 +115,7 @@ export function ClauseTree({
                     ? 'color-mix(in srgb, var(--surface) 90%, transparent)'
                     : 'transparent',
                   borderLeft: selected
-                    ? '2px solid var(--paid-full)'
+                    ? '2px solid var(--accent)'
                     : '2px solid transparent',
                 }}
               >
@@ -124,7 +124,7 @@ export function ClauseTree({
                     className="shrink-0 px-[5px] py-[1px] text-[11px] font-semibold leading-[1.4]"
                     style={{
                       border: 'var(--hair) solid color-mix(in srgb, var(--line) 75%, transparent)',
-                      color: 'color-mix(in srgb, var(--paid-full) 84%, transparent)',
+                      color: 'color-mix(in srgb, var(--sand) 86%, transparent)',
                     }}
                   >
                     {clause.ref}

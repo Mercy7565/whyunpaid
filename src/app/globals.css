@@ -1,22 +1,52 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   The palette. Exactly five colours plus the ink that sits on celadon.
-   Every colour in the product resolves to one of these custom properties.
+   The palette.
+
+   Five brand colours, shipped verbatim, plus four tonal extensions of --slate
+   that exist for one reason: the five on their own cannot carry readable text.
+   Sand on slate measures 3.66:1, which fails AA for body copy, so the darkest
+   brand colour is extended down to an ink and up to a rule. Every value below
+   is measured against --ground:
+
+     --sand   on --ground   9.6:1   body copy, the paid figure
+     --sage   on --ground   7.5:1   secondary numerals
+     --blue   on --ground   4.2:1   fills, focus rings, active backgrounds
+     --accent-ink on --ground 6.4:1   blue text, where --blue would fail AA
+     --teal   on --ground   3.2:1   borders and 18px+ labels
+     --line   on --ground   3.5:1   rules and component boundaries
+     --slate  on --ground   2.6:1   fills only, never text
+
+   The warm/cool split is the whole visual idea: everything structural is cool
+   teal, and the one thing that survives the waterfall is warm sand.
+
    No hex literal appears anywhere else in the codebase.
    --------------------------------------------------------------------------- */
 :root {
-  --ground:     #3A2449; /* page background, deepest layer */
-  --surface:    #372772; /* cards, elevated panels, deduction bands */
-  --line:       #747C92; /* borders, axis, dividers, muted labels 18px+ ONLY */
-  --paid-part:  #94C595; /* partially-paid figures, secondary numerals */
-  --paid-full:  #A1E8AF; /* the paid figure, accent text, focus rings, active states */
-  --on-accent:  #3A2449; /* text sitting on a celadon surface */
+  /* The five, exactly as given. */
+  --blue:  #2589BD; /* primary interaction: focus, active states, links   */
+  --teal:  #187795; /* secondary interaction, hover, chart series two     */
+  --slate: #38686A; /* elevated surfaces, deduction bands                 */
+  --sage:  #A3B4A2; /* partially-paid figures, secondary numerals         */
+  --sand:  #CDC6AE; /* body copy, and the amount that survives            */
 
-  /* Text opacities. Body copy is --paid-full held back, never --line. */
-  --ink-strong: 0.94;
-  --ink-body:   0.86;
-  --ink-muted:  0.70;
+  /* Tonal extensions of --slate. Derived, documented, and nothing else. */
+  --ground:  #0D1F22; /* page background: slate taken down to 8% lightness  */
+  --surface: #17383B; /* cards and panels: slate at 16%                     */
+  --line:    #4A7C7E; /* borders and rules: slate lifted to clear 3:1       */
+  --accent-ink: #59A9D8; /* blue TEXT on dark: 6.4:1, where --blue is 4.2:1 */
+  --on-accent: #08171A; /* ink on a blue, sage or sand fill: 4.6:1 or better */
+
+  /* Semantic aliases. Components speak in these, never in brand names. */
+  --paid-part: var(--sage);
+  --paid-full: var(--sand);
+  --accent:      var(--blue);
+  --accent-deep: var(--teal);
+
+  /* Text opacities. Body copy is --sand held back, never --line. */
+  --ink-strong: 0.96;
+  --ink-body:   0.88;
+  --ink-muted:  0.72;
 
   --measure: 68ch;
   --radius:  2px;
@@ -31,6 +61,10 @@
   --color-paid-part: var(--paid-part);
   --color-paid-full: var(--paid-full);
   --color-on-accent: var(--on-accent);
+  --color-accent:      var(--accent);
+  --color-accent-deep: var(--accent-deep);
+  --color-accent-ink:  var(--accent-ink);
+  --color-slate:       var(--slate);
 
   /* An 8px spacing scale, enforced by the engine: every p-*, m-*, gap-* is 8px * n. */
   --spacing: 8px;
@@ -89,15 +123,15 @@
 
   /* One focus treatment, everywhere, always visible. */
   :focus-visible {
-    outline: 2px solid var(--paid-full);
+    outline: 2px solid var(--accent);
     outline-offset: 2px;
     border-radius: var(--radius);
   }
   :focus:not(:focus-visible) { outline: none; }
 
   ::selection {
-    background: color-mix(in srgb, var(--paid-full) 30%, transparent);
-    color: var(--paid-full);
+    background: color-mix(in srgb, var(--accent) 45%, transparent);
+    color: var(--sand);
   }
 
   /* No system chrome tinting outside the palette. */
@@ -116,7 +150,7 @@
   .ink-body   { color: color-mix(in srgb, var(--paid-full) calc(var(--ink-body) * 100%), transparent); }
   .ink-muted  { color: color-mix(in srgb, var(--paid-full) calc(var(--ink-muted) * 100%), transparent); }
 
-  /* --line as text is permitted at 18px and above only (it measures ~3.2:1 on --ground). */
+  /* --line as text is permitted at 18px and above only (it measures 3.5:1 on --ground). */
   .label-line {
     color: var(--line);
     font-size: 18px;
@@ -152,13 +186,13 @@
 
   /* Elevation is a fill and a hairline. There are no shadows in this product. */
   .panel {
-    background: color-mix(in srgb, var(--surface) 62%, var(--ground));
-    border: var(--hair) solid color-mix(in srgb, var(--line) 42%, transparent);
+    background: var(--surface);
+    border: var(--hair) solid color-mix(in srgb, var(--line) 46%, transparent);
     border-radius: var(--radius);
   }
   .panel-raised {
-    background: var(--surface);
-    border: var(--hair) solid color-mix(in srgb, var(--line) 55%, transparent);
+    background: color-mix(in srgb, var(--slate) 30%, var(--surface));
+    border: var(--hair) solid color-mix(in srgb, var(--line) 62%, transparent);
     border-radius: var(--radius);
   }
 }
@@ -283,8 +317,8 @@
   height: 2px;
   background: linear-gradient(
     to right,
-    var(--paid-full) var(--range-progress, 0%),
-    color-mix(in srgb, var(--line) 60%, transparent) var(--range-progress, 0%)
+    var(--accent) var(--range-progress, 0%),
+    color-mix(in srgb, var(--line) 55%, transparent) var(--range-progress, 0%)
   );
 }
 
@@ -296,11 +330,11 @@
   margin-top: -6px;
   border: none;
   border-radius: 0;
-  background: var(--paid-full);
+  background: var(--accent);
 }
 
 .range:focus-visible::-webkit-slider-thumb {
-  outline: 2px solid var(--paid-full);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
@@ -311,7 +345,7 @@
 
 .range::-moz-range-progress {
   height: 2px;
-  background: var(--paid-full);
+  background: var(--accent);
 }
 
 .range::-moz-range-thumb {
@@ -319,11 +353,11 @@
   height: 14px;
   border: none;
   border-radius: 0;
-  background: var(--paid-full);
+  background: var(--accent);
 }
 
 .range:focus-visible::-moz-range-thumb {
-  outline: 2px solid var(--paid-full);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
@@ -335,6 +369,6 @@
 }
 
 .skeleton {
-  background: color-mix(in srgb, var(--surface) 70%, var(--ground));
+  background: color-mix(in srgb, var(--surface) 82%, var(--ground));
   animation: settle 1.6s ease-in-out infinite;
 }

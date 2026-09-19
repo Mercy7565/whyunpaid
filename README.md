@@ -204,23 +204,43 @@ time. The numbers on the inspector come from a real run.
 
 ## Design
 
-Exactly five colours, shipped as CSS custom properties on `:root` and consumed
-by Tailwind through `@theme inline`, so no hex literal appears anywhere else.
+Five brand colours, shipped as CSS custom properties on `:root` and consumed by
+Tailwind through `@theme inline`, so no hex literal appears anywhere else in the
+application.
 
 ```css
---ground:     #3A2449;   /* page background            */
---surface:    #372772;   /* cards, deduction bands     */
---line:       #747C92;   /* borders, 18px+ labels ONLY */
---paid-part:  #94C595;   /* secondary numerals         */
---paid-full:  #A1E8AF;   /* the amount that survives   */
---on-accent:  #3A2449;   /* ink on celadon             */
+--blue:  #2589BD;   /* primary interaction: focus, active, fills  */
+--teal:  #187795;   /* secondary interaction, chart series two    */
+--slate: #38686A;   /* elevated surfaces, deduction bands         */
+--sage:  #A3B4A2;   /* partially-paid figures, secondary numerals */
+--sand:  #CDC6AE;   /* body copy, and the amount that survives    */
 ```
 
-Deductions recede: `--surface` fills, hairline edges, a minus sign and a clause
-reference on every one, so nothing depends on telling two colours apart. The
-only bright element on any screen is the amount that survives. Severity is
-expressed through weight, scale and desaturation, never through hue. No
-shadows, no gradients, no blur. Dark is the only theme.
+The five on their own cannot carry readable text — sand on slate measures
+3.66:1, under the 4.5:1 AA needs for body copy — so the darkest brand colour is
+extended into four derived tones, and every one is measured:
+
+| Token | Value | On `--ground` | Used for |
+|---|---|---|---|
+| `--ground` | `#0D1F22` | — | page background: `--slate` at 8% lightness |
+| `--surface` | `#17383B` | — | cards and panels: `--slate` at 16% |
+| `--line` | `#4A7C7E` | 3.5:1 | borders, rules, 18px+ labels |
+| `--accent-ink` | `#59A9D8` | 6.4:1 | blue **text**, where `--blue` is 4.2:1 |
+| `--sand` | brand | 9.6:1 | body copy, the paid figure |
+| `--sage` | brand | 7.5:1 | secondary numerals |
+| `--blue` | brand | 4.2:1 | fills, focus rings, active backgrounds |
+
+**The warm/cool split is the whole visual idea.** Everything structural is cool
+teal; the one thing that survives the waterfall is warm sand. Deductions recede:
+`--slate` fills, hairline edges, a minus sign and a clause reference on every
+one, so nothing depends on telling two colours apart. Severity is expressed
+through weight, scale and desaturation, never through hue. No shadows, no
+gradients, no blur. Dark is the only theme.
+
+Four files carry literal hex values, all of them places a CSS custom property
+cannot reach: `global-error.tsx` (renders when the stylesheet may not have
+loaded), `layout.tsx` and `manifest.ts` (browser chrome metadata), and
+`opengraph-image.tsx` (rendered by Satori, which has no cascade).
 
 One typeface family in two cuts: Archivo at normal width for the interface,
 Archivo at 112% width for figures, with `tabular-nums` on every number so digits

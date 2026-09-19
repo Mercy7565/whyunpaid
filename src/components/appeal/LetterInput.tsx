@@ -38,7 +38,7 @@ export function LetterInput({
           placeholder="Paste the paragraph from the letter that gives the reason. Nothing leaves this browser."
           onChange={(event) => onChange(event.target.value)}
           className="w-full resize-y hair bg-transparent px-1 py-1 text-[14px] leading-[1.6] ink-strong placeholder:opacity-55"
-          style={{ background: 'color-mix(in srgb, var(--surface) 34%, transparent)' }}
+          style={{ background: 'color-mix(in srgb, var(--surface) 90%, transparent)' }}
         />
         <p className="text-[12px] leading-[1.5] ink-muted">
           {value.trim().length === 0
@@ -60,10 +60,10 @@ export function LetterInput({
                   aria-pressed={active}
                   className="w-full hair px-1 py-1 text-left transition-colors"
                   style={{
-                    background: active ? 'var(--paid-full)' : 'transparent',
+                    background: active ? 'var(--accent)' : 'transparent',
                     color: active
                       ? 'var(--on-accent)'
-                      : 'color-mix(in srgb, var(--paid-full) 86%, transparent)',
+                      : 'color-mix(in srgb, var(--sand) 88%, transparent)',
                   }}
                 >
                   <span className="block text-[13px] font-medium">{sample.title}</span>

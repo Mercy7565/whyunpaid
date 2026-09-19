@@ -3,6 +3,7 @@ import { Archivo, Noto_Sans_Devanagari } from 'next/font/google';
 import './globals.css';
 import { SiteHeader } from '@/components/SiteHeader';
 import { SiteFooter } from '@/components/SiteFooter';
+import { SITE_URL } from '@/lib/site';
 
 /*
  * One typeface family, two cuts. `ui` is the grotesk at normal width; `display`
@@ -23,25 +24,47 @@ const deva = Noto_Sans_Devanagari({
   variable: '--font-deva-src',
 });
 
+const DESCRIPTION =
+  'Your policy is already a program. Nobody can read it. So run it. WhyUnpaid? compiles a health insurance policy into a clause tree and shows exactly which clause took which rupee.';
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://whyunpaid.vercel.app'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'WhyUnpaid? — run your health policy like the program it is',
     template: '%s · WhyUnpaid?',
   },
-  description:
-    'Your policy is already a program. Nobody can read it. So run it. WhyUnpaid? compiles a health insurance policy into a clause tree and shows exactly which clause took which rupee.',
+  description: DESCRIPTION,
   applicationName: 'WhyUnpaid?',
+  alternates: { canonical: '/' },
+  keywords: [
+    'health insurance',
+    'claim rejection',
+    'IRDAI',
+    'room rent proportionate deduction',
+    'moratorium',
+    'policy wording',
+    'India',
+  ],
+  authors: [{ name: 'WhyUnpaid?' }],
   openGraph: {
     title: 'WhyUnpaid?',
     description: 'Your policy is already a program. Nobody can read it. So run it.',
+    url: SITE_URL,
+    siteName: 'WhyUnpaid?',
     type: 'website',
+    locale: 'en_IN',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'WhyUnpaid?',
+    description: 'Your policy is already a program. Nobody can read it. So run it.',
   },
   robots: { index: true, follow: true },
+  formatDetection: { telephone: false, address: false, email: false },
 };
 
 export const viewport: Viewport = {
-  themeColor: '#3A2449',
+  themeColor: '#0D1F22',
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',

@@ -20,7 +20,7 @@ export function SiteHeader() {
           </span>
           <span
             className="display text-[19px] leading-none sm:text-[21px]"
-            style={{ color: 'var(--paid-full)' }}
+            style={{ color: 'var(--accent-ink)' }}
             aria-hidden="true"
           >
             ?
@@ -40,15 +40,15 @@ export function SiteHeader() {
                     className="relative block px-1 py-1 text-[13px] font-medium transition-opacity sm:px-2 sm:text-[14px]"
                     style={{
                       color: active
-                        ? 'var(--paid-full)'
-                        : 'color-mix(in srgb, var(--paid-full) 70%, transparent)',
+                        ? 'var(--sand)'
+                        : 'color-mix(in srgb, var(--sand) 66%, transparent)',
                     }}
                   >
                     {item.label}
                     <span
                       aria-hidden="true"
                       className="absolute inset-x-1 -bottom-[7px] h-[2px] sm:inset-x-2"
-                      style={{ background: active ? 'var(--paid-full)' : 'transparent' }}
+                      style={{ background: active ? 'var(--accent)' : 'transparent' }}
                     />
                   </Link>
                 </li>

@@ -115,7 +115,7 @@ export function Waterfall({
             reserve={reserve}
           />
         </div>
-        <div className="h-[10px] w-full" style={{ background: 'var(--surface)' }} />
+        <div className="h-[10px] w-full" style={{ background: 'var(--slate)' }} />
       </div>
 
       {/* One row per clause that took something. */}
@@ -153,7 +153,7 @@ export function Waterfall({
                           className="shrink-0 px-[5px] py-[1px] text-[11px] font-semibold leading-[1.4]"
                           style={{
                             border: 'var(--hair) solid color-mix(in srgb, var(--line) 75%, transparent)',
-                            color: 'color-mix(in srgb, var(--paid-full) 82%, transparent)',
+                            color: 'color-mix(in srgb, var(--sand) 84%, transparent)',
                           }}
                         >
                           {deduction.clauseRef}
@@ -184,7 +184,7 @@ export function Waterfall({
                         transition={barTransition}
                         style={{
                           minWidth: '3px',
-                          background: 'var(--surface)',
+                          background: 'var(--slate)',
                           borderLeft: 'var(--hair) solid color-mix(in srgb, var(--line) 70%, transparent)',
                         }}
                       />

@@ -33,7 +33,7 @@ export function Select<T extends string>({ label, value, options, onChange, hint
           aria-describedby={hint ? hintId : undefined}
           onChange={(event) => onChange(event.target.value as T)}
           className="w-full appearance-none hair bg-transparent px-1 py-1 pr-4 text-[15px] ink-strong"
-          style={{ background: 'color-mix(in srgb, var(--surface) 40%, transparent)' }}
+          style={{ background: 'color-mix(in srgb, var(--surface) 90%, transparent)' }}
         >
           {options.map((option) => (
             <option key={option.value} value={option.value} style={{ color: 'var(--on-accent)' }}>
@@ -49,7 +49,7 @@ export function Select<T extends string>({ label, value, options, onChange, hint
         >
           <path
             d="M1 1.5 6 6.5 11 1.5"
-            stroke="var(--paid-full)"
+            stroke="var(--accent-ink)"
             strokeWidth="1.5"
             strokeLinecap="square"
           />

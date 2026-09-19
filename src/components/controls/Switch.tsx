@@ -30,8 +30,8 @@ export function Switch({ label, checked, onChange, hint }: SwitchProps) {
           className="relative inline-flex h-[20px] w-[36px] shrink-0 items-center transition-colors peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2"
           style={{
             border: 'var(--hair) solid color-mix(in srgb, var(--line) 70%, transparent)',
-            background: checked ? 'var(--paid-full)' : 'transparent',
-            outlineColor: 'var(--paid-full)',
+            background: checked ? 'var(--accent)' : 'transparent',
+            outlineColor: 'var(--accent)',
           }}
         >
           <span

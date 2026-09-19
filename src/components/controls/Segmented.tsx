@@ -46,10 +46,10 @@ export function Segmented<T extends string>({
               title={option.description}
               className="relative flex min-w-0 cursor-pointer items-center justify-center px-1 py-1 text-[13px] font-medium transition-colors"
               style={{
-                background: selected ? 'var(--paid-full)' : 'transparent',
+                background: selected ? 'var(--accent)' : 'transparent',
                 color: selected
                   ? 'var(--on-accent)'
-                  : 'color-mix(in srgb, var(--paid-full) 76%, transparent)',
+                  : 'color-mix(in srgb, var(--sand) 80%, transparent)',
                 borderLeft:
                   index === 0
                     ? 'none'
@@ -70,7 +70,7 @@ export function Segmented<T extends string>({
               <span
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 hidden peer-focus-visible:block"
-                style={{ outline: '2px solid var(--paid-full)', outlineOffset: '2px' }}
+                style={{ outline: '2px solid var(--accent)', outlineOffset: '2px' }}
               />
             </label>
           );

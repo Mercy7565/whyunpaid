@@ -6,6 +6,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { CommandPalette } from '@/components/CommandPalette';
 import { ContestabilityPanel } from '@/components/ContestabilityPanel';
 import { BillBreakdown } from '@/components/simulate/BillBreakdown';
+import { HowItWorks } from '@/components/simulate/HowItWorks';
 import { MobileSummaryBar } from '@/components/simulate/MobileSummaryBar';
 import { Segmented } from '@/components/controls/Segmented';
 import { Select } from '@/components/controls/Select';
@@ -249,7 +250,7 @@ export function SimulateScreen() {
             <Link
               href="/compile"
               className="text-[13px] underline underline-offset-4"
-              style={{ color: 'var(--paid-full)' }}
+              style={{ color: 'var(--accent-ink)' }}
             >
               Or compile a policy you actually hold
             </Link>
@@ -267,6 +268,8 @@ export function SimulateScreen() {
           <ContestabilityPanel contestability={verdict.contestability} />
         </div>
       </div>
+
+      <HowItWorks />
 
       <MobileSummaryBar
         verdict={verdict}

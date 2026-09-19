@@ -236,7 +236,7 @@ export function PolicyPdfViewer({
                 top: `calc(${rect.top}px + 8px)`,
                 width: `${rect.width}px`,
                 height: `${rect.height}px`,
-                background: 'color-mix(in srgb, var(--paid-full) 42%, transparent)',
+                background: 'color-mix(in srgb, var(--blue) 40%, transparent)',
                 mixBlendMode: 'multiply',
               }}
             />
@@ -254,7 +254,7 @@ export function PolicyPdfViewer({
               <span className="opacity-70">{excerpt.before}</span>
               <mark
                 style={{
-                  background: 'color-mix(in srgb, var(--paid-full) 30%, transparent)',
+                  background: 'color-mix(in srgb, var(--accent) 38%, transparent)',
                   color: 'inherit',
                 }}
               >

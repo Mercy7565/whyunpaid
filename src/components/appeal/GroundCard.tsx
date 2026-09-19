@@ -88,7 +88,7 @@ export function GroundCard({
                 <mark
                   key={index}
                   style={{
-                    background: 'color-mix(in srgb, var(--paid-full) 26%, transparent)',
+                    background: 'color-mix(in srgb, var(--accent) 38%, transparent)',
                     color: 'inherit',
                     padding: '0 1px',
                   }}
@@ -114,7 +114,7 @@ export function GroundCard({
             onOverride(event.target.value === '' ? null : (event.target.value as GroundKind))
           }
           className="mt-1 w-full appearance-none hair bg-transparent px-1 py-1 text-[14px] ink-strong"
-          style={{ background: 'color-mix(in srgb, var(--surface) 40%, transparent)' }}
+          style={{ background: 'color-mix(in srgb, var(--surface) 90%, transparent)' }}
         >
           <option value="" style={{ color: 'var(--on-accent)' }}>
             No ground stated
