@@ -74,8 +74,9 @@ function LineTable({
                 {formatPaise(line.afterPaise)}
               </td>
             ) : null}
-            <td className="py-[6px] pl-1 text-right" data-figure style={{ color: 'var(--line)' }}>
-              <span className="text-[13px]">{formatDeduction(line.removedPaise)}</span>
+            {/* ink-muted, not --line: --line fails AA below 18px. */}
+            <td className="py-[6px] pl-1 text-right ink-muted" data-figure>
+              {formatDeduction(line.removedPaise)}
             </td>
           </tr>
         ))}
