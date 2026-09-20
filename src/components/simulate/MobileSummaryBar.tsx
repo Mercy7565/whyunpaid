@@ -52,7 +52,7 @@ export function MobileSummaryBar({
             paise={verdict.paidPaise}
             className="display block text-[26px] leading-[1.05]"
             reserve={reserveFor(maxBillPaise)}
-            style={{ color: nothingPayable ? 'var(--alert)' : 'var(--paid-full)' }}
+            style={{ color: nothingPayable ? 'var(--figure-alert)' : 'var(--figure-good)' }}
           />
         </div>
         <button

@@ -17,12 +17,21 @@
    never IS amber. It sits ON a solid amber block in near-black ink at 9.4:1,
    identically in both modes. A nil claim does the same on paprika at 5.2:1.
 
+   Three numerals are not on a block and do have to be read against the ground:
+   the test count, the months since inception, and the payable figure in the
+   mobile bar. Those use --figure-good and --figure-alert, which are the brand
+   hues in dark mode, where they are legible on indigo, and deep enough
+   versions of the same hues in light mode to be read on steel. They are the
+   only brand colours permitted as text anywhere.
+
    DARK, measured against --ground #29335C:
      --ink      #F4F7EC  11.2:1   body copy
      --line     #C7D0EE   8.0:1   2px rules, borders, hard shadows
      --paid-part brand    6.4:1   secondary numerals
      --accent   #8FC0DC   6.2:1   interaction
      --alert    brand     3.3:1   block fills only
+     --figure-good brand  6.0:1   numerals read against the ground
+     --figure-alert #F2805A 4.6:1 the same, when the news is nil
      --band     #5A69AE   2.4:1   deduction bars; a fill, never text
      --surface  #1A2140   1.3:1   cards; the 2px rule does the separating
      --on-accent #0B0F1F  9.7:1   on an --accent fill, which is light here
@@ -32,6 +41,8 @@
      --line     #0B0F1F   6.3:1   2px rules, borders, hard shadows
      --accent   #16224A   5.1:1   interaction
      --paid-part #1B2C0B  4.9:1   secondary numerals
+     --figure-good #3F2600 4.7:1   numerals read against the ground
+     --figure-alert #4A1200 5.0:1  the same, when the news is nil
      --band     brand     4.1:1   deduction bars
      --surface  #F7FAF2   2.9:1   cards
      --on-accent #F7FAF2 14.6:1   on an --accent fill, which is DARK here
@@ -83,6 +94,8 @@
   --alert:       var(--paprika);
   --on-accent:   #0B0F1F;
   --on-block:    #0B0F1F;
+  --figure-good:  var(--amber);
+  --figure-alert: #F2805A;
 }
 
 /* Light sits on the brand steel. Applied by system preference... */
@@ -103,6 +116,8 @@
     --alert:       var(--paprika);
     --on-accent:   #F7FAF2;
     --on-block:    #0B0F1F;
+    --figure-good:  #3F2600;
+    --figure-alert: #4A1200;
   }
 }
 
@@ -123,6 +138,8 @@
   --alert:       var(--paprika);
   --on-accent:   #F7FAF2;
   --on-block:    #0B0F1F;
+  --figure-good:  #3F2600;
+  --figure-alert: #4A1200;
 }
 
 /* Tailwind reads the palette; it never redeclares it. */
@@ -136,6 +153,8 @@
   --color-accent:      var(--accent);
   --color-accent-deep: var(--accent-deep);
   --color-alert:       var(--alert);
+  --color-figure-good:  var(--figure-good);
+  --color-figure-alert: var(--figure-alert);
   --color-on-block:    var(--on-block);
   --color-ink:         var(--ink);
   --color-band:        var(--band);

@@ -52,7 +52,7 @@ export function TestSummary() {
         <div className="flex flex-col gap-[2px]">
           <span
             className="display text-[clamp(30px,5vw,44px)] leading-[0.95]"
-            style={{ color: failed === 0 ? 'var(--paid-full)' : 'var(--line)' }}
+            style={{ color: failed === 0 ? 'var(--figure-good)' : 'var(--line)' }}
             data-figure
           >
             {summary.totals.passed}

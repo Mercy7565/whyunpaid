@@ -28,7 +28,7 @@ export function ContestabilityPanel({ contestability }: { contestability: Contes
       <div className="mt-2 flex items-baseline gap-1">
         <span
           className="display text-[30px] leading-none"
-          style={{ color: moratoriumComplete ? 'var(--paid-full)' : 'var(--paid-part)' }}
+          style={{ color: moratoriumComplete ? 'var(--figure-good)' : 'var(--paid-part)' }}
           data-figure
         >
           {monthsOfContinuousCover}

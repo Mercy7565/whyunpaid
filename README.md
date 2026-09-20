@@ -253,6 +253,13 @@ There are **two** inks for filled things, and keeping them apart matters:
 Collapsing those two into one token is what made every selected control render
 near-black text on a near-black fill in light mode.
 
+A third pair, `--figure-good` and `--figure-alert`, exists for the three
+numerals that are read against the ground rather than against a block: the test
+count, the months since inception, and the payable figure in the mobile bar.
+They are the brand amber and paprika in dark mode, where both are legible on
+indigo, and deep versions of the same hues in light mode, where neither is.
+They are the only brand colours used as text anywhere.
+
 ### Brand
 
 Paprika and amber are mid-light colours: on the light steel ground they measure
