@@ -1,6 +1,6 @@
 # WhyUnpaid?
 
-**Your policy is already a program. Nobody can read it. So run it.**
+**Every rupee your policy didn't pay, traced to the clause that took it.**
 
 WhyUnpaid? compiles an Indian health insurance policy into an executable clause
 tree, runs a hospitalisation through it, and emits a rupee-by-rupee waterfall
