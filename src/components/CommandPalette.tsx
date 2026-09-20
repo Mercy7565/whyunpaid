@@ -1,6 +1,14 @@
 'use client';
 
-import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { PRESETS, type Preset, type Scenario } from '@/lib/scenario';
 
 type CommandPaletteProps = {
@@ -33,13 +41,22 @@ export function CommandPalette({ open, onClose, onPick }: CommandPaletteProps) {
     );
   }, [query]);
 
-  useEffect(() => {
+  /*
+   * Focus moves into the filter synchronously, before the browser paints.
+   *
+   * This used to be scheduled with requestAnimationFrame, and the callback did
+   * not reliably run: the dialog opened with focus left on whatever was behind
+   * it, so typing to filter did nothing and a keyboard reader was stranded
+   * outside the modal. A layout effect runs after the DOM is in place and
+   * before paint, which is exactly when the input is focusable, and it does
+   * not depend on a frame ever being produced.
+   */
+  useLayoutEffect(() => {
     if (!open) return;
     returnFocusRef.current = document.activeElement as HTMLElement | null;
     setQuery('');
     setActive(0);
-    const frame = window.requestAnimationFrame(() => inputRef.current?.focus());
-    return () => window.cancelAnimationFrame(frame);
+    inputRef.current?.focus();
   }, [open]);
 
   useEffect(() => {

@@ -317,7 +317,8 @@ export function Waterfall({
 
       {/* The same figures, for anyone reading this with sound rather than eyes. */}
       <p className="sr-only" aria-live="polite">
-        {formatPaise(verdict.claimedPaise)} claimed. {verdict.deductions.length} deductions.{' '}
+        {formatPaise(verdict.claimedPaise)} claimed. {verdict.deductions.length}{' '}
+        {verdict.deductions.length === 1 ? 'deduction' : 'deductions'}.{' '}
         {formatPaise(verdict.paidPaise)} payable.
       </p>
     </section>

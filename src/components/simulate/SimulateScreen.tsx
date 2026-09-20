@@ -60,7 +60,18 @@ export function SimulateScreen() {
   const searchParams = useSearchParams();
   const [scenario, setScenario] = useState<Scenario>(() => scenarioFromParams(searchParams));
   const [paletteOpen, setPaletteOpen] = useState(false);
+  /*
+   * The hint renders as "Ctrl K" until we know otherwise. The glyph is only
+   * correct on a Mac, and a Windows reader shown a Command symbol for a
+   * shortcut they press with Control has been told the wrong thing.
+   */
+  const [isMac, setIsMac] = useState(false);
   const [copyState, setCopyState] = useState<'idle' | 'copied' | 'failed'>('idle');
+
+  useEffect(() => {
+    if (typeof navigator === 'undefined') return;
+    setIsMac(/mac/i.test(navigator.userAgent));
+  }, []);
   const verdictRef = useRef<HTMLDivElement>(null);
 
   /*
@@ -152,7 +163,7 @@ export function SimulateScreen() {
                 className="ml-1 text-[11px] font-normal ink-muted"
                 aria-label="keyboard shortcut Command or Control K"
               >
-                &#8984;K
+                {isMac ? '⌘K' : 'Ctrl K'}
               </kbd>
             </button>
             <button
