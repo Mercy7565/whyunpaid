@@ -30,20 +30,6 @@ that took the money, and the arithmetic for that specific deduction.
 
 ## Demo
 
-> **[ GIF PLACEHOLDER — `docs/demo.gif` ]**
->
-> Twelve seconds, recorded at 380px wide, in this order:
->
-> 1. Land on `/`. Drag the bill slider and watch ₹4,00,000 become ₹2,12,000.
-> 2. Tap the room rent band. Read the quoted wording and the sentence that
->    exempts pharmacy, consumables, implants and diagnostics.
-> 3. Drag months below 24. The claim goes to ₹0 on the waiting period.
-> 4. Cut to `/appeal`, tap the non-disclosure sample, and show the moratorium
->    contradiction and the generated letter.
->
-> Drop the file in at `docs/demo.gif` and replace this block with
-> `![WhyUnpaid? demo](docs/demo.gif)`.
-
 **Live: <https://whyunpaid.vercel.app>**
 
 No account, no upload, no environment variables. Open it on a phone, drag one
